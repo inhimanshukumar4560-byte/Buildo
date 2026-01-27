@@ -84,21 +84,20 @@
         <form id="mcq-form">
             <textarea id="mcq-text" placeholder="यहां अपने सभी MCQs इस फॉर्मेट में पेस्ट करें...
 
-4. The germ theory of disease was proposed by:
-A. Hippocrates
-B. Louis Pasteur
-C. Rudolf Virchow
-D. John Snow
-✅ Answer: B
+Q5. Which of the following occurs during the pre-pathogenesis phase?
+A. Appearance of symptoms
+B. Development of pathological changes
+C. Interaction of agent, host, and environment
+D. Disability
+Answer: C
 
 (अगले प्रश्न के लिए एक लाइन खाली छोड़ें)
 
-5. Social medicine primarily focuses on:
-A. Individual treatment
-B. Hospital-based care
-C. Social and economic determinants of health
-D. Laboratory diagnosis
-✅ Answer: C"></textarea>
+Q6. WHO’s definition of health includes:
+A. Physical well-being only
+B. Physical and mental well-being
+C. Absence of disease
+Answer: B"></textarea>
             <div class="button-container">
                 <button type="submit" id="submit-button">शीट में सेव करें</button>
             </div>
@@ -107,7 +106,7 @@ D. Laboratory diagnosis
     </div>
 
     <script>
-        // आपका नया Web App URL यहाँ डाल दिया गया है
+        // आपका नया Web App URL
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzOTyAaYo1vM2G85enWIYDro_WgrJJrm1BbdC2u-D8iMifL_OYDGPCo2euxBtFKybLQw/exec'; 
 
         const mcqForm = document.getElementById('mcq-form');
@@ -134,7 +133,6 @@ D. Laboratory diagnosis
 
         function parseMCQs(text) {
             const mcqs = [];
-            // MCQs को दो खाली लाइनों से अलग करता है
             const mcqBlocks = text.split(/\n\s*\n/); 
 
             mcqBlocks.forEach(block => {
@@ -145,17 +143,19 @@ D. Laboratory diagnosis
                 const options = [];
                 let correctAnswer = '';
 
-                // उत्तर की लाइन ढूंढें
-                const answerLineIndex = lines.findIndex(line => line.includes('✅ Answer:'));
+                // अब '✅ Answer:' या 'Answer:' दोनों को ढूंढेगा
+                const answerLineIndex = lines.findIndex(line => 
+                    line.includes('Answer:')
+                );
+
                 if (answerLineIndex !== -1) {
                     const answerLine = lines.splice(answerLineIndex, 1)[0];
-                    correctAnswer = answerLine.replace('✅ Answer:', '').trim();
+                    // '✅ Answer:' या 'Answer:' दोनों को हटाकर उत्तर निकालता है
+                    correctAnswer = answerLine.replace(/[\u2705]*\s*Answer:/, '').trim(); 
                 }
 
-                // पहली लाइन को प्रश्न मानें
                 question = lines.shift() || 'प्रश्न नहीं मिला';
                 
-                // बची हुई लाइनें विकल्प हैं
                 lines.forEach(line => {
                     if (line.trim()) {
                         options.push(line.trim());
@@ -175,7 +175,6 @@ D. Laboratory diagnosis
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
-                // डेटा को JSON के रूप में Apps Script पर भेजता है
                 body: JSON.stringify(data) 
             })
             .then(res => res.json())
@@ -183,14 +182,12 @@ D. Laboratory diagnosis
                 if(response.status === 'success'){
                     statusMessage.textContent = 'सफलतापूर्वक गूगल शीट में सेव हो गया!';
                     statusMessage.className = 'success';
-                    mcqTextInput.value = ''; // टेक्स्टबॉक्स खाली करें
+                    mcqTextInput.value = ''; 
                 } else {
-                    // अगर Apps Script से Error आता है
                     throw new Error(response.message);
                 }
             })
             .catch(error => {
-                // नेटवर्क या कोई अन्य Error
                 statusMessage.textContent = 'त्रुटि: ' + error.message;
                 statusMessage.className = 'error';
                 console.error('Error!', error);
