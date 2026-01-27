@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ को गूगल शीट में सेव करें</title>
     <style>
+        /* सामान्य स्टाइलिंग - मोबाइल फ्रेंडली */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
@@ -106,8 +107,8 @@ D. Laboratory diagnosis
     </div>
 
     <script>
-        // आपका Web App URL यहाँ डाल दिया गया है
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4kbEIZh0eFle7lentjQvbcJG2a1XdIgqR8iwyOgS_hTbnO_r8hWcRmhCqAA6C6vlN3w/exec'; 
+        // आपका नया Web App URL यहाँ डाल दिया गया है
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzOTyAaYo1vM2G85enWIYDro_WgrJJrm1BbdC2u-D8iMifL_OYDGPCo2euxBtFKybLQw/exec'; 
 
         const mcqForm = document.getElementById('mcq-form');
         const mcqTextInput = document.getElementById('mcq-text');
@@ -133,7 +134,8 @@ D. Laboratory diagnosis
 
         function parseMCQs(text) {
             const mcqs = [];
-            const mcqBlocks = text.split(/\n\s*\n/);
+            // MCQs को दो खाली लाइनों से अलग करता है
+            const mcqBlocks = text.split(/\n\s*\n/); 
 
             mcqBlocks.forEach(block => {
                 if (block.trim() === '') return;
@@ -143,14 +145,17 @@ D. Laboratory diagnosis
                 const options = [];
                 let correctAnswer = '';
 
+                // उत्तर की लाइन ढूंढें
                 const answerLineIndex = lines.findIndex(line => line.includes('✅ Answer:'));
                 if (answerLineIndex !== -1) {
                     const answerLine = lines.splice(answerLineIndex, 1)[0];
                     correctAnswer = answerLine.replace('✅ Answer:', '').trim();
                 }
 
+                // पहली लाइन को प्रश्न मानें
                 question = lines.shift() || 'प्रश्न नहीं मिला';
                 
+                // बची हुई लाइनें विकल्प हैं
                 lines.forEach(line => {
                     if (line.trim()) {
                         options.push(line.trim());
@@ -170,7 +175,7 @@ D. Laboratory diagnosis
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
-                // CORS एरर से बचने के लिए इसे टेक्स्ट के रूप में भेजें और Apps Script में पार्स करें
+                // डेटा को JSON के रूप में Apps Script पर भेजता है
                 body: JSON.stringify(data) 
             })
             .then(res => res.json())
@@ -180,10 +185,12 @@ D. Laboratory diagnosis
                     statusMessage.className = 'success';
                     mcqTextInput.value = ''; // टेक्स्टबॉक्स खाली करें
                 } else {
+                    // अगर Apps Script से Error आता है
                     throw new Error(response.message);
                 }
             })
             .catch(error => {
+                // नेटवर्क या कोई अन्य Error
                 statusMessage.textContent = 'त्रुटि: ' + error.message;
                 statusMessage.className = 'error';
                 console.error('Error!', error);
