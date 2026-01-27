@@ -1,1033 +1,199 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="hi">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Buildo - Professional Websites & Apps</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    
-    <!-- === ANIMATION LIBRARY (AOS) ADDED - Stylesheet === -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#3b82f6", // Blue color theme
-                        "background-light": "#f8f8f5",
-                        "background-dark": "#0a0e17",
-                        "navy-accent": "#141b2d",
-                        "navy-border": "#1e293b",
-                        "surface-dark": "#161b22",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ को गूगल शीट में सेव करें</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0e17;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
-        /* === BUILDO LOGO STYLES === */
-        .buildo-logo {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            width: 28px;
-            height: 28px;
-            gap: 3px;
-            /* Added for 3D animation */
-            transform-style: preserve-3d;
-            animation: rotate3D 12s infinite linear;
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 20px;
         }
-        .buildo-logo .b { background-color: white; }
-        .buildo-logo .a { background-color: #3b82f6; }
-        .buildo-logo .c { background-color: transparent; }
-        .buildo-logo .b1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-        .buildo-logo .b2 { grid-column: 1 / 2; grid-row: 2 / 3; }
-        .buildo-logo .b3 { grid-column: 1 / 2; grid-row: 3 / 4; }
-        .buildo-logo .b4 { grid-column: 2 / 3; grid-row: 2 / 3; }
-        .buildo-logo .a1 { grid-column: 2 / 3; grid-row: 1 / 2; }
-        .buildo-logo .a2 { grid-column: 2 / 3; grid-row: 3 / 4; }
-
-        /* === NEW - ADDED 3D LOGO ROTATION ANIMATION === */
-        .logo-3d-container {
-            perspective: 800px; /* Adds perspective for 3D effect */
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: vertical;
+            box-sizing: border-box;
         }
-        @keyframes rotate3D {
-            0% { transform: rotateY(0deg) rotateX(5deg); }
-            50% { transform: rotateY(180deg) rotateX(5deg); }
-            100% { transform: rotateY(360deg) rotateX(5deg); }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
         }
-
-        /* === NEW - HERO IMAGE FLOATING ANIMATION === */
-        @keyframes subtle-float {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-12px) rotate(2deg); }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            min-width: 150px;
         }
-        .hero-image-container {
-             animation: subtle-float 7s ease-in-out infinite;
+        button:hover:not(:disabled) {
+            background-color: #155ab6;
         }
-
-        .blue-glow {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
-        .blue-gradient-bg {
-            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent S70%);
+        #status-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
         }
-
-        /* === ADDED FOR MORE SUBTLE ANIMATIONS === */
-        .animated-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        .success {
+            color: #28a745;
         }
-        .animated-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .group:hover .group-hover-icon-scale {
-            transform: scale(1.1);
+        .error {
+            color: #dc3545;
         }
     </style>
 </head>
-<body class="bg-background-dark text-slate-100 font-display selection:bg-primary/20">
-<!-- TopNavBar -->
-<header class="sticky top-0 z-50 w-full border-b border-navy-border bg-background-dark/80 backdrop-blur-md px-6 lg:px-40">
-    <div class="max-w-[1280px] mx-auto flex items-center justify-between h-20">
-        <div class="flex items-center gap-3">
-             <!-- NEW - Added container for 3D perspective -->
-            <div class="logo-3d-container">
-                <div class="buildo-logo">
-                    <div class="b b1"></div><div class="a a1"></div><div class="c c1"></div>
-                    <div class="b b2"></div><div class="b b4"></div><div class="c c2"></div>
-                    <div class="b b3"></div><div class="a a2"></div><div class="c c3"></div>
-                </div>
+<body>
+
+    <div class="container">
+        <h1>MCQ पेस्ट करें और शीट में सेव करें</h1>
+        <form id="mcq-form">
+            <textarea id="mcq-text" placeholder="यहां अपने सभी MCQs इस फॉर्मेट में पेस्ट करें...
+
+4. The germ theory of disease was proposed by:
+A. Hippocrates
+B. Louis Pasteur
+C. Rudolf Virchow
+D. John Snow
+✅ Answer: B
+
+(अगले प्रश्न के लिए एक लाइन खाली छोड़ें)
+
+5. Social medicine primarily focuses on:
+A. Individual treatment
+B. Hospital-based care
+C. Social and economic determinants of health
+D. Laboratory diagnosis
+✅ Answer: C"></textarea>
+            <div class="button-container">
+                <button type="submit" id="submit-button">शीट में सेव करें</button>
             </div>
-            <h2 class="text-white text-2xl font-black tracking-tighter">Buildo</h2>
-        </div>
-        <nav class="hidden md:flex items-center gap-8">
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#how-it-works">How We Work</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#about">About Us</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#services">Services</a>
-            <!-- NEW - Added Link to Our Projects Section -->
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#projects">Our Projects</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#process">Process</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#pricing">Pricing</a>
-        </nav>
-        <div class="flex items-center gap-4">
-            <a href="#application-form" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:scale-105 transform">
-                Apply Now
-            </a>
-        </div>
+        </form>
+        <div id="status-message"></div>
     </div>
-</header>
-<main>
-    <!-- HeroSection -->
-    <section class="relative px-6 lg:px-40 py-20 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 blue-gradient-bg"></div>
-        <!-- NEW - Added decorative glowing blobs for more animation -->
-        <div class="absolute top-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-navy-accent/20 rounded-full blur-3xl animate-pulse animation-delay-4000"></div>
 
-        <div class="max-w-[1280px] mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <div class="flex flex-col gap-8 text-left z-10">
-                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider w-fit">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                    </span>
-                    Manual Craftsmanship
-                </div>
-                <h1 data-aos="fade-up" data-aos-delay="100" class="text-white text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
-                    Professional Websites & Apps, <span class="text-primary">Built to Scale.</span>
-                </h1>
-                <p data-aos="fade-up" data-aos-delay="200" class="text-slate-400 text-lg lg:text-xl leading-relaxed max-w-[600px]">
-                    Expert manual development for founders who value performance and precision over AI-generated shortcuts. We build digital infrastructure that lasts.
-                </p>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4">
-                    <a href="#application-form" class="bg-primary text-white h-14 px-8 rounded-lg text-base font-bold hover:scale-[1.02] transition-transform flex items-center justify-center shadow-2xl shadow-primary/30">
-                        Apply for Website / App
-                    </a>
-                    <a href="#projects" class="border border-navy-border bg-navy-accent/50 text-white h-14 px-8 rounded-lg text-base font-bold hover:bg-navy-accent transition-colors flex items-center justify-center">
-                        View Showcase
-                    </a>
-                </div>
-            </div>
-            <div data-aos="fade-left" class="relative lg:block hidden">
-                <!-- NEW - Added container with floating animation class -->
-                <div class="relative hero-image-container">
-                    <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
-                    <div class="relative rounded-xl border border-navy-border bg-navy-accent p-2 shadow-2xl">
-                        <div class="rounded-lg overflow-hidden bg-background-dark aspect-video flex items-center justify-center">
-                            <div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Abstract dark UI dashboard mockup with blue accents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbYPB1cGzuBj44j-L5orBc_JN7EjyxijzE-1zpafRilQJDfSIXckwqK-OJtj0_KSLiwVkParWVIVj5x-sov3r0BS6WcflG8IFy91Fj3S2TNjXnJp-0CQpSzmmsXxaE93pdNxmpqTef8v1K9P0GHZgGKB0jzJR3XNa9t2uPSq1GNbmtytsVNL6kp2yQ44WwRaaWxczWXmkN_oF_bYPf-F26WHP8uQUVhFVDsnLbl06RFN1amxjUXxHC1ParYKNEe4Fea76KGg7v1GY');"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // आपका Web App URL यहाँ डाल दिया गया है
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4kbEIZh0eFle7lentjQvbcJG2a1XdIgqR8iwyOgS_hTbnO_r8hWcRmhCqAA6C6vlN3w/exec'; 
 
-    <!-- Tech Stack Marquee (Static Row) -->
-    <section class="border-y border-navy-border bg-navy-accent/20 py-10 px-6 lg:px-40">
-        <div data-aos="fade-in" class="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-12 lg:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            <span class="text-white font-bold text-xl flex items-center gap-2">React</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">Firebase</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">GitHub</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">n8n.io</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">AWS</span>
-        </div>
-    </section>
+        const mcqForm = document.getElementById('mcq-form');
+        const mcqTextInput = document.getElementById('mcq-text');
+        const submitButton = document.getElementById('submit-button');
+        const statusMessage = document.getElementById('status-message');
 
-    <!-- FeatureSection / Trust Section -->
-    <section class="px-6 lg:px-40 py-24 bg-background-dark" id="how-it-works">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="flex flex-col gap-4 mb-16 text-center items-center">
-                <h2 class="text-white text-4xl lg:text-5xl font-black tracking-tight">How We Work</h2>
-                <p class="text-slate-400 text-lg max-w-[720px]">Human-led expertise for an AI-saturated market. We don't just prompt; we architect.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">code</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Professional Dev</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Manual code craftsmanship by expert developers. No generic boilerplate, only clean and efficient architecture.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">bolt</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">AI-Assisted</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Leveraging AI for boilerplate and testing speed without ever sacrificing human oversight or precision.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">trending_up</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Scalable Systems</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Architecture built from the ground up to handle enterprise-level growth and complex integrations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        mcqForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const rawText = mcqTextInput.value.trim();
 
-    <!-- ====== NEW ABOUT US SECTION START ====== -->
-    <section id="about" class="py-12">
-        <!-- About Us Hero Section -->
-        <section class="px-8 lg:px-40 py-16 lg:py-24 overflow-hidden">
-            <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" class="flex flex-col gap-8">
-                    <div class="flex flex-col gap-4">
-                        <span class="text-primary font-bold tracking-widest text-xs uppercase">Quality Engineering</span>
-                        <h1 class="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
-                            Building Digital Products with <span class="text-primary">Skill, Strategy</span>, and Responsibility
-                        </h1>
-                        <p class="text-slate-400 text-lg max-w-[540px]">
-                            Reliable, scalable, and human-crafted solutions for startups and brands who value quality, transparency, and long-term thinking.
-                        </p>
-                    </div>
-                </div>
-                <div data-aos="fade-left" class="relative">
-                    <div class="w-full aspect-square rounded-2xl bg-navy-accent overflow-hidden border border-navy-border shadow-2xl" data-alt="Professional developer workspace with clean monitors and minimalist desk" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApgKwwiQ2DrfGHOwMqcsTax-_M8iCrKWstfYyXzCkgMf5FtA7opNCrlNsWfIcUU2epDNAx-Um4vTXivHdsL_8ydZu9iD1vnh3SimrGBoC3gJK5GZvboamBoR__h6BpGvinjIzAOM3xvPlbhHaOIX-hhMvgix8dLb8A1oIqp7K2AGpy1eLx4p_XRJ-OscD5z8RYubX7xbZU_DLhS7SMdwcGndkSddfvQlXVwptRSxLfKhr4mdrsg7ApXTd70LgjtDuU1tFvv-pNTv4'); background-size: cover; background-position: center;">
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 bg-primary p-6 rounded-xl hidden lg:block" data-aos="zoom-in" data-aos-delay="200">
-                        <p class="text-white font-black text-3xl">100%</p>
-                        <p class="text-white font-medium text-xs">Manual Coding</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Who We Are -->
-        <section class="px-8 lg:px-40 py-16 bg-navy-accent/30">
-            <div class="max-w-[1200px] mx-auto">
-                <div class="flex flex-col gap-12">
-                    <div data-aos="fade-up" class="max-w-[720px]">
-                        <h2 class="text-3xl lg:text-4xl font-black mb-6">Who We Are</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            Rooted in India's tech hub, Buildo is a manual development startup dedicated to real engineering. We focus on building products that stand the test of time, moving away from the "fast and breakable" mentality of modern dev shops.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
-                            <span class="material-symbols-outlined text-primary text-4xl">location_on</span>
-                            <h3 class="text-xl font-bold">India-Based Roots</h3>
-                            <p class="text-slate-400 leading-relaxed">
-                                Operating from the heart of Bengaluru, we leverage top-tier local talent to deliver global standards of software excellence with a personalized touch.
-                            </p>
-                        </div>
-                        <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
-                            <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
-                            <h3 class="text-xl font-bold">Real Development</h3>
-                            <p class="text-slate-400 leading-relaxed">
-                                We don't just assemble off-the-shelf components; we craft custom codebases designed for specific growth paths, high performance, and long-term maintainability.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Philosophy Box -->
-        <section class="px-8 lg:px-40 py-16">
-            <div class="max-w-[1200px] mx-auto" data-aos="zoom-in-up">
-                <div class="relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-navy-accent to-background-dark p-8 lg:p-12">
-                    <div class="absolute top-0 right-0 p-8 opacity-10">
-                        <span class="material-symbols-outlined text-9xl">verified_user</span>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
-                        <div class="max-w-[700px] flex flex-col gap-4">
-                            <h2 class="text-2xl lg:text-3xl font-black text-primary">The Buildo Philosophy</h2>
-                            <p class="text-slate-300 text-lg leading-relaxed">
-                                At Buildo, transparency is our core. Every line of your core logic and architecture is <strong class="text-white">manually written by professional developers</strong>. We use AI only for internal support and administrative tasks—never to generate your product's heartbeat.
-                            </p>
-                            <p class="text-slate-400 italic">No generic bloat, no black-box logic, just pure craftsmanship.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <button class="bg-primary text-white font-bold py-4 px-10 rounded-lg shadow-xl whitespace-nowrap hover:scale-105 transform transition-transform">
-                                Our Coding Standards
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Core Values -->
-        <section class="px-8 lg:px-40 py-16">
-            <div class="max-w-[1200px] mx-auto">
-                <div data-aos="fade-up" class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-black mb-4">Our Core Values</h2>
-                    <div class="w-20 h-1 bg-primary mx-auto"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Transparency -->
-                    <div data-aos="fade-up" data-aos-delay="100" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">visibility</span>
-                        <h4 class="font-bold text-lg mb-2">Transparency</h4>
-                        <p class="text-sm text-slate-400">Open communication at every stage of the build process.</p>
-                    </div>
-                    <!-- Responsibility -->
-                    <div data-aos="fade-up" data-aos-delay="200" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">fact_check</span>
-                        <h4 class="font-bold text-lg mb-2">Professional Responsibility</h4>
-                        <p class="text-sm text-slate-400">We take ownership of the code we write and the value it brings.</p>
-                    </div>
-                    <!-- Long-Term -->
-                    <div data-aos="fade-up" data-aos-delay="300" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">trending_up</span>
-                        <h4 class="font-bold text-lg mb-2">Long-Term Thinking</h4>
-                        <p class="text-sm text-slate-400">Architecture built for the next 10 years, not just next month.</p>
-                    </div>
-                    <!-- Client Respect -->
-                    <div data-aos="fade-up" data-aos-delay="400" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">handshake</span>
-                        <h4 class="font-bold text-lg mb-2">Client Respect</h4>
-                        <p class="text-sm text-slate-400">Treating every project as if it were our own startup investment.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Location Identity -->
-        <section class="px-8 lg:px-40 py-16">
-            <div data-aos="fade-up" class="max-w-[1200px] mx-auto rounded-2xl border border-navy-border bg-navy-accent overflow-hidden grid grid-cols-1 lg:grid-cols-2">
-                <div class="p-8 lg:p-12 flex flex-col justify-center">
-                    <div class="mb-6 inline-flex items-center gap-2 text-primary">
-                        <span class="material-symbols-outlined">apartment</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Our Base</span>
-                    </div>
-                    <h2 class="text-3xl font-black mb-4">Bengaluru, India</h2>
-                    <p class="text-slate-400 mb-6 leading-relaxed">
-                        We are located in the vibrant technology hub of Bengaluru, specifically in the vicinity of <strong>KLE Medical College</strong>. Our location keeps us connected to the pulse of Indian innovation while maintaining a focused, professional workspace.
-                    </p>
-                    <div class="flex items-center gap-4 text-sm font-medium">
-                        <span class="material-symbols-outlined text-primary">map</span>
-                        <span class="text-slate-200">Yeshwantpur, Bengaluru - 560022</span>
-                    </div>
-                </div>
-                <div class="h-64 lg:h-auto bg-slate-800 relative" data-location="Bengaluru, India" style="">
-                    <div class="absolute inset-0 opacity-40 grayscale contrast-125" data-alt="Abstract map or cityscape of Bengaluru" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd4tcDd4rcB6zJHka1MK83Xj2BAXsdLcl2zkKGORf4uL4dRrp4oXK_PpTH8IVv5NrqNIgjqRv5BvAsFsEKxkYq8ledcTvleimmNHG5f8K3A8rhLWmSGoHjOviWo4636D14hlzdI7XTeS25aqTvQexRPxK63q3IMt0bh_BjEEwKec8iAHXdEtOl5_vRP0L_kCk4sxsQPDkKKf2wrzMMohWiRe8mCI9DWPHglGU5yV4iEvuN715jJuf2Uhqg1ZFvEu_4J-Y6fgXBTIc'); background-size: cover; background-position: center;"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-navy-accent to-transparent"></div>
-                </div>
-            </div>
-        </section>
-    </section>
-    <!-- ====== NEW ABOUT US SECTION END ====== -->
+            if (rawText === "") {
+                alert("कृपया टेक्स्ट बॉक्स में कुछ MCQs पेस्ट करें।");
+                return;
+            }
 
+            const parsedMCQs = parseMCQs(rawText);
+            if (parsedMCQs.length > 0) {
+                sendDataToSheet(parsedMCQs);
+            } else {
+                alert("कोई भी वैध MCQ नहीं मिला। कृपया फॉर्मेट जांचें।");
+            }
+        });
 
-    <!-- ====== SERVICES SECTION - MERGED AND RESTYLED ====== -->
-    <section class="px-6 lg:px-40 py-24 bg-navy-accent/10" id="services">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="text-center mb-16">
-                <h2 class="text-white text-4xl lg:text-5xl font-black mb-4">Tailored Professional Offerings</h2>
-                 <p class="text-slate-400 text-lg max-w-[720px] mx-auto">End-to-end solutions for modern enterprises, from high-performance websites to complex data-driven applications.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Website Development -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">language</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Website Development</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Static and dynamic, SEO-ready, mobile-responsive solutions crafted with pixel-perfect precision.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Performance Optimized</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Headless CMS Integration</li>
-                    </ul>
-                </div>
-                <!-- 2. Web App Development -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">layers</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Web App Development</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Secure, data-driven systems with complex user authentication and real-time synchronization.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Secure Auth Flows</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>API Orchestration</li>
-                    </ul>
-                </div>
-                <!-- 3. Dashboard & Admin Panels -->
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">monitoring</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Dashboard &amp; Admin Panels</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Role-based access control and custom analytics designed for operational efficiency.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Custom Data Viz</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>RBAC Security</li>
-                    </ul>
-                </div>
-                <!-- 4. Maintenance & Support -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">engineering</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Maintenance &amp; Support</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Proactive bug fixes, periodic security audits, and continuous performance tuning.
-                        </p>
-                    </div>
-                     <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>24/7 Monitoring</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Security Patching</li>
-                    </ul>
-                </div>
-                <!-- 5. Automation & AI Support (Wide Card) -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all md:col-span-2 animated-card">
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="size-12 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-xl font-bold mb-3 text-white">Automation &amp; AI Support</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed max-w-xl">
-                                We leverage AI as a sophisticated support tool for human-verified logic and testing automation, ensuring high-speed delivery without sacrificing code integrity.
-                            </p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                                <div class="p-4 rounded-lg bg-background-dark border border-navy-border">
-                                    <p class="text-xs font-bold text-primary mb-1">Human-Led</p>
-                                    <p class="text-[10px] uppercase tracking-tighter text-slate-400">Architectural Design</p>
-                                </div>
-                                <div class="p-4 rounded-lg bg-background-dark border border-navy-border">
-                                    <p class="text-xs font-bold text-primary mb-1">AI-Assisted</p>
-                                    <p class="text-[10px] uppercase tracking-tighter text-slate-400">Unit Test Generation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        function parseMCQs(text) {
+            const mcqs = [];
+            const mcqBlocks = text.split(/\n\s*\n/);
 
-    <!-- ====== NEW OUR PROJECTS SECTION START ====== -->
-    <section class="px-6 lg:px-40 py-24 bg-background-dark" id="projects">
-        <div class="max-w-[1280px] mx-auto">
-            <!-- Section Header -->
-            <div data-aos="fade-up" class="text-center mb-16">
-                <h2 class="text-white text-4xl lg:text-5xl font-black mb-4">Our Projects</h2>
-                <p class="text-slate-400 text-lg max-w-[720px] mx-auto">A showcase of our craftsmanship and dedication to building quality digital products.</p>
-            </div>
-            <!-- Grid for Project Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1: Dating App -->
-                <div data-aos="fade-up" data-aos-delay="100" class="group relative overflow-hidden rounded-xl border border-navy-border bg-navy-accent p-8 transition-all duration-300 hover:border-primary/50 animated-card">
-                    <div class="absolute -right-10 -top-10 text-primary/10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
-                         <span class="material-symbols-outlined text-9xl">favorite</span>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <h3 class="text-white text-2xl font-bold mb-2">Shubhzone - Dating App</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm mb-6 flex-grow">A modern social discovery platform designed to connect people through shared interests and meaningful interactions.</p>
-                        <a href="http://shubhzone.shop" target="_blank" rel="noopener noreferrer" class="inline-block mt-auto bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105">
-                            Visit Project
-                        </a>
-                    </div>
-                </div>
+            mcqBlocks.forEach(block => {
+                if (block.trim() === '') return;
 
-                <!-- Project 2: Bus Tracker -->
-                <div data-aos="fade-up" data-aos-delay="200" class="group relative overflow-hidden rounded-xl border border-navy-border bg-navy-accent p-8 transition-all duration-300 hover:border-primary/50 animated-card">
-                    <div class="absolute -right-10 -top-10 text-primary/10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
-                         <span class="material-symbols-outlined text-9xl">directions_bus</span>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <h3 class="text-white text-2xl font-bold mb-2">College Bus Tracker</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm mb-6 flex-grow">An innovative real-time bus tracking system for colleges, enhancing student safety and commute efficiency.</p>
-                        <a href="https://innovators-2gk8.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-block mt-auto bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105">
-                            Visit Project
-                        </a>
-                    </div>
-                </div>
+                const lines = block.trim().split('\n');
+                let question = '';
+                const options = [];
+                let correctAnswer = '';
 
-                <!-- Project 3: E-Learning -->
-                <div data-aos="fade-up" data-aos-delay="300" class="group relative overflow-hidden rounded-xl border border-navy-border bg-navy-accent p-8 transition-all duration-300 hover:border-primary/50 animated-card">
-                    <div class="absolute -right-10 -top-10 text-primary/10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
-                         <span class="material-symbols-outlined text-9xl">school</span>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <h3 class="text-white text-2xl font-bold mb-2">Remedicon - Homeopathy E-Learning</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm mb-6 flex-grow">A specialized e-learning platform providing innovative and interactive educational resources for the homeopathy field.</p>
-                        <a href="https://remedicon.onrender.com/" target="_blank" rel="noopener noreferrer" class="inline-block mt-auto bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105">
-                            Visit Project
-                        </a>
-                    </div>
-                </div>
+                const answerLineIndex = lines.findIndex(line => line.includes('✅ Answer:'));
+                if (answerLineIndex !== -1) {
+                    const answerLine = lines.splice(answerLineIndex, 1)[0];
+                    correctAnswer = answerLine.replace('✅ Answer:', '').trim();
+                }
 
-                <!-- Project 4: Medical Industry -->
-                <div data-aos="fade-up" data-aos-delay="400" class="group relative overflow-hidden rounded-xl border border-navy-border bg-navy-accent p-8 transition-all duration-300 hover:border-primary/50 animated-card">
-                    <div class="absolute -right-10 -top-10 text-primary/10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
-                         <span class="material-symbols-outlined text-9xl">health_and_safety</span>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <h3 class="text-white text-2xl font-bold mb-2">Shubhmed - Medical Industry</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm mb-6 flex-grow">A comprehensive digital solution for the medical industry, streamlining operations and patient management.</p>
-                        <a href="https://shubhmed.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-block mt-auto bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105">
-                            Visit Project
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ====== NEW OUR PROJECTS SECTION END ====== -->
+                question = lines.shift() || 'प्रश्न नहीं मिला';
+                
+                lines.forEach(line => {
+                    if (line.trim()) {
+                        options.push(line.trim());
+                    }
+                });
 
-    <!-- MERGED AND RESTYLED Process Section -->
-    <section class="px-6 lg:px-40 py-24 bg-background-dark border-y border-navy-border" id="process">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="text-center mb-16">
-                <h2 class="text-white text-4xl font-black mb-4">Our Process: The 6-Step Workflow</h2>
-                <p class="text-slate-400">A rigorous end-to-end framework designed for excellence and transparency.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Step 1 -->
-                <div data-aos="fade-up" data-aos-delay="50" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">ads_click</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Client Application</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Initial goal-setting and strategy alignment. We understand your vision before touching a single line of code.</p>
-                    </div>
-                </div>
-                <!-- Step 2 -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">analytics</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Requirement Analysis</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Technical feasibility review and detailed internal scoping. We identify potential roadblocks early.</p>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div data-aos="fade-up" data-aos-delay="150" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">description</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Plan Recommendation</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Transparency in pricing, timelines, and scope clarity. No hidden fees, just honest project blueprints.</p>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">terminal</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Development Phase</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Execution through strict milestones and quality checks. Real-time tracking of development progress.</p>
-                    </div>
-                </div>
-                <!-- Step 5 -->
-                <div data-aos="fade-up" data-aos-delay="250" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">inventory_2</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Review & Delivery</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Internal testing and client feedback loops. We ensure every feature meets the highest standards.</p>
-                    </div>
-                </div>
-                <!-- Step 6 -->
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">handshake</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Support & Maintenance</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Long-term partnership. We don't just ship and leave; we support your growth and scaling needs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- PRICING SECTION -->
-    <section class="relative pt-20 pb-16 overflow-hidden" id="pricing">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.08)_0%,transparent_60%)]"></div>
-        <div data-aos="fade-up" class="max-w-4xl mx-auto text-center px-6 relative z-10">
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 text-white">
-                Simple, Transparent Pricing
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto">
-                No hidden charges. Clear scope. Professional development by real humans, not just scripts.
-            </p>
-        </div>
-    </section>
-    <!-- Pricing Grid -->
-    <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Starter Card -->
-            <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Starter</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹5,000</span>
-                        <span class="text-slate-400 text-sm">one-time</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Single landing page</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Fast 48h delivery</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Fully responsive</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-500"><span class="material-symbols-outlined text-slate-600 text-lg">cancel</span> No CMS integration</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Start Simple</a>
-            </div>
-            <!-- Growth Card (Highlighted) -->
-            <div data-aos="zoom-in" data-aos-delay="200" class="flex flex-col p-8 rounded-xl border-2 border-primary bg-primary/5 relative transform lg:-translate-y-4 blue-glow">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full">
-                    Recommended
-                </div>
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Growth</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹2,999</span>
-                        <span class="text-slate-400 text-sm">/mo</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Up to 5 custom pages</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> CMS integration (Admin)</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Automation workflows</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Priority support</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg bg-primary text-white font-black text-sm hover:brightness-110 transition-all shadow-lg shadow-primary/20">Choose Growth</a>
-            </div>
-            <!-- Pro Card -->
-            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Pro</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹6,999</span>
-                        <span class="text-slate-400 text-sm">/mo</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Custom UI Components</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> User Dashboards</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Stripe/Payment setup</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> API Integrations</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Go Pro</a>
-            </div>
-            <!-- Elite Card -->
-            <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Elite</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">Custom</span>
-                        <span class="text-slate-400 text-sm">quote</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Enterprise infrastructure</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Dedicated developer</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> 24/7 emergency support</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Unlimited scale</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Enquire Now</a>
-            </div>
-        </div>
-        <!-- Action Panel Notice -->
-        <div data-aos="fade-up" class="mt-12 p-6 rounded-xl border border-primary/20 bg-primary/5 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-start gap-4">
-                <div class="bg-primary/20 p-2 rounded-lg">
-                    <span class="material-symbols-outlined text-primary">info</span>
-                </div>
-                <div>
-                    <p class="font-bold text-white text-lg">Notice: Domain & Hosting</p>
-                    <p class="text-slate-400 text-sm md:text-base">Please note that domain name and hosting server charges are not included in the plan prices and will be billed separately based on your provider selection.</p>
-                </div>
-            </div>
-            <a class="flex items-center gap-2 font-bold text-primary whitespace-nowrap group" href="#">
-                View hosting partners
-                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-        </div>
-    </section>
+                mcqs.push({ question, options, correctAnswer });
+            });
+            return mcqs;
+        }
 
-    <!-- ====== NEW APPLICATION SECTION START ====== -->
+        function sendDataToSheet(data) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Saving...';
+            statusMessage.textContent = 'डेटा भेजा जा रहा है...';
+            statusMessage.className = '';
 
-    <!-- Why Application Is Required Section -->
-    <section class="w-full px-6 lg:px-40 py-10">
-        <div class="max-w-[1280px] mx-auto">
-            <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-8 text-center text-white">Why Application Is Required</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-primary size-12 flex items-center justify-center bg-primary/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">search</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Project Understanding</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We dive deep into your requirements to ensure a perfect fit before writing a single line of code.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-primary size-12 flex items-center justify-center bg-primary/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">handshake</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Plan Recommendation</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Skip the guesswork. We recommend personalized service tiers based on your specific scale and goals.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-green-500 size-12 flex items-center justify-center bg-green-500/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">schedule</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Clear Timeline &amp; Cost</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">No hidden fees. Know exactly when and how much before the project kicks off officially.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="w-full max-w-[1280px] mx-auto px-6 lg:px-40 py-16 bg-navy-accent/40 rounded-3xl my-10" data-aos="fade-up">
-        <h2 class="text-3xl font-bold mb-12 text-center text-white">Your Journey to Launch</h2>
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-4 px-4">
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg ring-8 ring-primary/10">1</div>
-                <div>
-                    <p class="font-bold text-white">Submit Application</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Initial Step</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">2</div>
-                <div>
-                    <p class="font-bold text-white">Discovery Call</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Deep Dive</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">3</div>
-                <div>
-                    <p class="font-bold text-white">Solution Design</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Architecture</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">4</div>
-                <div>
-                    <p class="font-bold text-white">Development</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Manual Coding</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">5</div>
-                <div>
-                    <p class="font-bold text-white">Delivery</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Live Launch</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section class="w-full max-w-4xl mx-auto px-6 py-16" id="application-form">
-        <div data-aos="fade-up" class="bg-navy-accent rounded-2xl shadow-2xl border border-navy-border overflow-hidden">
-            <div class="bg-primary/10 px-8 py-6 border-b border-primary/20">
-                <h2 class="text-2xl font-bold flex items-center gap-2 text-white">
-                    <span class="material-symbols-outlined text-primary">assignment</span>
-                    Buildo Project Application
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Fill out the details below. Our team reviews all applications within 24 hours.</p>
-            </div>
-            <form class="p-8 space-y-10">
-                <!-- Group 1: Identity -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">01</span> Identity &amp; Contact
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Full Name</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="John Doe" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Business Name</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="Acme Corp" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5 md:col-span-2">
-                            <label class="text-sm font-medium text-slate-300">Email Address</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="john@company.com" type="email"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Group 2: Project Details -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">02</span> Project Details
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Project Type</label>
-                            <select class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white">
-                                <option>Select Option</option>
-                                <option>Custom Website</option>
-                                <option>Mobile Application</option>
-                                <option>Web Dashboard / SaaS</option>
-                                <option>E-commerce Platform</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Industry</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="e.g. Fintech, Healthcare" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5 md:col-span-2">
-                            <label class="text-sm font-medium text-slate-300">Brief Description</label>
-                            <textarea class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary text-white" placeholder="Tell us about the core features and purpose of your project..." rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <!-- Group 3: Scope -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">03</span> Logistics &amp; Scope
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Budget Range</label>
-                            <select class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white">
-                                <option>$5k - $10k</option>
-                                <option>$10k - $25k</option>
-                                <option>$25k - $50k</option>
-                                <option>$50k+</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Target Deadline</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" type="date"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Transparency Box -->
-                <div class="p-4 rounded-lg bg-primary/5 border border-primary/20 flex gap-4 items-start">
-                    <span class="material-symbols-outlined text-primary mt-0.5">info</span>
-                    <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
-                        <strong class="text-white">Transparency Note:</strong> Every project at Buildo is hand-crafted by senior developers. We do not use "no-code" or "auto-generation" tools. Hosting, domain, and third-party API costs are separate from development fees and will be itemized in your proposal.
-                    </p>
-                </div>
-                <button class="w-full h-14 bg-primary text-white text-lg font-black rounded-lg hover:brightness-110 transition-all shadow-xl shadow-primary/20" type="submit">
-                    Submit Application for Review
-                </button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- ====== NEW APPLICATION SECTION END ====== -->
-
-    <!-- Maintenance Section -->
-    <section class="bg-navy-accent/10 py-24 border-y border-navy-border">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div data-aos="fade-up" class="mb-12 max-w-3xl">
-                <h2 class="text-white text-3xl font-black mb-4">Maintenance & Support</h2>
-                <p class="text-slate-400">Keep your digital assets healthy with our specialized recurring support services included in Growth and Pro plans.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">security</span>
-                    <h4 class="text-white text-xl font-bold">Security Monitoring</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Continuous vulnerability scanning and firewall management to protect your customer data and brand reputation.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">backup</span>
-                    <h4 class="text-white text-xl font-bold">Automated Backups</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Daily off-site backups with one-click restoration. We ensure your data is safe even if the unthinkable happens.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">system_update</span>
-                    <h4 class="text-white text-xl font-bold">CMS & Core Updates</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">We manually test and apply all system updates to ensure new features don't break your existing design or logic.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="py-24 max-w-3xl mx-auto px-6">
-        <h2 data-aos="fade-up" class="text-white text-3xl font-black mb-12 text-center">Frequently Asked Questions</h2>
-        <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
-            <details class="group border-b border-navy-border pb-4" open="">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Why manual builds over AI generators?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    AI generators often create bloated, unoptimized code that is difficult to scale. Our developers write clean, semantic code designed specifically for your business logic, resulting in faster load times and better SEO.
-                </div>
-            </details>
-            <details class="group border-b border-navy-border pb-4">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Do I own the source code?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    Absolutely. Once the final payment is settled, full ownership of the source code is transferred to you. No vendor lock-in, ever.
-                </div>
-            </details>
-            <details class="group border-b border-navy-border pb-4">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Can I upgrade plans mid-cycle?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    Yes, you can upgrade at any time. We will prorate the difference for the remainder of your billing cycle and initiate the new service features immediately.
-                </div>
-            </details>
-        </div>
-    </section>
-    <!-- Final CTA Section -->
-    <section class="relative py-24 overflow-hidden bg-primary">
-        <div class="max-w-4xl mx-auto text-center px-6 relative z-10 text-background-dark">
-            <h2 data-aos="fade-up" data-aos-delay="50" class="text-4xl md:text-5xl font-black mb-6 text-white">Start Simple. Scale Professionally.</h2>
-            <p data-aos="fade-up" data-aos-delay="150" class="text-lg font-medium mb-10 text-white/80">Ready to build something that lasts? Our team is standing by.</p>
-            <div data-aos="fade-up" data-aos-delay="250" class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#application-form" class="bg-background-dark text-white px-10 py-4 rounded-xl font-black hover:scale-105 transition-transform shadow-xl">Apply Now</a>
-                <button class="border-2 border-white/20 text-white px-10 py-4 rounded-xl font-black hover:bg-white hover:text-primary transition-all">Contact Sales</button>
-            </div>
-        </div>
-        <!-- Decorative abstract background for CTA -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none" data-alt="Abstract dot pattern background" style="background-image: radial-gradient(circle at 2px 2px, black 1px, transparent 0); background-size: 24px 24px;"></div>
-    </section>
-
-</main>
-
-<!-- Enhanced Footer -->
-<footer class="border-t border-navy-border px-8 lg:px-40 py-12 bg-background-dark text-slate-500">
-    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="col-span-1 md:col-span-2 flex flex-col gap-4">
-            <div class="flex items-center gap-3">
-                 <div class="logo-3d-container">
-                    <div class="buildo-logo">
-                        <div class="b b1"></div><div class="a a1"></div><div class="c c1"></div>
-                        <div class="b b2"></div><div class="b b4"></div><div class="c c2"></div>
-                        <div class="b b3"></div><div class="a a2"></div><div class="c c3"></div>
-                    </div>
-                </div>
-                <h2 class="text-white text-2xl font-black tracking-tighter">Buildo</h2>
-            </div>
-            <p class="max-w-sm">A professional development startup crafting high-performance digital products manually from Bengaluru, India.</p>
-        </div>
-        <div>
-            <h4 class="text-white font-bold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-sm">
-                <li><a class="hover:text-primary transition-colors" href="#">Case Studies</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#process">Our Process</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="text-white font-bold mb-4">Contact</h4>
-            <p class="text-sm">hello@buildo.in</p>
-            <p class="text-sm">Bengaluru, KA, India</p>
-        </div>
-    </div>
-    <div class="max-w-[1200px] mx-auto mt-12 pt-8 border-t border-navy-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-        <p>© 2024 Buildo Software Solutions. All rights reserved.</p>
-        <div class="flex gap-6">
-            <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
-            <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
-        </div>
-    </div>
-</footer>
-
-<!-- === ANIMATION LIBRARY (AOS) ADDED - JavaScript === -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    // Initialize the AOS library
-    AOS.init({
-        duration: 800, // animation duration in milliseconds
-        once: true,    // whether animation should happen only once - while scrolling down
-        offset: 50,    // offset (in px) from the original trigger point
-    });
-</script>
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                // CORS एरर से बचने के लिए इसे टेक्स्ट के रूप में भेजें और Apps Script में पार्स करें
+                body: JSON.stringify(data) 
+            })
+            .then(res => res.json())
+            .then(response => {
+                if(response.status === 'success'){
+                    statusMessage.textContent = 'सफलतापूर्वक गूगल शीट में सेव हो गया!';
+                    statusMessage.className = 'success';
+                    mcqTextInput.value = ''; // टेक्स्टबॉक्स खाली करें
+                } else {
+                    throw new Error(response.message);
+                }
+            })
+            .catch(error => {
+                statusMessage.textContent = 'त्रुटि: ' + error.message;
+                statusMessage.className = 'error';
+                console.error('Error!', error);
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'शीट में सेव करें';
+            });
+        }
+    </script>
 
 </body>
 </html>
