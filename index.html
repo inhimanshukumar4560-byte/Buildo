@@ -1,387 +1,308 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>अल्ट्रा जेस्चर YouTube कंट्रोल</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Buildo - Professional Websites & Apps</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- === ANIMATION LIBRARY (AOS) ADDED - Stylesheet === -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6", // Blue color theme
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0a0e17",
+                        "navy-accent": "#141b2d",
+                        "navy-border": "#1e293b",
+                        "surface-dark": "#161b22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
     <style>
-        /* सामान्य बॉडी स्टाइल */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            overflow-x: hidden; /* हॉरिजॉन्टल स्क्रॉलिंग रोकें */
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        /* कंटेनर और हेडर */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            text-align: center;
+        /* === BUILDO LOGO STYLES === */
+        .buildo-logo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 28px;
+            height: 28px;
+            gap: 3px;
+            /* Added for 3D animation */
+            transform-style: preserve-3d;
+            animation: rotate3D 12s infinite linear;
         }
-        h1 { color: #cc0000; margin-bottom: 5px; }
-        #info { font-size: 1.1em; color: #555; margin-bottom: 20px; }
+        .buildo-logo .b { background-color: white; }
+        .buildo-logo .a { background-color: #3b82f6; }
+        .buildo-logo .c { background-color: transparent; }
+        .buildo-logo .b1 { grid-column: 1 / 2; grid-row: 1 / 2; }
+        .buildo-logo .b2 { grid-column: 1 / 2; grid-row: 2 / 3; }
+        .buildo-logo .b3 { grid-column: 1 / 2; grid-row: 3 / 4; }
+        .buildo-logo .b4 { grid-column: 2 / 3; grid-row: 2 / 3; }
+        .buildo-logo .a1 { grid-column: 2 / 3; grid-row: 1 / 2; }
+        .buildo-logo .a2 { grid-column: 2 / 3; grid-row: 3 / 4; }
 
-        /* YouTube प्लेयर कंटेनर */
-        #player-container {
-            width: 100%;
-            aspect-ratio: 16 / 9; /* 16:9 आस्पेक्ट रेश्यो बनाए रखें */
+        /* === NEW - ADDED 3D LOGO ROTATION ANIMATION === */
+        .logo-3d-container {
+            perspective: 800px; /* Adds perspective for 3D effect */
+        }
+        @keyframes rotate3D {
+            0% { transform: rotateY(0deg) rotateX(5deg); }
+            50% { transform: rotateY(180deg) rotateX(5deg); }
+            100% { transform: rotateY(360deg) rotateX(5deg); }
+        }
+
+        /* === NEW - HERO IMAGE FLOATING ANIMATION === */
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .hero-image-container {
+             animation: subtle-float 7s ease-in-out infinite;
+        }
+
+        .blue-glow {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+        }
+        .blue-gradient-bg {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent S70%);
+        }
+
+        /* === ADDED FOR MORE SUBTLE ANIMATIONS === */
+        .animated-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .animated-card:hover {
+            transform: translateY(-6px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: black;
         }
-        
-        /* वीडियो फीड (छिपा हुआ) */
-        .input_video { display: none; }
-        
-        /* कस्टम कर्सर */
-        #cursor {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: rgba(255, 0, 0, 0.7); /* लाल */
-            border: 3px solid white;
-            border-radius: 50%;
-            pointer-events: none; /* यह महत्वपूर्ण है ताकि यह क्लिक में बाधा न डाले */
-            transform: translate(-50%, -50%);
-            display: none;
-            transition: background-color 0.1s, transform 0.1s;
-            z-index: 9999;
-            font-size: 10px;
-            line-height: 25px;
-            color: white;
-            font-weight: bold;
-        }
-        /* जब क्लिक या कोई एक्शन ट्रिगर हो */
-        #cursor.action {
-            background-color: rgba(0, 200, 0, 0.9); /* हरा */
-            transform: translate(-50%, -50%) scale(1.3);
-        }
-
-        /* स्टेटस बार */
-        #status {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            min-height: 20px;
+        .group:hover .group-hover-icon-scale {
+            transform: scale(1.1);
         }
     </style>
-    
-    <!-- MediaPipe लाइब्रेरी इम्पोर्ट करें -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-    
-    <!-- YouTube iFrame Player API को लोड करने के लिए स्क्रिप्ट -->
-    <script>
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    </script>
 </head>
-<body>
-
-    <!-- कैमरा फ़ीड के लिए वीडियो एलिमेंट -->
-    <video class="input_video"></video>
-
-    <div class="container">
-        <h1>YouTube जेस्चर कंट्रोल सिस्टम</h1>
-        <p id="info">कैमरा शुरू करें और दिए गए इशारों का उपयोग करें।</p>
-        
-        <div id="player-container">
-            <!-- यहाँ YouTube प्लेयर लोड होगा -->
-            <div id="youtube-player"></div>
+<body class="bg-background-dark text-slate-100 font-display selection:bg-primary/20">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-navy-border bg-background-dark/80 backdrop-blur-md px-6 lg:px-40">
+    <div class="max-w-[1280px] mx-auto flex items-center justify-between h-20">
+        <div class="flex items-center gap-3">
+             <!-- NEW - Added container for 3D perspective -->
+            <div class="logo-3d-container">
+                <div class="buildo-logo">
+                    <div class="b b1"></div><div class="a a1"></div><div class="c c1"></div>
+                    <div class="b b2"></div><div class="b b4"></div><div class="c c2"></div>
+                    <div class="b b3"></div><div class="a a2"></div><div class="c c3"></div>
+                </div>
+            </div>
+            <h2 class="text-white text-2xl font-black tracking-tighter">Buildo</h2>
         </div>
-
-        <div id="status">स्थिति: **कैमरे का इंतज़ार**</div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#how-it-works">How We Work</a>
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#about">About Us</a>
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#services">Services</a>
+            <!-- NEW - Added Link to Our Projects Section -->
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#projects">Our Projects</a>
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#process">Process</a>
+            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#pricing">Pricing</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <a href="#application-form" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:scale-105 transform">
+                Apply Now
+            </a>
+        </div>
     </div>
+</header>
+<main>
+    <!-- HeroSection -->
+    <section class="relative px-6 lg:px-40 py-20 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 blue-gradient-bg"></div>
+        <!-- NEW - Added decorative glowing blobs for more animation -->
+        <div class="absolute top-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-navy-accent/20 rounded-full blur-3xl animate-pulse animation-delay-4000"></div>
 
-    <!-- कस्टम कर्सर -->
-    <div id="cursor"></div>
+        <div class="max-w-[1280px] mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col gap-8 text-left z-10">
+                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider w-fit">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    Manual Craftsmanship
+                </div>
+                <h1 data-aos="fade-up" data-aos-delay="100" class="text-white text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+                    Professional Websites & Apps, <span class="text-primary">Built to Scale.</span>
+                </h1>
+                <p data-aos="fade-up" data-aos-delay="200" class="text-slate-400 text-lg lg:text-xl leading-relaxed max-w-[600px]">
+                    Expert manual development for founders who value performance and precision over AI-generated shortcuts. We build digital infrastructure that lasts.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4">
+                    <a href="#application-form" class="bg-primary text-white h-14 px-8 rounded-lg text-base font-bold hover:scale-[1.02] transition-transform flex items-center justify-center shadow-2xl shadow-primary/30">
+                        Apply for Website / App
+                    </a>
+                    <a href="#projects" class="border border-navy-border bg-navy-accent/50 text-white h-14 px-8 rounded-lg text-base font-bold hover:bg-navy-accent transition-colors flex items-center justify-center">
+                        View Showcase
+                    </a>
+                </div>
+            </div>
+            <div data-aos="fade-left" class="relative lg:block hidden">
+                <!-- NEW - Added container with floating animation class -->
+                <div class="relative hero-image-container">
+                    <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
+                    <div class="relative rounded-xl border border-navy-border bg-navy-accent p-2 shadow-2xl">
+                        <div class="rounded-lg overflow-hidden bg-background-dark aspect-video flex items-center justify-center">
+                            <div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Abstract dark UI dashboard mockup with blue accents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbYPB1cGzuBj44j-L5orBc_JN7EjyxijzE-1zpafRilQJDfSIXckwqK-OJtj0_KSLiwVkParWVIVj5x-sov3r0BS6WcflG8IFy91Fj3S2TNjXnJp-0CQpSzmmsXxaE93pdNxmpqTef8v1K9P0GHZgGKB0jzJR3XNa9t2uPSq1GNbmtytsVNL6kp2yQ44WwRaaWxczWXmkN_oF_bYPf-F26WHP8uQUVhFVDsnLbl06RFN1amxjUXxHC1ParYKNEe4Fea76KGg7v1GY');"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // ======================================================================
-        // I. ग्लोबल वैरिएबल और कॉन्स्टेंट (Global Variables and Constants)
-        // ======================================================================
+    <!-- Tech Stack Marquee (Static Row) -->
+    <section class="border-y border-navy-border bg-navy-accent/20 py-10 px-6 lg:px-40">
+        <div data-aos="fade-in" class="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-12 lg:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            <span class="text-white font-bold text-xl flex items-center gap-2">React</span>
+            <span class="text-white font-bold text-xl flex items-center gap-2">Firebase</span>
+            <span class="text-white font-bold text-xl flex items-center gap-2">GitHub</span>
+            <span class="text-white font-bold text-xl flex items-center gap-2">n8n.io</span>
+            <span class="text-white font-bold text-xl flex items-center gap-2">AWS</span>
+        </div>
+    </section>
 
-        const videoElement = document.querySelector('.input_video');
-        const cursor = document.getElementById('cursor');
-        const statusElement = document.getElementById('status');
-        const videoId = 'dQw4w9WgXcQ'; // Rick Astley - Never Gonna Give You Up (टेस्ट के लिए)
-        
-        // जेस्चर ट्रैकिंग के लिए स्टेट वैरिएबल
-        let player; // YouTube प्लेयर ऑब्जेक्ट
-        let lastActionTime = 0;
-        const ACTION_DEBOUNCE_MS = 800; // मिलीसेकंड में कूलडाउन टाइम
-        let lastIndexX = 0;
-        let lastIndexY = 0;
-        let isHandPresent = false;
-        
-        // स्क्रॉलिंग के लिए वैरिएबल
-        let lastScrollY = 0;
-        const SCROLL_THRESHOLD = 0.05; // हथेली की Y-स्थिति में बदलाव का थ्रेशोल्ड
-        const SWIPE_VELOCITY_THRESHOLD = 0.03; // स्वाइप की गति का थ्रेशोल्ड
+    <!-- FeatureSection / Trust Section -->
+    <section class="px-6 lg:px-40 py-24 bg-background-dark" id="how-it-works">
+        <div class="max-w-[1280px] mx-auto">
+            <div data-aos="fade-up" class="flex flex-col gap-4 mb-16 text-center items-center">
+                <h2 class="text-white text-4xl lg:text-5xl font-black tracking-tight">How We Work</h2>
+                <p class="text-slate-400 text-lg max-w-[720px]">Human-led expertise for an AI-saturated market. We don't just prompt; we architect.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
+                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
+                        <span class="material-symbols-outlined">code</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white text-xl font-bold mb-2">Professional Dev</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Manual code craftsmanship by expert developers. No generic boilerplate, only clean and efficient architecture.</p>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
+                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white text-xl font-bold mb-2">AI-Assisted</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Leveraging AI for boilerplate and testing speed without ever sacrificing human oversight or precision.</p>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
+                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
+                        <span class="material-symbols-outlined">trending_up</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white text-xl font-bold mb-2">Scalable Systems</h3>
+                        <p class="text-slate-400 leading-relaxed text-sm">Architecture built from the ground up to handle enterprise-level growth and complex integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // ======================================================================
-        // II. YOUTUBE PLAYER API फंक्शन
-        // ======================================================================
-
-        // 1. YouTube API के लोड होने पर यह फंक्शन कॉल होता है
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                height: '100%',
-                width: '100%',
-                videoId: videoId,
-                playerVars: {
-                    'playsinline': 1,
-                    'controls': 0, // हम अपने जेस्चर से कंट्रोल करेंगे
-                    'modestbranding': 1,
-                    'rel': 0
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        // 2. जब प्लेयर लोड होने के लिए तैयार हो
-        function onPlayerReady(event) {
-            statusElement.innerHTML = 'स्थिति: **YouTube प्लेयर तैयार। कैमरे की अनुमति दें।**';
-            event.target.setVolume(50); // वॉल्यूम 50 पर सेट करें
-        }
-
-        // 3. जब प्लेयर की स्थिति बदलती है (प्ले, पॉज, एंड)
-        function onPlayerStateChange(event) {
-            const state = event.data;
-            let statusText = '';
-            if (state === YT.PlayerState.PLAYING) statusText = 'प्लेइंग';
-            else if (state === YT.PlayerState.PAUSED) statusText = 'रुका हुआ';
-            else if (state === YT.PlayerState.ENDED) statusText = 'समाप्त';
-            
-            statusElement.innerHTML = `स्थिति: **${statusText}** | वॉल्यूम: ${player.getVolume()}%`;
-        }
-
-        // 4. प्ले/पॉज टॉगल
-        function ytPlayPause() {
-            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-                updateStatus('पॉज किया गया');
-            } else {
-                player.playVideo();
-                updateStatus('प्ले किया गया');
-            }
-        }
-
-        // 5. वीडियो में आगे/पीछे कूदना
-        function ytSeek(seconds) {
-            const newTime = player.getCurrentTime() + seconds;
-            player.seekTo(newTime, true);
-            updateStatus(`आगे/पीछे ${seconds > 0 ? '+' : ''}${seconds} सेकंड`);
-        }
-
-        // 6. वॉल्यूम बदलना
-        function ytChangeVolume(delta) {
-            let currentVolume = player.getVolume();
-            let newVolume = Math.max(0, Math.min(100, currentVolume + delta));
-            player.setVolume(newVolume);
-            updateStatus(`वॉल्यूम बदला: ${newVolume}%`);
-        }
-        
-        // 7. फुलस्क्रीन टॉगल
-        function ytToggleFullscreen() {
-            const iframe = document.getElementById('youtube-player');
-            if (iframe) {
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                    updateStatus('फुलस्क्रीन बंद');
-                } else {
-                    iframe.requestFullscreen();
-                    updateStatus('फुलस्क्रीन ऑन');
-                }
-            }
-        }
-
-        // 8. अगले/पिछले वीडियो पर जाना (एक नकली API कॉल)
-        function ytNextVideo() {
-            // वास्तविक यूट्यूब में यह प्लेलिस्ट या सुझाए गए वीडियो पर क्लिक करेगा
-            // यहाँ हम सिर्फ एक सूचना दिखाते हैं
-            updateStatus('अगला वीडियो लोड किया जा रहा है...');
-            // अगर आप इसे किसी वेबपेज पर चला रहे हैं, तो आप यहाँ "Next Button" पर क्लिक करने के लिए pyautogui का इस्तेमाल करेंगे
-        }
-
-        // 9. स्टेटस अपडेट करने का फंक्शन
-        function updateStatus(message, isAction = true) {
-            statusElement.innerHTML = `स्थिति: **${message}** | वॉल्यूम: ${player.getVolume()}%`;
-            if (isAction) {
-                cursor.classList.add('action');
-                setTimeout(() => cursor.classList.remove('action'), 200);
-            }
-        }
-
-
-        // ======================================================================
-        // III. MEDIAPIPE जेस्चर डिटेक्शन लॉजिक
-        // ======================================================================
-
-        function onResults(results) {
-            const now = Date.now();
-            cursor.style.display = 'none';
-            
-            // अगर हाथ मौजूद है
-            if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
-                const landmarks = results.multiHandLandmarks[0];
-                
-                // उंगली की नोक (Landmark #8)
-                const indexTip = landmarks[8];
-                const thumbTip = landmarks[4];
-                const wrist = landmarks[0];
-                
-                // कर्सर कोऑर्डिनेट्स को स्क्रीन में मैप करें
-                const x = window.innerWidth * (1 - indexTip.x);
-                const y = window.innerHeight * indexTip.y;
-                
-                cursor.style.display = 'block';
-                cursor.style.left = `${x}px`;
-                cursor.style.top = `${y}px`;
-                
-                isHandPresent = true;
-                
-                // अगर कूलडाउन पीरियड में है, तो कोई कार्रवाई न करें
-                if (now - lastActionTime < ACTION_DEBOUNCE_MS) {
-                    lastIndexX = indexTip.x;
-                    lastIndexY = indexTip.y;
-                    return;
-                }
-
-                // ===================================================
-                // JESTURE LOGIC: प्ले/पॉज (खुली हथेली)
-                // ===================================================
-                
-                // अंगूठे और तर्जनी के बीच की दूरी (pinch distance)
-                const pinchDistance = Math.sqrt(
-                    Math.pow(indexTip.x - thumbTip.x, 2) +
-                    Math.pow(indexTip.y - thumbTip.y, 2)
-                );
-                
-                // अगर पिंच दूरी एक थ्रेशोल्ड के नीचे है (यानी हाथ बंद है) - हम इसका उपयोग प्ले/पॉज के लिए नहीं, बल्कि क्लिक के लिए करते हैं
-                const PINCH_THRESHOLD = 0.05;
-                
-                if (pinchDistance < PINCH_THRESHOLD) {
-                    // अगर चुटकी बनी हुई है
-                    // हम इसे प्ले/पॉज के बजाय एक सामान्य "एंटर" कमांड मानते हैं
-                    // (हम प्ले/पॉज के लिए "खुली हथेली" जेस्चर का उपयोग करेंगे)
-                    
-                } else if (pinchDistance > 0.15 && (now - lastActionTime > 2000)) { 
-                    // अगर हाथ खुला है और 2 सेकंड से ज्यादा हो गया है (यानी गलती से ट्रिगर नहीं हुआ)
-                    // हम इसे प्ले/पॉज मानते हैं
-                    ytPlayPause();
-                    lastActionTime = now;
-                    return; 
-                }
-
-                // ===================================================
-                // JESTURE LOGIC: SEEK/SWIPE (तर्जनी का तेज हिलाना)
-                // ===================================================
-
-                const deltaX = indexTip.x - lastIndexX;
-                const timeDelta = now - lastActionTime; 
-
-                // स्वाइप जेस्चर के लिए: तेज गति
-                if (timeDelta > 50 && timeDelta < 400) {
-                    if (deltaX > SWIPE_VELOCITY_THRESHOLD) { // बाएँ से दाएँ (पीछे की ओर)
-                        ytSeek(-10);
-                        lastActionTime = now;
-                    } else if (deltaX < -SWIPE_VELOCITY_THRESHOLD) { // दाएँ से बाएँ (आगे की ओर)
-                        ytSeek(10);
-                        lastActionTime = now;
-                    }
-                }
-
-                // ===================================================
-                // JESTURE LOGIC: वॉल्यूम (हाथ का ऊपर/नीचे होना)
-                // ===================================================
-                
-                const deltaY = indexTip.y - lastIndexY;
-
-                if (Math.abs(deltaY) > 0.05 && pinchDistance > 0.1) { // अगर हाथ खुला है और y में बड़ा बदलाव है
-                    if (deltaY < -0.05) { // ऊपर की ओर
-                        ytChangeVolume(5);
-                        lastActionTime = now;
-                    } else if (deltaY > 0.05) { // नीचे की ओर
-                        ytChangeVolume(-5);
-                        lastActionTime = now;
-                    }
-                }
-
-                // ===================================================
-                // JESTURE LOGIC: पेज स्क्रॉलिंग (पूरे हाथ को नीचे लाना)
-                // ===================================================
-
-                // wrist y-कोऑर्डिनेट का उपयोग करके स्क्रॉल करें (सिर्फ तब जब कोई मेजर एक्शन न हो)
-                const wristY = wrist.y;
-                const scrollDelta = wristY - lastScrollY;
-                
-                if (Math.abs(scrollDelta) > SCROLL_THRESHOLD && now - lastActionTime > 500) {
-                    const scrollAmount = Math.sign(scrollDelta) * 50; // 50 पिक्सेल स्क्रॉल करें
-                    window.scrollBy(0, scrollAmount);
-                    // updateStatus(`स्क्रॉलिंग ${scrollAmount > 0 ? 'नीचे' : 'ऊपर'}`); // इसे बार-बार दिखाने से बचने के लिए कमेंट किया गया
-                }
-                lastScrollY = wristY;
-
-                // अंत में वर्तमान स्थिति को पिछले स्थिति के रूप में सहेजें
-                lastIndexX = indexTip.x;
-                lastIndexY = indexTip.y;
-
-            } else {
-                isHandPresent = false;
-                lastScrollY = 0; // हाथ गायब होने पर स्क्रॉल पोजीशन रीसेट करें
-            }
-        }
-
-
-        // ======================================================================
-        // IV. MEDIAPIPE और कैमरा सेटअप
-        // ======================================================================
-
-        const hands = new Hands({
-            locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
-        });
-
-        hands.setOptions({
-            maxNumHands: 1, 
-            modelComplexity: 1,
-            minDetectionConfidence: 0.8,
-            minTrackingConfidence: 0.8
-        });
-
-        hands.onResults(onResults);
-
-        // कैमरे को शुरू करें
-        const camera = new Camera(videoElement, {
-            onFrame: async () => {
-                await hands.send({ image: videoElement });
-            },
-            width: 640,
-            height: 480
-        });
-        camera.start();
-        
-        // शुरू में स्थिति अपडेट करें
-        if (!player) {
-             statusElement.innerHTML = 'स्थिति: **YouTube API लोड हो रहा है...**';
-        }
-        
-    </script>
-
-</body>
-</html>
+    <!-- ====== NEW ABOUT US SECTION START ====== -->
+    <section id="about" class="py-12">
+        <!-- About Us Hero Section -->
+        <section class="px-8 lg:px-40 py-16 lg:py-24 overflow-hidden">
+            <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="flex flex-col gap-8">
+                    <div class="flex flex-col gap-4">
+                        <span class="text-primary font-bold tracking-widest text-xs uppercase">Quality Engineering</span>
+                        <h1 class="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
+                            Building Digital Products with <span class="text-primary">Skill, Strategy</span>, and Responsibility
+                        </h1>
+                        <p class="text-slate-400 text-lg max-w-[540px]">
+                            Reliable, scalable, and human-crafted solutions for startups and brands who value quality, transparency, and long-term thinking.
+                        </p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <div class="w-full aspect-square rounded-2xl bg-navy-accent overflow-hidden border border-navy-border shadow-2xl" data-alt="Professional developer workspace with clean monitors and minimalist desk" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApgKwwiQ2DrfGHOwMqcsTax-_M8iCrKWstfYyXzCkgMf5FtA7opNCrlNsWfIcUU2epDNAx-Um4vTXivHdsL_8ydZu9iD1vnh3SimrGBoC3gJK5GZvboamBoR__h6BpGvinjIzAOM3xvPlbhHaOIX-hhMvgix8dLb8A1oIqp7K2AGpy1eLx4p_XRJ-OscD5z8RYubX7xbZU_DLhS7SMdwcGndkSddfvQlXVwptRSxLfKhr4mdrsg7ApXTd70LgjtDuU1tFvv-pNTv4'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-primary p-6 rounded-xl hidden lg:block" data-aos="zoom-in" data-aos-delay="200">
+                        <p class="text-white font-black text-3xl">100%</p>
+                        <p class="text-white font-medium text-xs">Manual Coding</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Who We Are -->
+        <section class="px-8 lg:px-40 py-16 bg-navy-accent/30">
+            <div class="max-w-[1200px] mx-auto">
+                <div class="flex flex-col gap-12">
+                    <div data-aos="fade-up" class="max-w-[720px]">
+                        <h2 class="text-3xl lg:text-4xl font-black mb-6">Who We Are</h2>
+                        <p class="text-slate-400 text-lg leading-relaxed">
+                            Rooted in India's tech hub, Buildo is a manual development startup dedicated to real engineering. We focus on building products that stand the test of time, moving away from the "fast and breakable" mentality of modern dev shops.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
+                            <span class="material-symbols-outlined text-primary text-4xl">location_on</span>
+                            <h3 class="text-xl font-bold">India-Based Roots</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Operating from the heart of Bengaluru, we leverage top-tier local talent to deliver global standards of software excellence with a personalized touch.
+                            </p>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
+                            <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
+                            <h3 class="text-xl font-bold">Real Development</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                We don't just assemble off-the-shelf components; we craft custom codebases designed for specific growth paths, high performance, and long-term maintainability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Philosophy Box -->
+        <section class="px-8 lg:px-40 py-16">
+            <div class="max-w-[1200px] mx-auto" data-aos="zoom-in-up">
+                <div class="relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-navy-accent to-background-dark p-8 lg:p-12">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <span class="material-symbols-outlined text-9xl">verified_user</span>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
+                        <div class="max-w-[700px] flex flex-col gap-4">
+                            <h2 class="text-2xl lg:text-3xl font-black text-primary">The Buildo Philosophy</h2>
+                            <p class="text-slate-300 text-lg leading-relaxed">
+                                At Buildo, transparency is our core. Every line of your core logic and architecture is <strong class="text-white">manually written by professional developers</strong>. We use AI only for internal support and administrative tasks—never to generate your product's heartbeat.
+                            </p>
+                        
