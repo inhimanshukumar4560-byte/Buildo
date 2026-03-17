@@ -1,381 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Materia Medica Learning Hub</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>Materia Medica - Ultimate Learning Ecosystem</title>
     
+    <!-- Tailwind CSS with Plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": "#ffb300",
+                        "gold-light": "#ffe57f",
+                        "gold-dark": "#ff8f00",
+                        "light-base": "#f8f9fc",
+                        "light-surface": "#ffffff",
+                        "neon-green": "#10b981", 
+                        "neon-blue": "#0284c7",  
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    animation: {
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-medium': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <!-- Advanced CSS Styling -->
     <style>
-        /* --- Color Palette & Variables --- */
-        :root {
-            --bg-dark: #0F0F0F;
-            --primary-gold: #FFD700;
-            --soft-gold: #F5C518;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 215, 0, 0.3);
-            --shadow-gold: 0px 10px 30px rgba(255, 215, 0, 0.15);
-            --text-light: #FFFFFF;
-            --text-gray: #B0B0B0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         body {
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f8f9fc; 
+            color: #1f2937; 
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(255, 224, 130, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(255, 209, 128, 0.1) 0%, transparent 35%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
-        /* Mobile App Container */
-        .app-container {
-            width: 100%;
-            max-width: 420px;
-            height: 100vh;
-            max-height: 900px;
-            background-color: var(--bg-dark);
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-option {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-option:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: rgba(255, 179, 0, 0.5);
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .glass-option.selected-correct {
+            background: rgba(16, 185, 129, 0.1) !important;
+            border-color: #10b981 !important;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2) !important;
+        }
+        .glass-option.selected-wrong {
+            background: rgba(239, 68, 68, 0.1) !important;
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2) !important;
+        }
+
+        .card-3d {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
             position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+            background: linear-gradient(160deg, rgba(255,255,255,1) 0%, rgba(248,249,252,1) 100%);
         }
 
-        /* --- 1️⃣ Top Header Patti --- */
-        .header {
-            margin: 20px 20px 10px 20px;
-            padding: 12px 16px;
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,255,255,0.02));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--shadow-gold);
-            z-index: 10;
-        }
-
-        .header-text h1 {
-            color: var(--primary-gold);
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .header-text p {
-            color: var(--text-gray);
-            font-size: 11px;
-            margin-top: 2px;
-        }
-
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, var(--soft-gold), #8B6914);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #000;
-            font-size: 18px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        /* --- Scrollable Content --- */
-        .content {
-            flex: 1;
-            padding: 10px 20px 100px 20px; /* Bottom padding for nav bar */
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        /* Hide Scrollbar */
-        .content::-webkit-scrollbar { display: none; }
-        .content { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* --- 2️⃣ Main Feature Cards (16:9 3D Glass) --- */
-        .card {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Animation Delays for cards */
-        .card:nth-child(1) { animation-delay: 0s; }
-        .card:nth-child(2) { animation-delay: 1s; }
-        .card:nth-child(3) { animation-delay: 2s; }
-
-        /* Hover & Tap Effects */
-        .card:hover, .card:active {
-            transform: translateY(-5px) scale(1.02);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.25);
-        }
-
-        /* Light Sweep Animation */
-        .card::before {
+        .card-3d::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,215,0,0.2), rgba(255,255,255,0));
-            transform: skewX(-25deg);
-            animation: sweep 4s infinite;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(255, 179, 0, 0.5), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
-        .card-icon {
-            font-size: 32px;
-            color: var(--primary-gold);
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(255,215,0,0.4));
-            transition: transform 0.3s;
+        .card-3d:hover {
+            transform: translateY(-4px) scale(1.01);
+            background: #ffffff;
+            box-shadow: 
+                0 15px 30px -5px rgba(0, 0, 0, 0.08),
+                0 0 15px rgba(255, 179, 0, 0.1);
         }
 
-        .card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
-
-        .card h2 {
-            color: var(--text-light);
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .card p {
-            color: var(--text-gray);
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* Background floating particles for MCQ */
-        .particle {
-            position: absolute;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: floatParticle 3s infinite alternate;
-        }
-
-        /* --- 3️⃣ Bottom Navigation Bar --- */
-        .bottom-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            height: 70px;
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 35px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.5);
-            padding: 0 10px;
-            z-index: 100;
-        }
-
-        .nav-item {
-            color: var(--text-gray);
-            font-size: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
+        /* 3D MODULE CARD STYLE WITH BLACK BORDER */
+        .module-card-3d {
+            border: 3px solid #000000;
+            box-shadow: 6px 6px 0px 0px #000000;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
-            transition: 0.3s;
-            padding: 10px;
+            overflow: hidden;
+        }
+        .module-card-3d:hover {
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 10px 10px 0px 0px #000000;
+        }
+        .module-card-3d:active {
+            transform: translateY(2px) translateX(2px);
+            box-shadow: 2px 2px 0px 0px #000000;
         }
 
-        .nav-item span {
-            font-size: 10px;
-            margin-top: 4px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.3s;
+        /* CONTINUOUS SHINE EFFECT */
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shineSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            z-index: 30;
+            pointer-events: none;
         }
-
-        .nav-item.active {
-            color: var(--primary-gold);
-            transform: translateY(-5px);
-        }
-
-        .nav-item.active i {
-            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
-        }
-
-        .nav-item.active span {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Keyframe Animations --- */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        @keyframes sweep {
+        @keyframes shineSweep {
             0% { left: -100%; }
             20% { left: 200%; }
             100% { left: 200%; }
         }
 
-        @keyframes floatParticle {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-20px) scale(1.5); }
+        .icon-box-3d {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            box-shadow: 
+                0 4px 12px rgba(255, 152, 0, 0.3),
+                inset 0 2px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+            color: #fff;
         }
 
-        /* Desktop View adjustments */
-        @media (min-width: 480px) {
-            .app-container {
-                border-radius: 40px;
-                border: 8px solid #222;
-                height: 90vh;
-            }
+        .icon-box-glass {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.5);
+            color: #4b5563;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ff8f00, #ffc107, #ff8f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        textarea.glass-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+        }
+        textarea.glass-input:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.15), inset 0 2px 5px rgba(0,0,0,0.02);
+            outline: none;
+        }
+
+        .view-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .hidden-force {
+            display: none !important;
+        }
+
+        /* Circular progress chart for stats */
+        .donut-chart {
+            background: conic-gradient(#10b981 0% 0%, #ef4444 0% 0%, #cbd5e1 0% 100%);
+            border-radius: 50%;
+            transition: background 1s ease-out;
+        }
+        .donut-inner {
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
         }
     </style>
 </head>
-<body>
 
-    <div class="app-container">
+<body class="min-h-screen flex flex-col relative selection:bg-gold selection:text-white">
+
+    <!-- BACKGROUND AMBIENCE -->
+    <div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-yellow-300 rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-float-slow"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-orange-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-float-medium"></div>
+        <div class="absolute top-[30%] left-[30%] w-[300px] h-[300px] bg-amber-100 rounded-full mix-blend-multiply filter blur-[90px] opacity-50 animate-pulse-glow"></div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 1: DASHBOARD -->
+    <!-- ============================================== -->
+    <div id="dashboard-view" class="view-section active w-full flex-1 flex flex-col">
         
-        <!-- 1️⃣ Top Header Patti -->
-        <header class="header">
-            <div class="header-text">
-                <h1>📚 Materia Medica</h1>
-                <p>Learning Hub Premium</p>
-            </div>
-            <div class="profile-icon">
-                <i class="fa-solid fa-user-astronaut"></i>
+        <!-- DASHBOARD HEADER -->
+        <header class="sticky top-0 z-50 px-4 pt-4 pb-2">
+            <div class="glass-morphism rounded-2xl px-4 py-3 flex items-center justify-between transition-all duration-500 shadow-sm">
+                <div class="flex items-center gap-3">
+                    <div class="icon-box-3d w-10 h-10 rounded-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                        <span class="material-symbols-rounded text-2xl font-bold text-white">medical_services</span>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-extrabold tracking-tight text-gray-900 leading-none">Materia Medica</h1>
+                        <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Learning Hub</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/50 hover:bg-white transition-all shadow-sm relative overflow-hidden group">
+                        <span class="material-symbols-rounded text-gray-600 group-hover:text-gold text-lg transition-colors">notifications</span>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white shadow-[0_0_8px_rgba(239,68,68,0.5)] animate-pulse"></span>
+                    </button>
+                    <button class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center shadow-md">
+                        <span class="material-symbols-rounded font-bold text-white text-lg">person</span>
+                    </button>
+                </div>
             </div>
         </header>
 
-        <!-- Main Content Area -->
-        <main class="content">
+        <!-- DASHBOARD CONTENT -->
+        <main class="flex-1 overflow-y-auto pb-28 pt-4 px-4 relative z-10 scroll-smooth">
             
-            <!-- 🧠 Card 1: MCQ -->
-            <div class="card" onclick="openScreen('MCQ Page')">
-                <i class="fa-solid fa-brain card-icon"></i>
-                <h2>MCQ Practice</h2>
-                <p>Test your Materia Medica knowledge</p>
-                <!-- Decorative particles -->
-                <div class="particle" style="top: 20%; right: 20%; width: 5px; height: 5px;"></div>
-                <div class="particle" style="bottom: 30%; right: 10%; width: 8px; height: 8px; animation-delay: 1s;"></div>
-            </div>
+            <!-- Welcome Section -->
+            <section class="py-4 relative mb-4">
+                <div class="absolute top-0 right-0 opacity-10 pointer-events-none animate-float-medium">
+                    <span class="material-symbols-rounded text-[120px] text-gray-400 rotate-[15deg] blur-[1px]">stethoscope</span>
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black text-gray-900 leading-[1.15] drop-shadow-sm">
+                        Welcome Back,<br/>
+                        <span class="gradient-text">Future Doctor!</span>
+                    </h2>
+                </div>
+            </section>
 
-            <!-- 📖 Card 2: LAQ -->
-            <div class="card" onclick="openScreen('LAQ Page')">
-                <i class="fa-solid fa-book-open-reader card-icon"></i>
-                <h2>LAQ Practice</h2>
-                <p>Long answer questions for deep study</p>
-            </div>
+            <!-- Learning Modules -->
+            <section class="space-y-6">
+                <div class="flex items-center gap-2 pl-1 mb-2">
+                     <h3 class="text-sm font-bold text-gray-600 tracking-wide">Learning Modules</h3>
+                </div>
 
-            <!-- 📝 Card 3: SAQ -->
-            <div class="card" onclick="openScreen('SAQ Page')">
-                <i class="fa-solid fa-pen-nib card-icon"></i>
-                <h2>SAQ Practice</h2>
-                <p>Short answer questions revision</p>
-            </div>
+                <!-- MCQ Practice Card -->
+                <div onclick="openMCQ()" class="group module-card-3d shine-effect w-full aspect-video rounded-2xl cursor-pointer bg-black flex flex-col justify-end">
+                    <img src="https://i.ibb.co/xqqbzmwB/file-00000000f72072089df338f8dc0a1b70.png" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" alt="MCQ Practice">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                    
+                    <div class="relative z-20 p-4 w-full text-white">
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h4 class="text-2xl font-black leading-tight drop-shadow-md">MCQ Practice</h4>
+                                <p class="text-sm text-gray-200 mt-1 font-medium drop-shadow-md">Test your clinical knowledge<br>with 5,000+ questions.</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/30 group-hover:bg-gold group-hover:border-gold transition-all duration-300">
+                                <span class="material-symbols-rounded text-lg">arrow_forward_ios</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 w-full bg-black/50 h-2.5 rounded-full overflow-hidden border border-white/20 shadow-inner">
+                                <div class="h-full w-[65%] rounded-full relative overflow-hidden bg-gradient-to-r from-yellow-400 via-gold to-yellow-500 animate-pulse"></div>
+                            </div>
+                            <span class="text-xs font-bold text-yellow-400 drop-shadow-md">65%</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- SAQ Writing Card -->
+                <div onclick="openSAQ()" class="group module-card-3d shine-effect w-full aspect-video rounded-2xl cursor-pointer bg-black flex flex-col justify-end">
+                    <img src="https://i.ibb.co/gbXYykNF/file-00000000eb447208b295f4b93e0bd6a0.png" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" alt="SAQ Writing">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                    
+                    <div class="relative z-20 p-4 w-full text-white">
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h4 class="text-2xl font-black leading-tight drop-shadow-md">SAQ Writing</h4>
+                                <p class="text-sm text-gray-200 mt-1 font-medium drop-shadow-md">Hone your skills with structured<br>response training.</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/30 group-hover:bg-blue-500 group-hover:border-blue-500 transition-colors duration-300">
+                                <span class="material-symbols-rounded text-lg">arrow_forward_ios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OSCE Training Card -->
+                <div onclick="openOSCE()" class="group module-card-3d shine-effect w-full aspect-video rounded-2xl cursor-pointer bg-black flex flex-col justify-end">
+                    <img src="https://i.ibb.co/xqcWk6SP/file-00000000cac472089cd3dcdd7de7ad4b.png" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" alt="OSCE Training">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                    
+                    <div class="relative z-20 p-4 w-full text-white">
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h4 class="text-2xl font-black leading-tight drop-shadow-md">OSCE Training</h4>
+                                <p class="text-sm text-gray-200 mt-1 font-medium drop-shadow-md mb-2">Practice with interactive<br>simulated clinical exams.</p>
+                                <div class="inline-flex items-center gap-1.5 bg-green-500/20 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-green-400/50">
+                                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#4ade80]"></span>
+                                    <p class="text-[10px] font-bold text-green-300 tracking-wide uppercase">Live Session Available</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/30 group-hover:bg-purple-500 group-hover:border-purple-500 transition-all duration-300">
+                                <span class="material-symbols-rounded text-lg">arrow_forward_ios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
-
-        <!-- 3️⃣ Bottom Navigation Bar -->
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item active" onclick="setActive(this)">
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
-            </a>
-            <a href="#" class="nav-item" onclick="setActive(this)">
-                <i class="fa-solid fa-clipboard-question"></i>
-                <span>MCQ</span>
-            </a>
-            <a href="#" class="nav-item" onclick="setActive(this)">
-                <i class="fa-solid fa-chart-pie"></i>
-                <span>Progress</span>
-            </a>
-            <a href="#" class="nav-item" onclick="setActive(this)">
-                <i class="fa-solid fa-book"></i>
-                <span>Notes</span>
-            </a>
-            <a href="#" class="nav-item" onclick="setActive(this)">
-                <i class="fa-regular fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </nav>
-
     </div>
 
-    <!-- Interactive JavaScript -->
-    <script>
-        // Bottom Navigation Active State Toggle
-        function setActive(element) {
-            // Remove active class from all items
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            // Add active class to clicked item
-            element.classList.add('active');
+    <!-- ============================================== -->
+    <!-- VIEW 2: MCQ PRACTICE (Updated Logic & Timer) -->
+    <!-- ============================================== -->
+    <div id="mcq-view" class="view-section w-full flex-1 flex flex-col hidden-force">
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 pt-4 pb-3 shadow-sm">
+            <div class="flex items-center justify-between px-4">
+                <div class="flex items-center gap-3">
+                    <button onclick="closeMCQ()" class="w-10 h-10 rounded-full glass-morphism flex items-center justify-center hover:bg-gray-100 active:scale-90 transition-all text-gray-600 hover:text-gray-900">
+                        <span class="material-symbols-rounded text-xl">arrow_back</span>
+                    </button>
+                    <div>
+                        <h1 class="text-lg font-extrabold leading-tight text-gray-900">Polychrest Remedies</h1>
+                        <p class="text-xs text-gold-dark font-bold tracking-wide">Materia Medica Practice</p>
+                    </div>
+                </div>
+                <!-- Timer Chip -->
+                <div class="flex items-center gap-1.5 bg-yellow-100 px-3 py-1.5 rounded-full border border-gold/30 shadow-sm">
+                    <span class="material-symbols-rounded text-gold-dark text-base animate-pulse">timer</span>
+                    <span id="mcq-timer" class="text-sm font-mono font-bold text-gray-800">14:59</span>
+                </div>
+            </div>
+            <div class="px-5 mt-4">
+                <div class="flex justify-between items-end mb-1">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Session Progress</span>
+                    <span id="mcq-progress-text" class="text-sm font-extrabold text-gold-dark">1 of 5</span>
+                </div>
+                <div class="h-2 w-full bg-gray-200 rounded-full overflow-hidden shadow-inner border border-gray-300">
+                    <div id="mcq-progress-bar" class="h-full bg-gradient-to-r from-gold to-orange-400 relative transition-all duration-300" style="width: 20%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto px-5 py-6 pb-32 max-w-2xl mx-auto w-full scroll-smooth">
+            <div class="glass-morphism rounded-2xl p-6 mb-6 card-3d animate-slide-up bg-white">
+                <div class="flex justify-between items-start mb-4">
+                    <span id="mcq-q-num" class="bg-yellow-100 text-yellow-800 border border-yellow-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Question 1</span>
+                    <button class="text-gray-400 hover:text-gold transition-colors hover:scale-110 transform"><span class="material-symbols-rounded text-2xl">bookmark</span></button>
+                </div>
+                <h2 id="mcq-question" class="text-xl font-bold leading-snug text-gray-800">
+                    <!-- Question injected by JS -->
+                </h2>
+            </div>
             
-            // Trigger haptic feedback (works on mobile devices)
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
+            <!-- Options -->
+            <div id="mcq-options-container" class="space-y-3 animate-slide-up" style="animation-delay: 0.1s;">
+                <button id="opt-0" onclick="checkAnswer(0)" class="w-full flex items-center justify-between p-4 rounded-xl glass-option group text-left relative overflow-hidden bg-white">
+                    <div class="flex items-center">
+                        <span id="opt-0-letter" class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 font-bold text-sm mr-4 group-hover:border-gold group-hover:text-gold-dark transition-all duration-300">A</span>
+                        <span id="opt-0-text" class="text-gray-700 group-hover:text-gray-900 font-bold text-base transition-colors">Option 1</span>
+                    </div>
+                    <div class="result-icon-container"></div>
+                </button>
+                <button id="opt-1" onclick="checkAnswer(1)" class="w-full flex items-center justify-between p-4 rounded-xl glass-option group text-left relative overflow-hidden bg-white">
+                    <div class="flex items-center">
+                        <span id="opt-1-letter" class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 font-bold text-sm mr-4 group-hover:border-gold group-hover:text-gold-dark transition-all duration-300">B</span>
+                        <span id="opt-1-text" class="text-gray-700 group-hover:text-gray-900 font-bold text-base transition-colors">Option 2</span>
+                    </div>
+                    <div class="result-icon-container"></div>
+                </button>
+                <button id="opt-2" onclick="checkAnswer(2)" class="w-full flex items-center justify-between p-4 rounded-xl glass-option group text-left relative overflow-hidden bg-white">
+                    <div class="flex items-center">
+                        <span id="opt-2-letter" class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 font-bold text-sm mr-4 group-hover:border-gold group-hover:text-gold-dark transition-all duration-300">C</span>
+                        <span id="opt-2-text" class="text-gray-700 group-hover:text-gray-900 font-bold text-base transition-colors">Option 3</span>
+                    </div>
+                    <div class="result-icon-container"></div>
+                </button>
+                <button id="opt-3" onclick="checkAnswer(3)" class="w-full flex items-center justify-between p-4 rounded-xl glass-option group text-left relative overflow-hidden bg-white">
+                    <div class="flex items-center">
+                        <span id="opt-3-letter" class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 font-bold text-sm mr-4 group-hover:border-gold group-hover:text-gold-dark transition-all duration-300">D</span>
+                        <span id="opt-3-text" class="text-gray-700 group-hover:text-gray-900 font-bold text-base transition-colors">Option 4</span>
+                    </div>
+                    <div class="result-icon-container"></div>
+                </button>
+            </div>
+
+            <!-- SKIP BUTTON -->
+            <div id="skip-container" class="mt-4 animate-slide-up" style="animation-delay: 0.15s;">
+                <button onclick="skipQuestion()" class="w-full flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-dashed border-gray-300 text-gray-500 font-bold hover:bg-gray-100 hover:text-gray-800 hover:border-gray-400 transition-all active:scale-95">
+                    Skip Question <span class="material-symbols-rounded">double_arrow</span>
+                </button>
+            </div>
+
+            <!-- Result & Explanation Box (Initially Hidden) -->
+            <div id="mcq-result-box" class="mt-6 relative animate-slide-up hidden-force" style="animation-delay: 0.1s;">
+                <div id="mcq-result-bg" class="glass-morphism rounded-2xl p-5 border-l-4 relative overflow-hidden bg-white">
+                    <div class="flex items-center gap-3 mb-3 relative z-10">
+                        <div id="mcq-result-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-white">
+                            <span id="mcq-result-icon-text" class="material-symbols-rounded font-bold text-xl"></span>
+                        </div>
+                        <div>
+                            <h4 id="mcq-result-title" class="font-bold text-xl tracking-tight"></h4>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl text-sm leading-relaxed text-gray-700 mb-4 italic border border-gray-200 relative z-10 font-medium" id="mcq-result-desc">
+                        <!-- Explanation injected here -->
+                    </div>
+                    <button onclick="nextQuestion()" class="w-full icon-box-3d font-extrabold py-4 rounded-xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 relative z-10 text-base">
+                        Next Question
+                        <span class="material-symbols-rounded text-xl">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 2.5: MCQ RESULTS / STATS PAGE -->
+    <!-- ============================================== -->
+    <div id="mcq-results-view" class="view-section w-full flex-1 flex flex-col hidden-force bg-light-base">
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 pt-4 pb-3 shadow-sm">
+            <div class="flex items-center justify-center px-4 relative">
+                <button onclick="closeAllViews()" class="absolute left-4 w-10 h-10 rounded-full glass-morphism flex items-center justify-center hover:bg-gray-100 active:scale-90 transition-all text-gray-600">
+                    <span class="material-symbols-rounded text-xl">close</span>
+                </button>
+                <div class="text-center">
+                    <h1 class="text-lg font-extrabold leading-tight text-gray-900">Session Complete</h1>
+                    <p class="text-xs text-gold-dark font-bold tracking-wide">Performance Stats</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto px-5 py-8 pb-32 max-w-2xl mx-auto w-full flex flex-col items-center scroll-smooth">
+            
+            <!-- Circular Donut Chart -->
+            <div class="card-3d glass-morphism rounded-3xl p-8 mb-6 w-full flex flex-col items-center animate-pop-in">
+                <div id="results-chart" class="donut-chart w-48 h-48 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.1)] relative">
+                    <div class="donut-inner w-36 h-36 flex flex-col items-center justify-center relative z-10">
+                        <span class="material-symbols-rounded text-gold-dark mb-1">emoji_events</span>
+                        <span id="stat-score" class="text-4xl font-black text-gray-900 leading-none tracking-tighter">0%</span>
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Accuracy</span>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800 mt-6 text-center">Great Effort!</h2>
+                <p class="text-sm text-gray-500 text-center mt-1">Review your detailed statistics below.</p>
+            </div>
+
+            <!-- Detailed Stats Grid -->
+            <div class="grid grid-cols-3 gap-4 w-full mb-8 animate-slide-up" style="animation-delay: 0.2s;">
+                <!-- Correct -->
+                <div class="bg-white border border-gray-100 rounded-2xl p-4 flex flex-col items-center justify-center shadow-sm relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span class="material-symbols-rounded text-emerald-500 text-3xl mb-1 relative z-10">check_circle</span>
+                    <span id="stat-correct" class="text-2xl font-black text-gray-900 relative z-10">0</span>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest relative z-10">Correct</span>
+                </div>
+                <!-- Incorrect -->
+                <div class="bg-white border border-gray-100 rounded-2xl p-4 flex flex-col items-center justify-center shadow-sm relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span class="material-symbols-rounded text-red-500 text-3xl mb-1 relative z-10">cancel</span>
+                    <span id="stat-incorrect" class="text-2xl font-black text-gray-900 relative z-10">0</span>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest relative z-10">Incorrect</span>
+                </div>
+                <!-- Skipped -->
+                <div class="bg-white border border-gray-100 rounded-2xl p-4 flex flex-col items-center justify-center shadow-sm relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span class="material-symbols-rounded text-gray-400 text-3xl mb-1 relative z-10">next_plan</span>
+                    <span id="stat-skipped" class="text-2xl font-black text-gray-900 relative z-10">0</span>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest relative z-10">Skipped</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="w-full space-y-3 animate-slide-up" style="animation-delay: 0.3s;">
+                <button onclick="closeAllViews()" class="w-full icon-box-3d font-extrabold py-4 rounded-xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 text-lg shadow-lg">
+                    Back to Dashboard
+                    <span class="material-symbols-rounded">home</span>
+                </button>
+                <button onclick="openMCQ()" class="w-full bg-white border-2 border-gray-200 text-gray-700 font-extrabold py-4 rounded-xl transition-all hover:bg-gray-50 active:scale-95 flex items-center justify-center gap-2 text-lg">
+                    Retry Practice
+                    <span class="material-symbols-rounded">refresh</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 3: SAQ WRITING -->
+    <!-- ============================================== -->
+    <div id="saq-view" class="view-section w-full flex-1 flex flex-col hidden-force">
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 pt-4 pb-4 shadow-sm">
+            <div class="flex items-center px-4 justify-between max-w-2xl mx-auto w-full">
+                <div class="flex items-center gap-3">
+                    <button onclick="closeSAQ()" class="flex size-10 items-center justify-center rounded-full glass-morphism hover:bg-gray-100 transition-colors border-gray-200">
+                        <span class="material-symbols-outlined text-gray-600">arrow_back</span>
+                    </button>
+                    <div>
+                        <h1 class="text-sm font-extrabold leading-tight uppercase tracking-wider text-gold-dark">Materia Medica</h1>
+                        <h2 class="text-lg font-bold leading-tight text-gray-900">Section A: SAQ</h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full space-y-6 pb-32">
+            <section class="space-y-4 animate-slide-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 border border-gold/30 text-gold-dark text-sm font-bold shadow-sm">
+                    <span class="material-symbols-outlined text-base">clinical_notes</span>
+                    Clinical Indications
+                </div>
+                <h3 class="text-3xl font-black leading-snug text-gray-900">
+                    Describe the mental symptoms and physical generalities of Argentum Nitricum.
+                </h3>
+            </section>
+            <section class="relative group animate-slide-up">
+                <textarea class="w-full min-h-[300px] p-5 rounded-2xl glass-input text-lg leading-relaxed resize-none placeholder-gray-400 font-medium" placeholder="Start typing..."></textarea>
+            </section>
+            <button class="w-full py-4 icon-box-3d text-white font-extrabold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 animate-slide-up">
+                Submit Answer <span class="material-symbols-outlined">send</span>
+            </button>
+        </main>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VIEW 4: OSCE TRAINING -->
+    <!-- ============================================== -->
+    <div id="osce-view" class="view-section w-full flex-1 flex flex-col hidden-force">
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3">
+                <button onclick="closeOSCE()" class="w-10 h-10 flex items-center justify-center rounded-full glass-morphism hover:bg-gray-100 transition-colors border-gray-200">
+                    <span class="material-symbols-outlined text-gray-600">arrow_back</span>
+                </button>
+                <div>
+                    <h1 class="text-sm font-extrabold text-gold-dark uppercase tracking-wider">OSCE Training</h1>
+                    <h2 class="text-lg font-bold leading-tight text-gray-900">Case #402</h2>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 overflow-y-auto pb-32 animate-slide-up p-4">
+            <div class="card-3d glass-morphism rounded-2xl overflow-hidden shadow-lg border border-gray-200 bg-white">
+                <div class="relative h-56 w-full bg-gray-200 group">
+                    <img alt="Patient Profile" class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7qSn6jioNJoA9yhDAjNtkGttmbjyWWbdHbO5iEkDjUdZWDERDDN4rs7KovHEIvVkYa6fyz5WBphhvkoOe9mE8mrGSzsqKV5IvTXOldhaWAYHmsmmB3munvtsWqWhL-ndd6K1zwEb2431Lcy7cX3opja9J4cZ8T_Nb1vljtZh_5cZ7uKG6ImTscmVCVxD4c_tv1gNQ00uViOlnVeiMQCbyfub0MMJaLyv7P8tFUUFJDy_06MfsiSS9zdHZz-bXrXBKcG_nMwZ0JijM"/>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-5">
+                        <h3 class="text-white text-xl font-black tracking-tight drop-shadow-md">45yo Male - Respiratory Distress</h3>
+                    </div>
+                </div>
+                <div class="p-5 bg-white">
+                    <p class="text-base leading-relaxed text-gray-600 font-medium">Presenting with progressive dyspnea and persistent non-productive cough.</p>
+                </div>
+            </div>
+            <div class="mt-6 flex gap-3">
+                <button class="flex-1 icon-box-3d text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform text-lg">
+                    <span class="material-symbols-outlined">volume_up</span> Voice Guide
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- FLOATING DOCK NAVIGATION -->
+    <nav class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm z-50">
+        <div class="glass-morphism rounded-3xl p-2 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] border border-white/80 bg-white/90">
+            <div class="flex items-center justify-around">
+                <a class="nav-item flex flex-col items-center justify-center gap-1 p-2 rounded-2xl w-16 h-14 transition-colors hover:bg-gray-100 group" href="#" onclick="closeAllViews()">
+                    <span class="material-symbols-rounded text-2xl text-gray-400 group-hover:text-gray-900 transition-all">home</span>
+                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-500 group-hover:text-gray-900">Home</span>
+                </a>
+                <a class="nav-item flex flex-col items-center justify-center gap-1 p-2 rounded-2xl w-16 h-14 transition-colors hover:bg-yellow-50 bg-yellow-100 group" href="#" onclick="openMCQ()">
+                    <span class="material-symbols-rounded text-2xl text-gold-dark transition-transform">menu_book</span>
+                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-900">Practice</span>
+                </a>
+                <a class="nav-item flex flex-col items-center justify-center gap-1 p-2 rounded-2xl w-16 h-14 transition-colors hover:bg-gray-100 group" href="#">
+                    <span class="material-symbols-rounded text-2xl text-gray-400 group-hover:text-gray-900 transition-colors">leaderboard</span>
+                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-500 group-hover:text-gray-900">Stats</span>
+                </a>
+                <a class="nav-item flex flex-col items-center justify-center gap-1 p-2 rounded-2xl w-16 h-14 transition-colors hover:bg-gray-100 group" href="#">
+                    <span class="material-symbols-rounded text-2xl text-gray-400 group-hover:text-gray-900 transition-colors">person</span>
+                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-500 group-hover:text-gray-900">Profile</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FIREBASE INIT (No Changes) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAeqfZ0mT_o7vBndcSiLisHQ3qOaavWBtk",
+          authDomain: "nexara-c1ab0.firebaseapp.com",
+          databaseURL: "https://nexara-c1ab0-default-rtdb.firebaseio.com",
+          projectId: "nexara-c1ab0",
+          storageBucket: "nexara-c1ab0.firebasestorage.app",
+          messagingSenderId: "1021765831407",
+          appId: "1:1021765831407:web:2795c51be3621c1ca0291a",
+          measurementId: "G-4SMFN4FXDT"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
+    <!-- INTERACTION LOGIC & MCQ SYSTEM & TIMER (Updated) -->
+    <script>
+        // --- Navigation ---
+        function switchView(viewId) {
+            const views = ['dashboard-view', 'mcq-view', 'osce-view', 'saq-view', 'mcq-results-view'];
+            views.forEach(id => {
+                const el = document.getElementById(id);
+                if (id !== viewId && el.classList.contains('active')) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        el.classList.add('hidden-force');
+                        el.classList.remove('active');
+                    }, 400);
+                }
+            });
+
+            setTimeout(() => {
+                const target = document.getElementById(viewId);
+                target.classList.remove('hidden-force');
+                void target.offsetWidth; 
+                target.style.opacity = '1';
+                target.classList.add('active');
+                const main = target.querySelector('main');
+                if(main) main.scrollTop = 0;
+            }, 400);
+        }
+
+        function openOSCE() { switchView('osce-view'); }
+        function closeOSCE() { switchView('dashboard-view'); }
+        function openSAQ() { switchView('saq-view'); }
+        function closeSAQ() { switchView('dashboard-view'); }
+        function closeAllViews() { switchView('dashboard-view'); clearInterval(timerInterval); }
+
+        // --- MCQ Timer Logic ---
+        let timerInterval;
+        function startTimer() {
+            clearInterval(timerInterval);
+            let time = 14 * 60 + 59; // 14:59
+            const timerEl = document.getElementById('mcq-timer');
+            timerInterval = setInterval(() => {
+                let m = Math.floor(time / 60);
+                let s = time % 60;
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                timerEl.innerText = m + ':' + s;
+                if(time <= 0) clearInterval(timerInterval);
+                time--;
+            }, 1000);
+        }
+
+        // --- MCQ Data & Logic ---
+        const mcqData = [
+            {
+                q: "Which remedy is characterized by 'fear of dogs' and 'worse from heat'?",
+                opts: ["Belladonna", "Tubercularinum", "Pulsatilla", "Lycopodium"],
+                ans: 1,
+                exp: "Tubercularinum patients are often irritable, changeful, and have a deep-seated fear of dogs. They are typically worse in a warm room and crave open air."
+            },
+            {
+                q: "Which remedy is known for 'bone pains that strictly aggravate at night'?",
+                opts: ["Aurum Met", "Syphilinum", "Rhus Tox", "Eupatorium Perf"],
+                ans: 1,
+                exp: "Syphilinum is the classic remedy for severe bone pains that strictly aggravate from sunset to sunrise."
+            },
+            {
+                q: "Which is the premier remedy for ailments from acute grief and disappointed love?",
+                opts: ["Natrum Mur", "Ignatia Amara", "Phosphoric Acid", "Staphysagria"],
+                ans: 1,
+                exp: "Ignatia is indicated for recent grief, characterized by sighing, sobbing, and highly contradictory symptoms."
+            },
+            {
+                q: "A patient is chilly, lacks vital heat, and wants their head wrapped up warmly. Remedy?",
+                opts: ["Silicea", "Arsenicum Album", "Sulphur", "Apis Mellifica"],
+                ans: 0,
+                exp: "Silicea patients are extremely chilly, lack vital heat, and have a profound aggravation from cold, strongly desiring warm wrapping of the head."
+            },
+            {
+                q: "Red, dry, hot skin with sudden, violent onset of symptoms indicates which remedy?",
+                opts: ["Aconite Napellus", "Belladonna", "Apis Mellifica", "Ferrum Phos"],
+                ans: 1,
+                exp: "Belladonna is marked by suddenness, violence, intense heat, redness, throbbing pains, and dryness."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let isAnswered = false;
+        
+        // --- NEW STATS TRACKING ---
+        let sessionStats = {
+            correct: 0,
+            incorrect: 0,
+            skipped: 0
+        };
+
+        function openMCQ() {
+            switchView('mcq-view');
+            startTimer();
+            currentQuestion = 0;
+            
+            // Reset stats on new start
+            sessionStats = { correct: 0, incorrect: 0, skipped: 0 };
+            
+            loadQuestion(currentQuestion);
+        }
+
+        function closeMCQ() {
+            switchView('dashboard-view');
+            clearInterval(timerInterval);
+        }
+
+        function loadQuestion(index) {
+            isAnswered = false;
+            const data = mcqData[index];
+            
+            document.getElementById('mcq-q-num').innerText = "Question " + (index + 1);
+            document.getElementById('mcq-question').innerText = data.q;
+            document.getElementById('mcq-progress-text').innerText = (index + 1) + " of " + mcqData.length;
+            document.getElementById('mcq-progress-bar').style.width = ((index + 1) / mcqData.length * 100) + "%";
+
+            // Show skip button fresh for new question
+            document.getElementById('skip-container').classList.remove('hidden-force');
+
+            for(let i=0; i<4; i++) {
+                let btn = document.getElementById('opt-'+i);
+                document.getElementById('opt-'+i+'-text').innerText = data.opts[i];
+                btn.className = "w-full flex items-center justify-between p-4 rounded-xl glass-option group text-left relative overflow-hidden bg-white";
+                let letter = document.getElementById('opt-'+i+'-letter');
+                letter.className = "w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full border-2 border-gray-300 text-gray-500 font-bold text-sm mr-4 group-hover:border-gold group-hover:text-gold-dark transition-all duration-300";
+                
+                // Clear previous result icons
+                btn.querySelector('.result-icon-container').innerHTML = '';
+            }
+
+            document.getElementById('mcq-result-box').classList.add('hidden-force');
+        }
+
+        function checkAnswer(selectedIndex) {
+            if(isAnswered) return;
+            isAnswered = true;
+            
+            // Hide skip button once answered
+            document.getElementById('skip-container').classList.add('hidden-force');
+            
+            const data = mcqData[currentQuestion];
+            const isCorrect = (selectedIndex === data.ans);
+            
+            let selectedBtn = document.getElementById('opt-'+selectedIndex);
+            let selectedLetter = document.getElementById('opt-'+selectedIndex+'-letter');
+
+            if(isCorrect) {
+                sessionStats.correct++;
+                selectedBtn.classList.add('selected-correct');
+                selectedLetter.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+                selectedBtn.querySelector('.result-icon-container').innerHTML = `<span class="material-symbols-rounded text-emerald-500 text-2xl">check_circle</span>`;
+                showResult(true, data.exp);
+            } else {
+                sessionStats.incorrect++;
+                selectedBtn.classList.add('selected-wrong');
+                selectedLetter.classList.add('bg-red-500', 'text-white', 'border-red-500');
+                selectedBtn.querySelector('.result-icon-container').innerHTML = `<span class="material-symbols-rounded text-red-500 text-2xl">cancel</span>`;
+                
+                let correctBtn = document.getElementById('opt-'+data.ans);
+                correctBtn.classList.add('selected-correct');
+                correctBtn.querySelector('.result-icon-container').innerHTML = `<span class="material-symbols-rounded text-emerald-500 text-2xl">check_circle</span>`;
+                showResult(false, data.exp);
             }
         }
 
-        // Simulate page navigation
-        function openScreen(pageName) {
-            // Trigger haptic feedback
-            if (navigator.vibrate) {
-                navigator.vibrate([30, 50, 30]);
-            }
-            // For now, it just shows an alert. Later it will link to real pages.
-            console.log("Navigating to: " + pageName);
+        // --- NEW SKIP LOGIC ---
+        function skipQuestion() {
+            if(isAnswered) return;
+            sessionStats.skipped++;
             
-            // Visual tap effect
-            event.currentTarget.style.transform = "scale(0.95)";
+            // Move directly to next logic without explanation
+            proceedToNext();
+        }
+
+        function showResult(isCorrect, explanation) {
+            const box = document.getElementById('mcq-result-box');
+            const bg = document.getElementById('mcq-result-bg');
+            const icon = document.getElementById('mcq-result-icon');
+            const iconText = document.getElementById('mcq-result-icon-text');
+            const title = document.getElementById('mcq-result-title');
+            const desc = document.getElementById('mcq-result-desc');
+
+            box.classList.remove('hidden-force');
+            desc.innerText = `"${explanation}"`;
+
+            if(isCorrect) {
+                bg.className = "glass-morphism rounded-2xl p-5 border-l-4 border-l-emerald-500 relative overflow-hidden bg-white";
+                icon.className = "w-10 h-10 rounded-full flex items-center justify-center text-white bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]";
+                iconText.innerText = "check";
+                title.innerText = "Congratulations! 🎉";
+                title.className = "font-bold text-xl tracking-tight text-emerald-700";
+            } else {
+                bg.className = "glass-morphism rounded-2xl p-5 border-l-4 border-l-red-500 relative overflow-hidden bg-white";
+                icon.className = "w-10 h-10 rounded-full flex items-center justify-center text-white bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)]";
+                iconText.innerText = "close";
+                title.innerText = "Incorrect Answer";
+                title.className = "font-bold text-xl tracking-tight text-red-700";
+            }
+        }
+
+        function nextQuestion() {
+            proceedToNext();
+        }
+
+        function proceedToNext() {
+            if(currentQuestion < mcqData.length - 1) {
+                currentQuestion++;
+                loadQuestion(currentQuestion);
+            } else {
+                showResultsPage();
+            }
+        }
+
+        // --- NEW STATS / RESULTS DISPLAY LOGIC ---
+        function showResultsPage() {
+            clearInterval(timerInterval);
+            switchView('mcq-results-view');
+            
+            let total = mcqData.length;
+            let correctPct = (sessionStats.correct / total) * 100;
+            let incorrectPct = (sessionStats.incorrect / total) * 100;
+            let skippedPct = (sessionStats.skipped / total) * 100;
+            
+            // Set text values
+            document.getElementById('stat-correct').innerText = sessionStats.correct;
+            document.getElementById('stat-incorrect').innerText = sessionStats.incorrect;
+            document.getElementById('stat-skipped').innerText = sessionStats.skipped;
+            document.getElementById('stat-score').innerText = Math.round(correctPct) + "%";
+
+            // Update Donut Chart
+            // Sequence: Green (Correct), Red (Incorrect), Gray (Skipped)
+            let p1 = correctPct;
+            let p2 = correctPct + incorrectPct;
+            
+            let chart = document.getElementById('results-chart');
+            // Small delay for smooth animation of the chart
             setTimeout(() => {
-                event.currentTarget.style.transform = "";
-            }, 150);
+                chart.style.background = `conic-gradient(#10b981 0% ${p1}%, #ef4444 ${p1}% ${p2}%, #cbd5e1 ${p2}% 100%)`;
+            }, 100);
         }
     </script>
+
 </body>
 </html>
