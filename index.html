@@ -1,925 +1,724 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Buildo - Professional Websites & Apps</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    
-    <!-- === ANIMATION LIBRARY (AOS) ADDED - Stylesheet === -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#3b82f6", // Blue color theme
-                        "background-light": "#f8f8f5",
-                        "background-dark": "#0a0e17",
-                        "navy-accent": "#141b2d",
-                        "navy-border": "#1e293b",
-                        "surface-dark": "#161b22",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>BUILDO | Empowering Business Growth with Digital Services</title>
+  
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Cloudinary Video Player CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.css" rel="stylesheet">
+  
+  <!-- Custom Tailwind Config for BUILDO Cyan Blue Theme -->
+  <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'buildo-dark': '#020d24',      /* Dark Navy Blue Background */
+              'buildo-cyan': '#00d1ff',      /* Bright Cyan for CTAs & Highlights */
+              'buildo-light-blue': '#93c5fd',/* Light Blue for accents */
+              'buildo-border': 'rgba(255, 255, 255, 0.1)',
             },
+            fontFamily: {
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
         }
+      }
     </script>
-    <style>
-        html {
-            scroll-behavior: smooth;
+    
+  <style data-purpose="custom-typography">
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      .serif-italic {
+        font-family: serif;
+        font-style: italic;
+      }
+  </style>
+  
+  <!-- CSS for Scrolling Marquee Animation -->
+  <style data-purpose="scrolling-marquee-animation">
+      .marquee-row {
+        overflow: hidden;
+        display: flex;
+        -webkit-mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+      }
+      .marquee-content {
+        display: flex;
+        flex-shrink: 0;
+        gap: 0.75rem; /* 12px gap between images */
+        justify-content: space-around;
+        min-width: 100%;
+      }
+      .marquee-content img {
+        height: 10rem; /* 160px */
+        width: auto;
+        object-fit: cover;
+        border-radius: 0.5rem; /* rounded-lg */
+        flex-shrink: 0;
+      }
+      @keyframes scroll-left {
+        from {
+          transform: translateX(0);
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0e17;
+        to {
+          transform: translateX(calc(-100% - 0.75rem));
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      @keyframes scroll-right {
+        from {
+          transform: translateX(calc(-100% - 0.75rem));
         }
-        .buildo-logo {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            width: 28px;
-            height: 28px;
-            gap: 3px;
+        to {
+          transform: translateX(0);
         }
-        .buildo-logo .b { background-color: white; }
-        .buildo-logo .a { background-color: #3b82f6; }
-        .buildo-logo .c { background-color: transparent; }
-        .buildo-logo .b1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-        .buildo-logo .b2 { grid-column: 1 / 2; grid-row: 2 / 3; }
-        .buildo-logo .b3 { grid-column: 1 / 2; grid-row: 3 / 4; }
-        .buildo-logo .b4 { grid-column: 2 / 3; grid-row: 2 / 3; }
-        .buildo-logo .a1 { grid-column: 2 / 3; grid-row: 1 / 2; }
-        .buildo-logo .a2 { grid-column: 2 / 3; grid-row: 3 / 4; }
-
-        .blue-glow {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
-        }
-        .blue-gradient-bg {
-            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent S70%);
-        }
-
-        /* === ADDED FOR MORE SUBTLE ANIMATIONS === */
-        .animated-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .animated-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .group:hover .group-hover-icon-scale {
-            transform: scale(1.1);
-        }
-    </style>
+      }
+      .animate-scroll-left {
+        animation: scroll-left 45s linear infinite;
+      }
+      .animate-scroll-right {
+        animation: scroll-right 45s linear infinite;
+      }
+  </style>
+  
+  <!-- CSS for Tools Text Marquee -->
+  <style data-purpose="tools-text-marquee">
+      .text-marquee-wrapper {
+        overflow: hidden;
+        display: flex;
+        -webkit-mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        white-space: nowrap;
+      }
+      .text-marquee-container {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        min-width: max-content;
+      }
+      .text-marquee-item {
+        font-weight: 600;
+        font-size: 1.15rem;
+        color: white;
+        opacity: 0.75;
+        margin: 0 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        letter-spacing: 0.025em;
+      }
+      .text-marquee-item span {
+        color: #00d1ff; /* Changed to Cyan */
+        margin-right: 0.5rem;
+        font-size: 1.25rem;
+      }
+      @keyframes text-scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @keyframes text-scroll-right {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
+      .animate-text-left {
+        animation: text-scroll-left 40s linear infinite;
+      }
+      .animate-text-right {
+        animation: text-scroll-right 40s linear infinite;
+      }
+  </style>
 </head>
-<body class="bg-background-dark text-slate-100 font-display selection:bg-primary/20">
-<!-- TopNavBar -->
-<header class="sticky top-0 z-50 w-full border-b border-navy-border bg-background-dark/80 backdrop-blur-md px-6 lg:px-40">
-    <div class="max-w-[1280px] mx-auto flex items-center justify-between h-20">
-        <div class="flex items-center gap-3">
-            <div class="buildo-logo">
-                <div class="b b1"></div><div class="a a1"></div><div class="c c1"></div>
-                <div class="b b2"></div><div class="b b4"></div><div class="c c2"></div>
-                <div class="b b3"></div><div class="a a2"></div><div class="c c3"></div>
-            </div>
-            <h2 class="text-white text-2xl font-black tracking-tighter">Buildo</h2>
-        </div>
-        <nav class="hidden md:flex items-center gap-8">
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#how-it-works">How We Work</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#about">About Us</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#services">Services</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#process">Process</a>
-            <a class="text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#pricing">Pricing</a>
-        </nav>
-        <div class="flex items-center gap-4">
-            <a href="#application-form" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:scale-105 transform">
-                Apply Now
-            </a>
-        </div>
+<body class="bg-buildo-dark text-white font-sans antialiased">
+  <!-- BEGIN: Navigation -->
+  <nav class="sticky top-0 z-50 bg-buildo-dark/90 backdrop-blur-md border-b border-buildo-border px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <div class="text-2xl font-bold tracking-tighter text-white">BUILDO</div>
     </div>
-</header>
-<main>
-    <!-- HeroSection -->
-    <section class="relative px-6 lg:px-40 py-20 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 blue-gradient-bg"></div>
-        <div class="max-w-[1280px] mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <div class="flex flex-col gap-8 text-left z-10">
-                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider w-fit">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                    </span>
-                    Manual Craftsmanship
-                </div>
-                <h1 data-aos="fade-up" data-aos-delay="100" class="text-white text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
-                    Professional Websites & Apps, <span class="text-primary">Built to Scale.</span>
-                </h1>
-                <p data-aos="fade-up" data-aos-delay="200" class="text-slate-400 text-lg lg:text-xl leading-relaxed max-w-[600px]">
-                    Expert manual development for founders who value performance and precision over AI-generated shortcuts. We build digital infrastructure that lasts.
-                </p>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4">
-                    <a href="#application-form" class="bg-primary text-white h-14 px-8 rounded-lg text-base font-bold hover:scale-[1.02] transition-transform flex items-center justify-center">
-                        Apply for Website / App
-                    </a>
-                    <button class="border border-navy-border bg-navy-accent/50 text-white h-14 px-8 rounded-lg text-base font-bold hover:bg-navy-accent transition-colors">
-                        View Showcase
-                    </button>
-                </div>
-            </div>
-            <div data-aos="fade-left" class="relative lg:block hidden">
-                <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
-                <div class="relative rounded-xl border border-navy-border bg-navy-accent p-2 shadow-2xl">
-                    <div class="rounded-lg overflow-hidden bg-background-dark aspect-video flex items-center justify-center">
-                        <div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Abstract dark UI dashboard mockup with blue accents" style="background-image: url('https://i.ibb.co/zWZkh1rC/5-VZcmey7-SBKz-Ors4-Cdpb-Qw-2k.webp');"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="flex items-center gap-4">
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20the%20Free%202-Day%20Trial." target="_blank" class="bg-buildo-cyan text-buildo-dark font-bold py-2 px-4 rounded-full text-sm hover:opacity-90 transition-opacity">
+        Start Free Trial
+      </a>
+      <button class="text-white" id="open-menu-btn" data-purpose="mobile-menu-toggle">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <!-- END: Navigation -->
 
-    <!-- Tech Stack Marquee (Static Row) -->
-    <section class="border-y border-navy-border bg-navy-accent/20 py-10 px-6 lg:px-40">
-        <div data-aos="fade-in" class="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-12 lg:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            <span class="text-white font-bold text-xl flex items-center gap-2">React</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">Firebase</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">GitHub</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">n8n.io</span>
-            <span class="text-white font-bold text-xl flex items-center gap-2">AWS</span>
-        </div>
-    </section>
+  <!-- BEGIN: NEW MOBILE MENU OVERLAY (UPDATED FOR BUILDO) -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-buildo-dark text-white flex flex-col font-sans overflow-y-auto">
+    <!-- Top Dark Bar -->
+    <div class="bg-buildo-dark px-4 py-4 flex justify-between items-center text-white sticky top-0 z-10 border-b border-buildo-border">
+      <div class="text-xl font-bold tracking-tighter">BUILDO</div>
+      <button id="close-menu-btn" class="text-white hover:opacity-80 transition-opacity">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
 
-    <!-- FeatureSection / Trust Section -->
-    <section class="px-6 lg:px-40 py-24 bg-background-dark" id="how-it-works">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="flex flex-col gap-4 mb-16 text-center items-center">
-                <h2 class="text-white text-4xl lg:text-5xl font-black tracking-tight">How We Work</h2>
-                <p class="text-slate-400 text-lg max-w-[720px]">Human-led expertise for an AI-saturated market. We don't just prompt; we architect.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">code</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Professional Dev</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Manual code craftsmanship by expert developers. No generic boilerplate, only clean and efficient architecture.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">bolt</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">AI-Assisted</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Leveraging AI for boilerplate and testing speed without ever sacrificing human oversight or precision.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">trending_up</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Scalable Systems</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Architecture built from the ground up to handle enterprise-level growth and complex integrations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Menu Links -->
+    <div class="px-5 py-2 flex-grow pb-10">
+      <ul class="text-[15px] font-semibold text-white">
+        
+        <!-- SERVICES MENU ITEM -->
+        <li class="border-b border-white/10 flex flex-col">
+          <div class="py-4 flex justify-between items-center cursor-pointer w-full hover:text-buildo-cyan transition-colors" onclick="toggleMenu('services-content', 'services-icon')">
+            Our Services
+            <svg id="services-icon" class="w-4 h-4 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+          <div id="services-content" class="hidden flex-col gap-4 pb-6 pt-2 w-full pl-4">
+            <a href="#" class="font-normal text-gray-300 hover:text-white">Website Development</a>
+            <a href="#" class="font-normal text-gray-300 hover:text-white">Digital Marketing</a>
+            <a href="#" class="font-normal text-gray-300 hover:text-white">Lead Generation</a>
+            <a href="#" class="font-normal text-gray-300 hover:text-white">BPO Services</a>
+            <a href="#" class="font-normal text-gray-300 hover:text-white">AI Automation & Chatbots</a>
+          </div>
+        </li>
 
-    <!-- ====== NEW ABOUT US SECTION START ====== -->
-    <section id="about" class="py-12">
-        <!-- About Us Hero Section -->
-        <section class="px-8 lg:px-40 py-16 lg:py-24 overflow-hidden">
-            <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" class="flex flex-col gap-8">
-                    <div class="flex flex-col gap-4">
-                        <span class="text-primary font-bold tracking-widest text-xs uppercase">Quality Engineering</span>
-                        <h1 class="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
-                            Building Digital Products with <span class="text-primary">Skill, Strategy</span>, and Responsibility
-                        </h1>
-                        <p class="text-slate-400 text-lg max-w-[540px]">
-                            Reliable, scalable, and human-crafted solutions for startups and brands who value quality, transparency, and long-term thinking.
-                        </p>
-                    </div>
-                </div>
-                <div data-aos="fade-left" class="relative">
-                    <div class="w-full aspect-square rounded-2xl bg-navy-accent overflow-hidden border border-navy-border shadow-2xl" data-alt="Professional developer workspace with clean monitors and minimalist desk" style="background-image: url('https://i.ibb.co/QjDDhWj0/HRLFXQBVQ7-Wgq-WWIy-Qk-J5-Q-2k.webp'); background-size: cover; background-position: center;">
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 bg-primary p-6 rounded-xl hidden lg:block" data-aos="zoom-in" data-aos-delay="200">
-                        <p class="text-white font-black text-3xl">100%</p>
-                        <p class="text-white font-medium text-xs">Manual Coding</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Who We Are -->
-        <section class="px-8 lg:px-40 py-16 bg-navy-accent/30">
-            <div class="max-w-[1200px] mx-auto">
-                <div class="flex flex-col gap-12">
-                    <div data-aos="fade-up" class="max-w-[720px]">
-                        <h2 class="text-3xl lg:text-4xl font-black mb-6">Who We Are</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            Rooted in India's tech hub, Buildo is a manual development startup dedicated to real engineering. We focus on building products that stand the test of time, moving away from the "fast and breakable" mentality of modern dev shops.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
-                            <span class="material-symbols-outlined text-primary text-4xl">location_on</span>
-                            <h3 class="text-xl font-bold">India-Based Roots</h3>
-                            <p class="text-slate-400 leading-relaxed">
-                                Operating from the heart of Bengaluru, we leverage top-tier local talent to deliver global standards of software excellence with a personalized touch.
-                            </p>
-                        </div>
-                        <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-xl border border-navy-border bg-navy-accent flex flex-col gap-4 group hover:border-primary/50 transition-all animated-card">
-                            <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
-                            <h3 class="text-xl font-bold">Real Development</h3>
-                            <p class="text-slate-400 leading-relaxed">
-                                We don't just assemble off-the-shelf components; we craft custom codebases designed for specific growth paths, high performance, and long-term maintainability.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Philosophy Box -->
-        <section class="px-8 lg:px-40 py-16">
-            <div class="max-w-[1200px] mx-auto" data-aos="zoom-in-up">
-                <div class="relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-navy-accent to-background-dark p-8 lg:p-12">
-                    <div class="absolute top-0 right-0 p-8 opacity-10">
-                        <span class="material-symbols-outlined text-9xl">verified_user</span>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
-                        <div class="max-w-[700px] flex flex-col gap-4">
-                            <h2 class="text-2xl lg:text-3xl font-black text-primary">The Buildo Philosophy</h2>
-                            <p class="text-slate-300 text-lg leading-relaxed">
-                                At Buildo, transparency is our core. Every line of your core logic and architecture is <strong class="text-white">manually written by professional developers</strong>. We use AI only for internal support and administrative tasks—never to generate your product's heartbeat.
-                            </p>
-                            <p class="text-slate-400 italic">No generic bloat, no black-box logic, just pure craftsmanship.</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <button class="bg-primary text-white font-bold py-4 px-10 rounded-lg shadow-xl whitespace-nowrap hover:scale-105 transform transition-transform">
-                                Our Coding Standards
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Core Values -->
-        <section class="px-8 lg:px-40 py-16">
-            <div class="max-w-[1200px] mx-auto">
-                <div data-aos="fade-up" class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-black mb-4">Our Core Values</h2>
-                    <div class="w-20 h-1 bg-primary mx-auto"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Transparency -->
-                    <div data-aos="fade-up" data-aos-delay="100" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">visibility</span>
-                        <h4 class="font-bold text-lg mb-2">Transparency</h4>
-                        <p class="text-sm text-slate-400">Open communication at every stage of the build process.</p>
-                    </div>
-                    <!-- Responsibility -->
-                    <div data-aos="fade-up" data-aos-delay="200" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">fact_check</span>
-                        <h4 class="font-bold text-lg mb-2">Professional Responsibility</h4>
-                        <p class="text-sm text-slate-400">We take ownership of the code we write and the value it brings.</p>
-                    </div>
-                    <!-- Long-Term -->
-                    <div data-aos="fade-up" data-aos-delay="300" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">trending_up</span>
-                        <h4 class="font-bold text-lg mb-2">Long-Term Thinking</h4>
-                        <p class="text-sm text-slate-400">Architecture built for the next 10 years, not just next month.</p>
-                    </div>
-                    <!-- Client Respect -->
-                    <div data-aos="fade-up" data-aos-delay="400" class="bg-navy-accent p-8 border-b-4 border-primary/30 rounded-lg animated-card">
-                        <span class="material-symbols-outlined text-primary mb-4 block">handshake</span>
-                        <h4 class="font-bold text-lg mb-2">Client Respect</h4>
-                        <p class="text-sm text-slate-400">Treating every project as if it were our own startup investment.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Location Identity -->
-        <section class="px-8 lg:px-40 py-16">
-            <div data-aos="fade-up" class="max-w-[1200px] mx-auto rounded-2xl border border-navy-border bg-navy-accent overflow-hidden grid grid-cols-1 lg:grid-cols-2">
-                <div class="p-8 lg:p-12 flex flex-col justify-center">
-                    <div class="mb-6 inline-flex items-center gap-2 text-primary">
-                        <span class="material-symbols-outlined">apartment</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Our Base</span>
-                    </div>
-                    <h2 class="text-3xl font-black mb-4">Bengaluru, India</h2>
-                    <p class="text-slate-400 mb-6 leading-relaxed">
-                        We are located in the vibrant technology hub of Bengaluru, specifically in the vicinity of <strong>KLE Medical College</strong>. Our location keeps us connected to the pulse of Indian innovation while maintaining a focused, professional workspace.
-                    </p>
-                    <div class="flex items-center gap-4 text-sm font-medium">
-                        <span class="material-symbols-outlined text-primary">map</span>
-                        <span class="text-slate-200">Yeshwantpur, Bengaluru - 560022</span>
-                    </div>
-                </div>
-                <div class="h-64 lg:h-auto bg-slate-800 relative" data-location="Bengaluru, India" style="">
-                    <div class="absolute inset-0 opacity-40 grayscale contrast-125" data-alt="Abstract map or cityscape of Bengaluru" style="background-image: url('https://i.ibb.co/5hT55Y7x/XLQ4-XPw-ESXu3gh-Txnju3z-Q-2k.webp'); background-size: cover; background-position: center;"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-navy-accent to-transparent"></div>
-                </div>
-            </div>
-        </section>
-    </section>
-    <!-- ====== NEW ABOUT US SECTION END ====== -->
+        <!-- PRICING & WHY US -->
+        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Pricing</li>
+        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Why Choose Us?</li>
+        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Get Free Audit</li>
+        
+      </ul>
 
+      <!-- Bottom Buttons -->
+      <div class="mt-8 flex flex-col gap-3">
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Free%20Trial." target="_blank" class="text-center bg-buildo-cyan text-buildo-dark font-bold py-3 px-4 rounded-[10px] text-sm w-full hover:opacity-90 transition-opacity">
+          Start Free Trial
+        </a>
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20learning%20more." target="_blank" class="text-center bg-transparent border border-white/20 text-white font-bold py-3 px-4 rounded-[10px] text-sm w-full hover:bg-white/10 transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- END: NEW MOBILE MENU OVERLAY -->
 
-    <!-- ====== SERVICES SECTION - MERGED AND RESTYLED ====== -->
-    <section class="px-6 lg:px-40 py-24 bg-navy-accent/10" id="services">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="text-center mb-16">
-                <h2 class="text-white text-4xl lg:text-5xl font-black mb-4">Tailored Professional Offerings</h2>
-                 <p class="text-slate-400 text-lg max-w-[720px] mx-auto">End-to-end solutions for modern enterprises, from high-performance websites to complex data-driven applications.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Website Development -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">language</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Website Development</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Static and dynamic, SEO-ready, mobile-responsive solutions crafted with pixel-perfect precision.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Performance Optimized</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Headless CMS Integration</li>
-                    </ul>
-                </div>
-                <!-- 2. Web App Development -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">layers</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Web App Development</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Secure, data-driven systems with complex user authentication and real-time synchronization.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Secure Auth Flows</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>API Orchestration</li>
-                    </ul>
-                </div>
-                <!-- 3. Dashboard & Admin Panels -->
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">monitoring</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Dashboard &amp; Admin Panels</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Role-based access control and custom analytics designed for operational efficiency.
-                        </p>
-                    </div>
-                    <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Custom Data Viz</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>RBAC Security</li>
-                    </ul>
-                </div>
-                <!-- 4. Maintenance & Support -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">engineering</span>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-3 text-white">Maintenance &amp; Support</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Proactive bug fixes, periodic security audits, and continuous performance tuning.
-                        </p>
-                    </div>
-                     <ul class="mt-auto space-y-2 pt-4 border-t border-navy-border">
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>24/7 Monitoring</li>
-                        <li class="text-xs font-semibold flex items-center gap-2 text-slate-400"><span class="size-1.5 rounded-full bg-primary"></span>Security Patching</li>
-                    </ul>
-                </div>
-                <!-- 5. Automation & AI Support (Wide Card) -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 p-8 rounded-xl bg-navy-accent border border-navy-border hover:border-primary/50 transition-all md:col-span-2 animated-card">
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="size-12 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-xl font-bold mb-3 text-white">Automation &amp; AI Support</h4>
-                            <p class="text-slate-400 text-sm leading-relaxed max-w-xl">
-                                We leverage AI as a sophisticated support tool for human-verified logic and testing automation, ensuring high-speed delivery without sacrificing code integrity.
-                            </p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                                <div class="p-4 rounded-lg bg-background-dark border border-navy-border">
-                                    <p class="text-xs font-bold text-primary mb-1">Human-Led</p>
-                                    <p class="text-[10px] uppercase tracking-tighter text-slate-400">Architectural Design</p>
-                                </div>
-                                <div class="p-4 rounded-lg bg-background-dark border border-navy-border">
-                                    <p class="text-xs font-bold text-primary mb-1">AI-Assisted</p>
-                                    <p class="text-[10px] uppercase tracking-tighter text-slate-400">Unit Test Generation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MERGED AND RESTYLED Process Section -->
-    <section class="px-6 lg:px-40 py-24 bg-background-dark border-y border-navy-border" id="process">
-        <div class="max-w-[1280px] mx-auto">
-            <div data-aos="fade-up" class="text-center mb-16">
-                <h2 class="text-white text-4xl font-black mb-4">Our Process: The 6-Step Workflow</h2>
-                <p class="text-slate-400">A rigorous end-to-end framework designed for excellence and transparency.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Step 1 -->
-                <div data-aos="fade-up" data-aos-delay="50" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">ads_click</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Client Application</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Initial goal-setting and strategy alignment. We understand your vision before touching a single line of code.</p>
-                    </div>
-                </div>
-                <!-- Step 2 -->
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">analytics</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Requirement Analysis</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Technical feasibility review and detailed internal scoping. We identify potential roadblocks early.</p>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div data-aos="fade-up" data-aos-delay="150" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">description</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Plan Recommendation</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Transparency in pricing, timelines, and scope clarity. No hidden fees, just honest project blueprints.</p>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">terminal</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Development Phase</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Execution through strict milestones and quality checks. Real-time tracking of development progress.</p>
-                    </div>
-                </div>
-                <!-- Step 5 -->
-                <div data-aos="fade-up" data-aos-delay="250" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">inventory_2</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Review & Delivery</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Internal testing and client feedback loops. We ensure every feature meets the highest standards.</p>
-                    </div>
-                </div>
-                <!-- Step 6 -->
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-6 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors group animated-card">
-                    <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all group-hover-icon-scale">
-                        <span class="material-symbols-outlined">handshake</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white text-xl font-bold mb-2">Support & Maintenance</h3>
-                        <p class="text-slate-400 leading-relaxed text-sm">Long-term partnership. We don't just ship and leave; we support your growth and scaling needs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- BEGIN: Hero Section -->
+  <header class="relative px-6 pt-12 pb-20 overflow-hidden bg-buildo-dark">
+    <div class="relative z-10">
+      <h1 class="text-5xl font-semibold leading-tight mb-6">
+        Skyrocket Your Business with a <span class="serif-italic text-buildo-cyan">Risk-Free 2-Day Trial</span>
+      </h1>
+      <p class="text-lg text-gray-400 mb-8 max-w-md">
+        Experience real growth with targeted leads, a FREE website audit, and zero advance payment. See results in just 48 hours.
+      </p>
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20claim%20my%20Free%202-Day%20Trial!" target="_blank" class="inline-block bg-buildo-cyan text-buildo-dark font-bold py-4 px-8 rounded-full text-lg w-full sm:w-auto hover:opacity-90 transition-opacity">
+        Claim My Free Trial
+      </a>
+    </div>
     
-    <!-- PRICING SECTION -->
-    <section class="relative pt-20 pb-16 overflow-hidden" id="pricing">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.08)_0%,transparent_60%)]"></div>
-        <div data-aos="fade-up" class="max-w-4xl mx-auto text-center px-6 relative z-10">
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 text-white">
-                Simple, Transparent Pricing
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto">
-                No hidden charges. Clear scope. Professional development by real humans, not just scripts.
-            </p>
+    <!-- Image Scrolling Marquee -->
+    <div class="mt-12 space-y-3 opacity-60">
+      <!-- Row 1: Scrolls Left -->
+      <div class="marquee-row">
+        <div class="marquee-content animate-scroll-left">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Marketing Dashboard">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Team Collaboration">
+          <img src="https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=400&h=300&fit=crop" alt="Project Management">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" alt="Business Growth">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=300&fit=crop" alt="Data Analytics">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Website Performance">
+          <!-- Duplicate Set -->
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Marketing Dashboard">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Team Collaboration">
+          <img src="https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=400&h=300&fit=crop" alt="Project Management">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" alt="Business Growth">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=300&fit=crop" alt="Data Analytics">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Website Performance">
         </div>
-    </section>
-    <!-- Pricing Grid -->
-    <section class="max-w-7xl mx-auto px-6 lg:px-12 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Starter Card -->
-            <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Starter</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹5,000</span>
-                        <span class="text-slate-400 text-sm">one-time</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Single landing page</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Fast 48h delivery</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Fully responsive</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-500"><span class="material-symbols-outlined text-slate-600 text-lg">cancel</span> No CMS integration</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Start Simple</a>
-            </div>
-            <!-- Growth Card (Highlighted) -->
-            <div data-aos="zoom-in" data-aos-delay="200" class="flex flex-col p-8 rounded-xl border-2 border-primary bg-primary/5 relative transform lg:-translate-y-4 blue-glow">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full">
-                    Recommended
-                </div>
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Growth</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹2,999</span>
-                        <span class="text-slate-400 text-sm">/mo</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Up to 5 custom pages</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> CMS integration (Admin)</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Automation workflows</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Priority support</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg bg-primary text-white font-black text-sm hover:brightness-110 transition-all shadow-lg shadow-primary/20">Choose Growth</a>
-            </div>
-            <!-- Pro Card -->
-            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Pro</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">₹6,999</span>
-                        <span class="text-slate-400 text-sm">/mo</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Custom UI Components</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> User Dashboards</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Stripe/Payment setup</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> API Integrations</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Go Pro</a>
-            </div>
-            <!-- Elite Card -->
-            <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col p-8 rounded-xl border border-navy-border bg-navy-accent/40 hover:border-primary/50 transition-all animated-card">
-                <div class="mb-8">
-                    <h3 class="text-white text-lg font-bold mb-2">Elite</h3>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-white text-3xl font-black">Custom</span>
-                        <span class="text-slate-400 text-sm">quote</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Enterprise infrastructure</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Dedicated developer</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> 24/7 emergency support</li>
-                    <li class="flex gap-3 text-sm items-center text-slate-300"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Unlimited scale</li>
-                </ul>
-                <a href="#application-form" class="w-full text-center py-3 rounded-lg border border-navy-border bg-navy-accent text-white font-bold text-sm hover:bg-navy-accent/50 transition-colors">Enquire Now</a>
-            </div>
+      </div>
+      <!-- Row 2: Scrolls Right -->
+      <div class="marquee-row">
+        <div class="marquee-content animate-scroll-right">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Client Meeting">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
+          <img src="https://images.unsplash.com/photo-1553877522-c369803ea52d?w=400&h=300&fit=crop" alt="Customer Support">
+          <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
+          <!-- Duplicate Set -->
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Client Meeting">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
+          <img src="https://images.unsplash.com/photo-1553877522-c369803ea52d?w=400&h=300&fit=crop" alt="Customer Support">
+          <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
         </div>
-        <!-- Action Panel Notice -->
-        <div data-aos="fade-up" class="mt-12 p-6 rounded-xl border border-primary/20 bg-primary/5 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-start gap-4">
-                <div class="bg-primary/20 p-2 rounded-lg">
-                    <span class="material-symbols-outlined text-primary">info</span>
-                </div>
-                <div>
-                    <p class="font-bold text-white text-lg">Notice: Domain & Hosting</p>
-                    <p class="text-slate-400 text-sm md:text-base">Please note that domain name and hosting server charges are not included in the plan prices and will be billed separately based on your provider selection.</p>
-                </div>
-            </div>
-            <a class="flex items-center gap-2 font-bold text-primary whitespace-nowrap group" href="#">
-                View hosting partners
-                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-        </div>
-    </section>
+      </div>
+    </div>
+  </header>
+  <!-- END: Hero Section -->
 
-    <!-- ====== NEW APPLICATION SECTION START ====== -->
-
-    <!-- Why Application Is Required Section -->
-    <section class="w-full px-6 lg:px-40 py-10">
-        <div class="max-w-[1280px] mx-auto">
-            <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold mb-8 text-center text-white">Why Application Is Required</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-primary size-12 flex items-center justify-center bg-primary/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">search</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Project Understanding</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">We dive deep into your requirements to ensure a perfect fit before writing a single line of code.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-primary size-12 flex items-center justify-center bg-primary/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">handshake</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Plan Recommendation</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Skip the guesswork. We recommend personalized service tiers based on your specific scale and goals.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-4 rounded-xl border border-navy-border bg-navy-accent p-8 hover:border-primary/50 transition-colors animated-card">
-                    <div class="text-green-500 size-12 flex items-center justify-center bg-green-500/10 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">schedule</span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-lg font-bold text-white">Clear Timeline &amp; Cost</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">No hidden fees. Know exactly when and how much before the project kicks off officially.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="w-full max-w-[1280px] mx-auto px-6 lg:px-40 py-16 bg-navy-accent/40 rounded-3xl my-10" data-aos="fade-up">
-        <h2 class="text-3xl font-bold mb-12 text-center text-white">Your Journey to Launch</h2>
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-4 px-4">
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg ring-8 ring-primary/10">1</div>
-                <div>
-                    <p class="font-bold text-white">Submit Application</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Initial Step</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">2</div>
-                <div>
-                    <p class="font-bold text-white">Discovery Call</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Deep Dive</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">3</div>
-                <div>
-                    <p class="font-bold text-white">Solution Design</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Architecture</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">4</div>
-                <div>
-                    <p class="font-bold text-white">Development</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Manual Coding</p>
-                </div>
-            </div>
-            <div class="hidden md:block h-0.5 grow bg-navy-border -mt-10"></div>
-            <div class="flex-1 flex flex-col items-center text-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-navy-border flex items-center justify-center text-slate-400 font-bold text-lg">5</div>
-                <div>
-                    <p class="font-bold text-white">Delivery</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Live Launch</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section class="w-full max-w-4xl mx-auto px-6 py-16" id="application-form">
-        <div data-aos="fade-up" class="bg-navy-accent rounded-2xl shadow-2xl border border-navy-border overflow-hidden">
-            <div class="bg-primary/10 px-8 py-6 border-b border-primary/20">
-                <h2 class="text-2xl font-bold flex items-center gap-2 text-white">
-                    <span class="material-symbols-outlined text-primary">assignment</span>
-                    Buildo Project Application
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Fill out the details below. Our team reviews all applications within 24 hours.</p>
-            </div>
-            <form class="p-8 space-y-10">
-                <!-- Group 1: Identity -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">01</span> Identity &amp; Contact
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Full Name</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="John Doe" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Business Name</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="Acme Corp" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5 md:col-span-2">
-                            <label class="text-sm font-medium text-slate-300">Email Address</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="john@company.com" type="email"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Group 2: Project Details -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">02</span> Project Details
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Project Type</label>
-                            <select class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white">
-                                <option>Select Option</option>
-                                <option>Custom Website</option>
-                                <option>Mobile Application</option>
-                                <option>Web Dashboard / SaaS</option>
-                                <option>E-commerce Platform</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Industry</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" placeholder="e.g. Fintech, Healthcare" type="text"/>
-                        </div>
-                        <div class="flex flex-col gap-1.5 md:col-span-2">
-                            <label class="text-sm font-medium text-slate-300">Brief Description</label>
-                            <textarea class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary text-white" placeholder="Tell us about the core features and purpose of your project..." rows="4"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <!-- Group 3: Scope -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold flex items-center gap-2 border-b border-navy-border pb-2 text-white">
-                        <span class="text-primary">03</span> Logistics &amp; Scope
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Budget Range</label>
-                            <select class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white">
-                                <option>$5k - $10k</option>
-                                <option>$10k - $25k</option>
-                                <option>$25k - $50k</option>
-                                <option>$50k+</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label class="text-sm font-medium text-slate-300">Target Deadline</label>
-                            <input class="rounded-lg bg-background-dark border-navy-border focus:border-primary focus:ring-primary h-11 text-white" type="date"/>
-                        </div>
-                    </div>
-                </div>
-                <!-- Transparency Box -->
-                <div class="p-4 rounded-lg bg-primary/5 border border-primary/20 flex gap-4 items-start">
-                    <span class="material-symbols-outlined text-primary mt-0.5">info</span>
-                    <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
-                        <strong class="text-white">Transparency Note:</strong> Every project at Buildo is hand-crafted by senior developers. We do not use "no-code" or "auto-generation" tools. Hosting, domain, and third-party API costs are separate from development fees and will be itemized in your proposal.
-                    </p>
-                </div>
-                <button class="w-full h-14 bg-primary text-white text-lg font-black rounded-lg hover:brightness-110 transition-all shadow-xl shadow-primary/20" type="submit">
-                    Submit Application for Review
-                </button>
-            </form>
-        </div>
-    </section>
+  <!-- BEGIN: Tech & Tools Marquee -->
+  <section class="bg-buildo-dark py-12 px-6 overflow-hidden border-t border-buildo-border">
+    <p class="text-white/60 text-center text-sm font-semibold mb-8 uppercase tracking-widest">POWERED BY INDUSTRY-LEADING TECHNOLOGY</p>
     
-    <!-- ====== NEW APPLICATION SECTION END ====== -->
+    <div class="mt-8 space-y-6">
+      <!-- Row 1: Scrolling Left -->
+      <div class="text-marquee-wrapper">
+        <div class="text-marquee-container animate-text-left">
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Google Ads</div>
+            <div class="text-marquee-item"><span>✦</span> Meta Ads</div>
+            <div class="text-marquee-item"><span>✦</span> SEO & SEM</div>
+            <div class="text-marquee-item"><span>✦</span> WordPress</div>
+            <div class="text-marquee-item"><span>✦</span> Shopify</div>
+            <div class="text-marquee-item"><span>✦</span> AI Chatbots</div>
+            <div class="text-marquee-item"><span>✦</span> Lead Generation</div>
+            <div class="text-marquee-item"><span>✦</span> High-Ticket Sales</div>
+          </div>
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Google Ads</div>
+            <div class="text-marquee-item"><span>✦</span> Meta Ads</div>
+            <div class="text-marquee-item"><span>✦</span> SEO & SEM</div>
+            <div class="text-marquee-item"><span>✦</span> WordPress</div>
+            <div class="text-marquee-item"><span>✦</span> Shopify</div>
+            <div class="text-marquee-item"><span>✦</span> AI Chatbots</div>
+            <div class="text-marquee-item"><span>✦</span> Lead Generation</div>
+            <div class="text-marquee-item"><span>✦</span> High-Ticket Sales</div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Maintenance Section -->
-    <section class="bg-navy-accent/10 py-24 border-y border-navy-border">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div data-aos="fade-up" class="mb-12 max-w-3xl">
-                <h2 class="text-white text-3xl font-black mb-4">Maintenance & Support</h2>
-                <p class="text-slate-400">Keep your digital assets healthy with our specialized recurring support services included in Growth and Pro plans.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">security</span>
-                    <h4 class="text-white text-xl font-bold">Security Monitoring</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Continuous vulnerability scanning and firewall management to protect your customer data and brand reputation.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">backup</span>
-                    <h4 class="text-white text-xl font-bold">Automated Backups</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Daily off-site backups with one-click restoration. We ensure your data is safe even if the unthinkable happens.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col gap-4">
-                    <span class="material-symbols-outlined text-primary text-4xl">system_update</span>
-                    <h4 class="text-white text-xl font-bold">CMS & Core Updates</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">We manually test and apply all system updates to ensure new features don't break your existing design or logic.</p>
-                </div>
-            </div>
+      <!-- Row 2: Scrolling Right -->
+      <div class="text-marquee-wrapper mt-4">
+        <div class="text-marquee-container animate-text-right">
+           <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Funnel Building</div>
+            <div class="text-marquee-item"><span>✦</span> E-commerce Solutions</div>
+            <div class="text-marquee-item"><span>✦</span> CRM Integration</div>
+            <div class="text-marquee-item"><span>✦</span> Performance Marketing</div>
+            <div class="text-marquee-item"><span>✦</span> Content Strategy</div>
+            <div class="text-marquee-item"><span>✦</span> Webflow</div>
+            <div class="text-marquee-item"><span>✦</span> Custom Web Apps</div>
+            <div class="text-marquee-item"><span>✦</span> Analytics & Reporting</div>
+          </div>
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Funnel Building</div>
+            <div class="text-marquee-item"><span>✦</span> E-commerce Solutions</div>
+            <div class="text-marquee-item"><span>✦</span> CRM Integration</div>
+            <div class="text-marquee-item"><span>✦</span> Performance Marketing</div>
+            <div class="text-marquee-item"><span>✦</span> Content Strategy</div>
+            <div class="text-marquee-item"><span>✦</span> Webflow</div>
+            <div class="text-marquee-item"><span>✦</span> Custom Web Apps</div>
+            <div class="text-marquee-item"><span>✦</span> Analytics & Reporting</div>
+          </div>
         </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="py-24 max-w-3xl mx-auto px-6">
-        <h2 data-aos="fade-up" class="text-white text-3xl font-black mb-12 text-center">Frequently Asked Questions</h2>
-        <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
-            <details class="group border-b border-navy-border pb-4" open="">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Why manual builds over AI generators?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    AI generators often create bloated, unoptimized code that is difficult to scale. Our developers write clean, semantic code designed specifically for your business logic, resulting in faster load times and better SEO.
-                </div>
-            </details>
-            <details class="group border-b border-navy-border pb-4">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Do I own the source code?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    Absolutely. Once the final payment is settled, full ownership of the source code is transferred to you. No vendor lock-in, ever.
-                </div>
-            </details>
-            <details class="group border-b border-navy-border pb-4">
-                <summary class="flex items-center justify-between cursor-pointer list-none">
-                    <span class="text-white text-lg font-bold">Can I upgrade plans mid-cycle?</span>
-                    <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                </summary>
-                <div class="mt-4 text-slate-400 leading-relaxed">
-                    Yes, you can upgrade at any time. We will prorate the difference for the remainder of your billing cycle and initiate the new service features immediately.
-                </div>
-            </details>
-        </div>
-    </section>
-    <!-- Final CTA Section -->
-    <section class="relative py-24 overflow-hidden bg-primary">
-        <div class="max-w-4xl mx-auto text-center px-6 relative z-10 text-background-dark">
-            <h2 data-aos="fade-up" data-aos-delay="50" class="text-4xl md:text-5xl font-black mb-6 text-white">Start Simple. Scale Professionally.</h2>
-            <p data-aos="fade-up" data-aos-delay="150" class="text-lg font-medium mb-10 text-white/80">Ready to build something that lasts? Our team is standing by.</p>
-            <div data-aos="fade-up" data-aos-delay="250" class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#application-form" class="bg-background-dark text-white px-10 py-4 rounded-xl font-black hover:scale-105 transition-transform shadow-xl">Apply Now</a>
-                <button class="border-2 border-white/20 text-white px-10 py-4 rounded-xl font-black hover:bg-white hover:text-primary transition-all">Contact Sales</button>
-            </div>
-        </div>
-        <!-- Decorative abstract background for CTA -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none" data-alt="Abstract dot pattern background" style="background-image: radial-gradient(circle at 2px 2px, black 1px, transparent 0); background-size: 24px 24px;"></div>
-    </section>
+      </div>
+    </div>
 
-</main>
+    <div class="mt-20 max-w-5xl mx-auto text-center px-4">
+      <h2 class="text-4xl font-semibold mb-6 text-white">
+        BUILDO is not just an agency, <span class="serif-italic">it's your growth partner.</span>
+      </h2>
+      <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+        From custom Website Development and high-converting Digital Marketing to qualified Lead Generation and BPO services—we provide the ultimate growth ecosystem. BUILDO transforms your business goals into unstoppable digital reality.
+      </p>
+      
+      <div class="relative w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,209,255,0.15)] transition-transform duration-500 hover:scale-[1.02]">
+          <!-- === NEW IMAGE 1 INSERTED HERE === -->
+          <img src="https://i.ibb.co/s9nkqp6t/file-000000006ddc7208864afe8a9b369b68.png" alt="BUILDO Team Collaboration" class="w-full h-auto object-cover">
+      </div>
+    </div>
+  </section>
+  <!-- END: Tech & Tools Marquee -->
 
-<!-- Enhanced Footer -->
-<footer class="border-t border-navy-border px-8 lg:px-40 py-12 bg-background-dark text-slate-500">
-    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="col-span-1 md:col-span-2 flex flex-col gap-4">
-            <div class="flex items-center gap-3">
-                <div class="buildo-logo">
-                    <div class="b b1"></div><div class="a a1"></div><div class="c c1"></div>
-                    <div class="b b2"></div><div class="b b4"></div><div class="c c2"></div>
-                    <div class="b b3"></div><div class="a a2"></div><div class="c c3"></div>
-                </div>
-                <h2 class="text-white text-2xl font-black tracking-tighter">Buildo</h2>
-            </div>
-            <p class="max-w-sm">A professional development startup crafting high-performance digital products manually from Bengaluru, India.</p>
+  <!-- BEGIN: Value Proposition Section -->
+  <section class="py-20 px-6 border-t border-buildo-border bg-buildo-dark">
+    <span class="text-buildo-cyan text-xs font-bold uppercase tracking-widest block mb-4">A New Way of Working</span>
+    <h2 class="text-3xl font-semibold mb-6 text-white">
+      The Growth Engine Your <span class="serif-italic">Business is Missing</span>
+    </h2>
+    
+    <div class="relative rounded-2xl overflow-hidden aspect-video bg-gray-800 flex items-center justify-center w-full shadow-[0_0_30px_rgba(255,255,255,0.05)]" data-purpose="video-player">
+      <!-- === VIDEO PLAYER ID REMAINS THE SAME, SCRIPT BELOW WILL LOAD THE NEW VIDEO === -->
+      <video
+        id="player"
+        class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
+        playsinline
+      ></video>
+    </div>
+
+    <p class="mt-8 text-gray-400 text-lg">
+      BUILDO is your dedicated, on-demand growth team. We expand your marketing capacity and extend your team's capabilities without the overhead of a full-time hire.
+    </p>
+  </section>
+  <!-- END: Value Proposition -->
+
+  <!-- BEGIN: Why Choose Buildo Section -->
+  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border">
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-4">Why Choose BUILDO?</span>
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight">
+        Super-fast. Result-driven. Completely Risk-Free. Work with a growth partner that's purposefully <span class="serif-italic">built to deliver.</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      
+      <div class="rounded-2xl overflow-hidden bg-cyan-900/40 flex flex-col border border-buildo-border">
+        <img src="https://images.unsplash.com/photo-1573164713347-df9f3901b05a?w=600&h=400&fit=crop" alt="Free Trial" class="w-full h-64 object-cover">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl font-serif italic text-buildo-light-blue mb-4">Zero Risk, <span class="font-sans not-italic font-bold">Free 2-Day Trial</span></h3>
+          <p class="text-sm text-gray-300">Don't pay a single rupee until you see our work. Experience our marketing strategies and lead generation for 2 days, absolutely free. No commitments.</p>
         </div>
-        <div>
-            <h4 class="text-white font-bold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-sm">
-                <li><a class="hover:text-primary transition-colors" href="#">Case Studies</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#process">Our Process</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+      </div>
+      
+      <div class="rounded-2xl overflow-hidden bg-slate-100 text-buildo-dark flex flex-col">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=400&fit=crop" alt="No Advance Payment" class="w-full h-64 object-cover">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl font-serif italic mb-4">No Advance <span class="font-sans not-italic font-bold">Payment</span></h3>
+          <p class="text-sm text-gray-800">We believe in building trust through results. You start your project with zero upfront cost and only pay after you see tangible outcomes.</p>
+        </div>
+      </div>
+      
+      <div class="rounded-2xl overflow-hidden bg-buildo-cyan text-buildo-dark flex flex-col">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Guaranteed Results" class="w-full h-64 object-cover">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl font-serif italic mb-4">Guaranteed Results <span class="font-sans not-italic font-bold">in 48 Hours</span></h3>
+          <p class="text-sm text-gray-800">Stop waiting weeks for results. Our expert team, powered by AI and proven strategies, delivers measurable progress in as little as 48 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- END: Why Choose Buildo Section -->
+
+  <!-- BEGIN: Stats Section (Success in Numbers) -->
+  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+    <div class="text-center mb-16">
+      <span class="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-4">Success in Numbers</span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-white">The best return on <span class="serif-italic">your investment</span></h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-5xl mx-auto text-left">
+      <div class="border-t border-buildo-border pt-8">
+        <div class="text-6xl font-serif italic text-white mb-4">500+</div>
+        <p class="text-sm text-gray-400">Startups, enterprises and mid-market companies trust BUILDO to scale their growth and deliver high-quality leads.</p>
+      </div>
+      <div class="border-t border-buildo-border pt-8">
+        <div class="text-6xl font-serif italic text-white mb-4">10k+</div>
+        <p class="text-sm text-gray-400">Verified leads generated for our clients to date, and counting.</p>
+      </div>
+      <div class="border-t border-buildo-border pt-8">
+        <div class="text-6xl font-serif italic text-white mb-4">48 Hours</div>
+        <p class="text-sm text-gray-400 mb-2">The average time it takes for our new clients to see their first tangible results and qualified leads.</p>
+      </div>
+      <div class="border-t border-buildo-border pt-8">
+        <div class="text-6xl font-serif italic text-white mb-4">ZERO</div>
+        <p class="text-sm text-gray-400 mb-2">Advance payment required to start your project. We work first, you pay later. That's the BUILDO promise.</p>
+      </div>
+    </div>
+  </section>
+  <!-- END: Stats Section -->
+
+  <!-- BEGIN: Services Grid -->
+  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold">Every Digital Service Your Business Will Ever Need</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
+        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold">Website Development</span>
+      </div>
+      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
+        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold">Digital Marketing</span>
+      </div>
+      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
+        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold">Lead Generation</span>
+      </div>
+      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
+        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold">BPO & Support</span>
+      </div>
+    </div>
+    <div class="max-w-4xl mx-auto">
+       <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20can%20you%20tell%20me%20more%20about%20your%20services%20and%20pricing?" target="_blank" class="block text-center mt-8 w-full border border-buildo-border py-4 rounded-full font-bold hover:bg-white hover:text-buildo-dark transition-colors">See Pricing & Packages</a>
+    </div>
+  </section>
+  <!-- END: Services Grid -->
+
+  <!-- BEGIN: Comparison Table Section -->
+  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-4">BUILDO vs. Traditional Alternatives</span>
+      <h2 class="text-3xl md:text-4xl font-semibold">Hiring or traditional agencies? <span class="serif-italic">There's a better way.</span></h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto overflow-x-auto">
+      <table class="w-full text-left border-collapse min-w-[700px]">
+        <thead>
+          <tr class="text-sm text-gray-400 border-b border-white/10">
+            <th class="py-4 px-4 font-normal"></th>
+            <th class="py-4 px-4 font-normal text-center">Speed (Results)</th>
+            <th class="py-4 px-4 font-normal text-center">Free Trial</th>
+            <th class="py-4 px-4 font-normal text-center">Advance Payment</th>
+            <th class="py-4 px-4 font-normal text-center">Lead Quality</th>
+            <th class="py-4 px-4 font-normal text-center">Cost-Effectiveness</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="bg-buildo-cyan text-buildo-dark font-bold rounded-lg shadow-lg">
+            <td class="py-5 px-4 rounded-l-lg">BUILDO</td>
+            <td class="py-5 px-4 text-center">48 Hours</td>
+            <td class="py-5 px-4 text-center">✓</td>
+            <td class="py-5 px-4 text-center">Zero</td>
+            <td class="py-5 px-4 text-center">Verified</td>
+            <td class="py-5 px-4 rounded-r-lg text-center">✓</td>
+          </tr>
+          <tr><td colspan="6" class="py-2"></td></tr>
+          <tr class="border-b border-white/10 text-gray-300">
+            <td class="py-4 px-4">In-house team</td>
+            <td class="py-4 px-4 text-center text-gray-500">Weeks</td>
+            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+            <td class="py-4 px-4 text-center">Salaries</td>
+            <td class="py-4 px-4 text-center">Variable</td>
+            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+          </tr>
+          <tr class="border-b border-white/10 text-gray-300">
+            <td class="py-4 px-4">Traditional Agencies</td>
+            <td class="py-4 px-4 text-center text-gray-500">Months</td>
+            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+            <td class="py-4 px-4 text-center">50-100%</td>
+            <td class="py-4 px-4 text-center">Variable</td>
+            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+          </tr>
+          <tr class="border-b border-white/10 text-gray-300">
+            <td class="py-4 px-4">Freelancers</td>
+            <td class="py-4 px-4 text-center text-gray-500">Weeks</td>
+            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+            <td class="py-4 px-4 text-center">Often 100%</td>
+            <td class="py-4 px-4 text-center text-gray-500">Hit or Miss</td>
+            <td class="py-4 px-4 text-center">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <!-- END: Comparison Table Section -->
+
+  <!-- BEGIN: 35 Indian Client Reviews Section -->
+  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+    <div class="text-center mb-12">
+      <span class="text-buildo-cyan text-xs font-bold uppercase tracking-widest block mb-4">Client Success</span>
+      <h2 class="text-3xl font-semibold">What our Indian clients <span class="serif-italic">are saying</span></h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto" id="reviews-container">
+      
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"The 2-Day Free Trial blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
+        <div class="font-bold text-sm">Rahul Sharma</div>
+      </div>
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"Our e-commerce sales doubled after BUILDO revamped our website and took over our Meta Ads. The results in the first 48 hours were shocking!"</p>
+        <div class="font-bold text-sm">Priya Singh</div>
+      </div>
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"No advance payment is a game-changer. It shows they are confident in their work. We are now a long-term client."</p>
+        <div class="font-bold text-sm">Amit Patel</div>
+      </div>
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"BUILDO is a lifesaver for our sales team. The lead quality is consistently high, which has boosted our conversion rates significantly."</p>
+        <div class="font-bold text-sm">Sneha Reddy</div>
+      </div>
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"Great communication and top-notch quality delivered right on schedule. The free website audit was incredibly detailed and helpful."</p>
+        <div class="font-bold text-sm">Vikram Malhotra</div>
+      </div>
+      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
+        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-gray-300">"They understood our business goals perfectly from day one. Seamless process and fantastic ROI."</p>
+        <div class="font-bold text-sm">Ananya Gupta</div>
+      </div>
+
+      <!-- Hidden Reviews -->
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Exceptional service! The new website is super clean, modern, and loads incredibly fast."</p><div class="font-bold text-sm">Rajesh Kumar</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"We saw a 40% increase in conversions after their website redesign and lead generation campaign."</p><div class="font-bold text-sm">Neha Desai</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Best digital marketing agency I have worked with by far. They actually deliver on their promises."</p><div class="font-bold text-sm">Kunal Kapoor</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Timely delivery and very responsive to our feedback. Himanshu and his team are true professionals."</p><div class="font-bold text-sm">Pooja Joshi</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Innovative, and highly skilled technical team. Our website performance has never been better."</p><div class="font-bold text-sm">Suresh Menon</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"The Google Ads campaigns performed beautifully, bringing in leads at a much lower cost-per-acquisition."</p><div class="font-bold text-sm">Kavita Iyer</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"A wonderful experience from start to finish. They handled everything for us."</p><div class="font-bold text-sm">Rohan Das</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Our BPO process is now much more efficient thanks to their support team."</p><div class="font-bold text-sm">Meera Nair</div></div>
+      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Highly recommended for any serious business looking to scale their digital presence and sales."</p><div class="font-bold text-sm">Arjun Khanna</div></div>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <button id="view-more-reviews" class="bg-buildo-cyan text-buildo-dark font-bold py-4 px-10 rounded-full hover:opacity-90 transition-opacity">
+        View More
+      </button>
+    </div>
+  </section>
+  <!-- END: 35 Indian Client Reviews Section -->
+
+  <!-- BEGIN: Vertical Masterpieces Section -->
+  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-white">High-Converting <span class="serif-italic">Mobile Experiences</span></h2>
+      <p class="text-gray-400 mt-4 text-sm uppercase tracking-widest">Designed for mobile-first results</p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
+      <!-- === NEW VERTICAL IMAGES INSERTED HERE === -->
+      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+        <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 1">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+        <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 2">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+        <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 3">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+        <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 4">
+      </div>
+    </div>
+  </section>
+  <!-- END: Vertical Masterpieces Section -->
+
+  <!-- BEGIN: Final CTA -->
+  <section class="py-24 px-6 text-center bg-buildo-dark border-t border-buildo-border">
+    <h2 class="text-4xl font-semibold mb-4">
+      Ready to Grow Your Business?
+    </h2>
+    <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Claim your Free 2-Day Trial and let's build your success story together.</p>
+    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20start%20my%20Free%20Trial!" target="_blank" class="inline-block bg-buildo-cyan text-buildo-dark font-bold py-5 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:opacity-90 transition-opacity">
+      Start My Free Trial Now
+    </a>
+  </section>
+  <!-- END: Final CTA -->
+
+  <!-- BEGIN: Footer -->
+  <footer class="bg-black text-white pt-20 pb-10 px-6 border-t border-buildo-border">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-3xl font-bold mb-12">BUILDO</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Services</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><a href="#" class="hover:text-white transition-colors">Website Development</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Digital Marketing</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Lead Generation</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">BPO Services</a></li>
             </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Company</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Contact</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><a href="https://wa.me/917390928912" class="hover:text-white transition-colors">WhatsApp</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Get Free Audit</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-            <h4 class="text-white font-bold mb-4">Contact</h4>
-            <p class="text-sm">hello@buildo.in</p>
-            <p class="text-sm">Bengaluru, KA, India</p>
+        <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p class="text-xs text-gray-500">© 2024 BUILDO Digital Services. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
+            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
+            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
+          </div>
         </div>
     </div>
-    <div class="max-w-[1200px] mx-auto mt-12 pt-8 border-t border-navy-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-        <p>© 2024 Buildo Software Solutions. All rights reserved.</p>
-        <div class="flex gap-6">
-            <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
-            <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
-        </div>
-    </div>
-</footer>
+  </footer>
+  <!-- END: Footer -->
 
-<!-- === ANIMATION LIBRARY (AOS) ADDED - JavaScript === -->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    // Initialize the AOS library
-    AOS.init({
-        duration: 800, // animation duration in milliseconds
-        once: true,    // whether animation should happen only once - while scrolling down
-        offset: 50,    // offset (in px) from the original trigger point
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        // === NEW VIDEO SCRIPT INSERTED HERE ===
+        const player = cloudinary.videoPlayer('player', {
+          cloudName: 'dzq7qb6ew',
+          publicId: 'gemini_generated_video_aa21f76a_rikpbz',
+          fluid: true,
+          controls: true,
+          autoplayMode: 'always',
+          loop: true,
+          muted: true
+        });
+      } catch (e) {
+        console.error("Cloudinary player could not be initialized.", e);
+      }
+      
+      const openBtn = document.getElementById('open-menu-btn');
+      const closeBtn = document.getElementById('close-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (openBtn && closeBtn && mobileMenu) {
+        openBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+          document.body.style.overflow = 'hidden'; 
+        });
+
+        closeBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = ''; 
+        });
+      }
+
+      const viewMoreBtn = document.getElementById('view-more-reviews');
+      const hiddenReviews = document.querySelectorAll('.review-card-hidden');
+
+      if (viewMoreBtn && hiddenReviews.length > 0) {
+        viewMoreBtn.addEventListener('click', () => {
+          hiddenReviews.forEach(card => {
+            card.classList.remove('hidden');
+          });
+          viewMoreBtn.style.display = 'none';
+        });
+      }
     });
-</script>
 
+    function toggleMenu(contentId, iconId) {
+      const content = document.getElementById(contentId);
+      const icon = document.getElementById(iconId);
+      
+      if (content && icon) {
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+          content.classList.add('flex');
+          icon.classList.add('rotate-180');
+        } else {
+          content.classList.add('hidden');
+          content.classList.remove('flex');
+          icon.classList.remove('rotate-180');
+        }
+      }
+    }
+  </script>
 </body>
 </html>
