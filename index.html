@@ -11,19 +11,33 @@
   <!-- Cloudinary Video Player CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.css" rel="stylesheet">
   
-  <!-- Custom Tailwind Config for BUILDO Cyan Blue Theme -->
+  <!-- Custom Tailwind Config for Google Material Theme -->
   <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'buildo-dark': '#020d24',      /* Dark Navy Blue Background */
-              'buildo-cyan': '#00d1ff',      /* Bright Cyan for CTAs & Highlights */
-              'buildo-light-blue': '#93c5fd',/* Light Blue for accents */
-              'buildo-border': 'rgba(255, 255, 255, 0.1)',
+              /* Google Brand Colors */
+              'google-blue': '#1A73E8',
+              'google-blue-dark': '#1557B0',
+              'google-red': '#EA4335',
+              'google-yellow': '#FBBC05',
+              'google-green': '#34A853',
+              /* Google Surface & Text Colors */
+              'google-bg': '#FFFFFF',
+              'google-surface': '#F8F9FA',
+              'google-surface-alt': '#E8F0FE',
+              'google-border': '#DADCE0',
+              'google-text': '#202124',
+              'google-text-light': '#5F6368',
             },
             fontFamily: {
-              'sans': ['Inter', 'system-ui', 'sans-serif'],
+              'sans': ['"Product Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              'google': '0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)',
+              'google-hover': '0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15)',
+              'google-subtle': '0 1px 2px 0 rgba(60,64,67,0.1), 0 1px 3px 1px rgba(60,64,67,0.05)',
             }
           }
         }
@@ -33,6 +47,14 @@
   <style data-purpose="custom-typography">
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
       
+      /* Simulating Google's Product Sans for specific headers if system fonts fail */
+      @font-face {
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('Inter'), local('Segoe UI');
+      }
+
       .serif-italic {
         font-family: serif;
         font-style: italic;
@@ -60,6 +82,8 @@
         object-fit: cover;
         border-radius: 0.5rem; /* rounded-lg */
         flex-shrink: 0;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
+        border: 1px solid #DADCE0;
       }
       @keyframes scroll-left {
         from {
@@ -101,17 +125,16 @@
         min-width: max-content;
       }
       .text-marquee-item {
-        font-weight: 600;
+        font-weight: 500;
         font-size: 1.15rem;
-        color: white;
-        opacity: 0.75;
+        color: #5F6368;
         margin: 0 1.25rem;
         display: inline-flex;
         align-items: center;
         letter-spacing: 0.025em;
       }
       .text-marquee-item span {
-        color: #00d1ff; /* Changed to Cyan */
+        color: #1A73E8; 
         margin-right: 0.5rem;
         font-size: 1.25rem;
       }
@@ -131,17 +154,41 @@
       }
   </style>
 </head>
-<body class="bg-buildo-dark text-white font-sans antialiased">
+<body class="bg-google-bg text-google-text font-sans antialiased">
   <!-- BEGIN: Navigation -->
-  <nav class="sticky top-0 z-50 bg-buildo-dark/90 backdrop-blur-md border-b border-buildo-border px-4 py-4 flex justify-between items-center">
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-google-border px-4 py-4 flex justify-between items-center shadow-sm">
     <div class="flex items-center">
-      <div class="text-2xl font-bold tracking-tighter text-white">BUILDO</div>
+      <!-- NEW LOGO IMPLEMENTATION -->
+      <div class="flex flex-col items-start justify-center cursor-pointer">
+        <div class="text-[28px] font-bold tracking-tighter flex items-center leading-none select-none">
+          <span class="text-google-blue">B</span>
+          <span class="text-google-red">u</span>
+          <span class="text-google-yellow">i</span>
+          <span class="text-google-blue">l</span>
+          <span class="text-google-green">d</span>
+          <span class="text-google-red relative flex items-center justify-center h-6 w-6 ml-[1px]">
+             <!-- Abstract SVG representation of the 'O' symbol with arrow -->
+             <svg viewBox="0 0 24 24" fill="none" class="absolute w-7 h-7" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#EA4335"/>
+                <path d="M12 2L22 12C22 6.47715 17.5228 2 12 2Z" fill="#FBBC05"/>
+                <path d="M12 22C6.47715 22 2 17.5228 2 12L12 22Z" fill="#34A853"/>
+                <!-- Inner Arrow -->
+                <path d="M14 10L10 14M14 10H10M14 10V14" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="5" fill="white"/>
+                <path d="M13 11L9.5 14.5M13 11H10.5M13 11V13.5" stroke="#1A73E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+          </span>
+        </div>
+        <div class="text-[0.45rem] font-bold tracking-[0.2em] text-google-text-light mt-[3px] uppercase ml-1">Marketing & Growth Agency</div>
+      </div>
+      <!-- END LOGO IMPLEMENTATION -->
     </div>
+    
     <div class="flex items-center gap-4">
-      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20the%20Free%202-Day%20Trial." target="_blank" class="bg-buildo-cyan text-buildo-dark font-bold py-2 px-4 rounded-full text-sm hover:opacity-90 transition-opacity">
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20the%20Free%202-Day%20Trial." target="_blank" class="bg-google-blue text-white font-medium py-2 px-5 rounded-full text-sm hover:bg-google-blue-dark hover:shadow-google transition-all">
         Start Free Trial
       </a>
-      <button class="text-white" id="open-menu-btn" data-purpose="mobile-menu-toggle">
+      <button class="text-google-text-light hover:text-google-text transition-colors" id="open-menu-btn" data-purpose="mobile-menu-toggle">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
         </svg>
@@ -150,12 +197,18 @@
   </nav>
   <!-- END: Navigation -->
 
-  <!-- BEGIN: NEW MOBILE MENU OVERLAY (UPDATED FOR BUILDO) -->
-  <div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-buildo-dark text-white flex flex-col font-sans overflow-y-auto">
-    <!-- Top Dark Bar -->
-    <div class="bg-buildo-dark px-4 py-4 flex justify-between items-center text-white sticky top-0 z-10 border-b border-buildo-border">
-      <div class="text-xl font-bold tracking-tighter">BUILDO</div>
-      <button id="close-menu-btn" class="text-white hover:opacity-80 transition-opacity">
+  <!-- BEGIN: NEW MOBILE MENU OVERLAY -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white text-google-text flex flex-col font-sans overflow-y-auto">
+    <!-- Top Bar -->
+    <div class="bg-white px-4 py-4 flex justify-between items-center text-google-text sticky top-0 z-10 border-b border-google-border">
+      
+      <div class="flex flex-col items-start justify-center">
+        <div class="text-[24px] font-bold tracking-tighter flex items-center leading-none">
+          <span class="text-google-blue">B</span><span class="text-google-red">u</span><span class="text-google-yellow">i</span><span class="text-google-blue">l</span><span class="text-google-green">d</span><span class="text-google-red">o</span>
+        </div>
+      </div>
+
+      <button id="close-menu-btn" class="text-google-text-light hover:text-google-text transition-colors">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -164,36 +217,36 @@
 
     <!-- Menu Links -->
     <div class="px-5 py-2 flex-grow pb-10">
-      <ul class="text-[15px] font-semibold text-white">
+      <ul class="text-[15px] font-medium text-google-text">
         
         <!-- SERVICES MENU ITEM -->
-        <li class="border-b border-white/10 flex flex-col">
-          <div class="py-4 flex justify-between items-center cursor-pointer w-full hover:text-buildo-cyan transition-colors" onclick="toggleMenu('services-content', 'services-icon')">
+        <li class="border-b border-google-border flex flex-col">
+          <div class="py-4 flex justify-between items-center cursor-pointer w-full hover:text-google-blue transition-colors" onclick="toggleMenu('services-content', 'services-icon')">
             Our Services
-            <svg id="services-icon" class="w-4 h-4 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg id="services-icon" class="w-4 h-4 text-google-text-light transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </div>
-          <div id="services-content" class="hidden flex-col gap-4 pb-6 pt-2 w-full pl-4">
-            <a href="#" class="font-normal text-gray-300 hover:text-white">Website Development</a>
-            <a href="#" class="font-normal text-gray-300 hover:text-white">Digital Marketing</a>
-            <a href="#" class="font-normal text-gray-300 hover:text-white">Lead Generation</a>
-            <a href="#" class="font-normal text-gray-300 hover:text-white">BPO Services</a>
-            <a href="#" class="font-normal text-gray-300 hover:text-white">AI Automation & Chatbots</a>
+          <div id="services-content" class="hidden flex-col gap-4 pb-6 pt-2 w-full pl-4 bg-google-surface rounded-lg px-4 mb-2">
+            <a href="#" class="font-normal text-google-text hover:text-google-blue pt-2">Website Development</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">Digital Marketing</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">Lead Generation</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">BPO Services</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue pb-2">AI Automation & Chatbots</a>
           </div>
         </li>
 
         <!-- PRICING & WHY US -->
-        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Pricing</li>
-        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Why Choose Us?</li>
-        <li class="border-b border-white/10 py-4 cursor-pointer hover:text-buildo-cyan transition-colors">Get Free Audit</li>
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Pricing</li>
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Why Choose Us?</li>
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Get Free Audit</li>
         
       </ul>
 
       <!-- Bottom Buttons -->
       <div class="mt-8 flex flex-col gap-3">
-        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Free%20Trial." target="_blank" class="text-center bg-buildo-cyan text-buildo-dark font-bold py-3 px-4 rounded-[10px] text-sm w-full hover:opacity-90 transition-opacity">
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Free%20Trial." target="_blank" class="text-center bg-google-blue text-white font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-blue-dark hover:shadow-google transition-all">
           Start Free Trial
         </a>
-        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20learning%20more." target="_blank" class="text-center bg-transparent border border-white/20 text-white font-bold py-3 px-4 rounded-[10px] text-sm w-full hover:bg-white/10 transition-colors">
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20learning%20more." target="_blank" class="text-center bg-transparent border border-google-border text-google-blue font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-surface transition-colors">
           Contact Us
         </a>
       </div>
@@ -201,22 +254,31 @@
   </div>
   <!-- END: NEW MOBILE MENU OVERLAY -->
 
-  <!-- BEGIN: Hero Section -->
-  <header class="relative px-6 pt-12 pb-20 overflow-hidden bg-buildo-dark">
-    <div class="relative z-10">
-      <h1 class="text-5xl font-semibold leading-tight mb-6">
-        Skyrocket Your Business with a <span class="serif-italic text-buildo-cyan">Risk-Free 2-Day Trial</span>
+  <!-- BEGIN: Hero Section (Updated with Video Intro) -->
+  <header class="relative px-6 pt-12 pb-16 overflow-hidden bg-white">
+    <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center">
+      
+      <!-- Minimal Text Area -->
+      <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 text-google-text tracking-tight max-w-3xl">
+        Skyrocket Your Business with a <span class="text-google-blue">Risk-Free 2-Day Trial</span>
       </h1>
-      <p class="text-lg text-gray-400 mb-8 max-w-md">
-        Experience real growth with targeted leads, a FREE website audit, and zero advance payment. See results in just 48 hours.
-      </p>
-      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20claim%20my%20Free%202-Day%20Trial!" target="_blank" class="inline-block bg-buildo-cyan text-buildo-dark font-bold py-4 px-8 rounded-full text-lg w-full sm:w-auto hover:opacity-90 transition-opacity">
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20claim%20my%20Free%202-Day%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-3 px-8 rounded-full text-lg hover:bg-google-blue-dark hover:shadow-google transition-all mb-8">
         Claim My Free Trial
       </a>
+
+      <!-- NEW Intro Video Container -->
+      <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-google border border-google-border aspect-video bg-black relative mb-8">
+          <video
+            id="hero-player"
+            class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
+            playsinline
+          ></video>
+      </div>
+
     </div>
     
-    <!-- Image Scrolling Marquee -->
-    <div class="mt-12 space-y-3 opacity-60">
+    <!-- Image Scrolling Marquee (Kept below video with missing image replaced) -->
+    <div class="mt-6 space-y-4">
       <!-- Row 1: Scrolls Left -->
       <div class="marquee-row">
         <div class="marquee-content animate-scroll-left">
@@ -242,14 +304,16 @@
           <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
           <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
-          <img src="https://images.unsplash.com/photo-1553877522-c369803ea52d?w=400&h=300&fit=crop" alt="Customer Support">
+          <!-- Missing Image Fixed Here -->
+          <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
           <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
           <!-- Duplicate Set -->
           <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Client Meeting">
           <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
           <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
-          <img src="https://images.unsplash.com/photo-1553877522-c369803ea52d?w=400&h=300&fit=crop" alt="Customer Support">
+          <!-- Missing Image Fixed Here -->
+          <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
           <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
         </div>
       </div>
@@ -258,8 +322,8 @@
   <!-- END: Hero Section -->
 
   <!-- BEGIN: Tech & Tools Marquee -->
-  <section class="bg-buildo-dark py-12 px-6 overflow-hidden border-t border-buildo-border">
-    <p class="text-white/60 text-center text-sm font-semibold mb-8 uppercase tracking-widest">POWERED BY INDUSTRY-LEADING TECHNOLOGY</p>
+  <section class="bg-google-surface py-12 px-6 overflow-hidden border-t border-b border-google-border">
+    <p class="text-google-text-light text-center text-sm font-semibold mb-8 uppercase tracking-widest">POWERED BY INDUSTRY-LEADING TECHNOLOGY</p>
     
     <div class="mt-8 space-y-6">
       <!-- Row 1: Scrolling Left -->
@@ -316,15 +380,14 @@
     </div>
 
     <div class="mt-20 max-w-5xl mx-auto text-center px-4">
-      <h2 class="text-4xl font-semibold mb-6 text-white">
-        BUILDO is not just an agency, <span class="serif-italic">it's your growth partner.</span>
+      <h2 class="text-4xl font-semibold mb-6 text-google-text tracking-tight">
+        BUILDO is not just an agency, <span class="text-google-blue">it's your growth partner.</span>
       </h2>
-      <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-lg text-google-text-light mb-12 max-w-3xl mx-auto leading-relaxed">
         From custom Website Development and high-converting Digital Marketing to qualified Lead Generation and BPO services—we provide the ultimate growth ecosystem. BUILDO transforms your business goals into unstoppable digital reality.
       </p>
       
-      <div class="relative w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,209,255,0.15)] transition-transform duration-500 hover:scale-[1.02]">
-          <!-- === NEW IMAGE 1 INSERTED HERE === -->
+      <div class="relative w-full rounded-2xl overflow-hidden shadow-google transition-transform duration-500 hover:scale-[1.02] border border-google-border bg-white">
           <img src="https://i.ibb.co/s9nkqp6t/file-000000006ddc7208864afe8a9b369b68.png" alt="BUILDO Team Collaboration" class="w-full h-auto object-cover">
       </div>
     </div>
@@ -332,58 +395,62 @@
   <!-- END: Tech & Tools Marquee -->
 
   <!-- BEGIN: Value Proposition Section -->
-  <section class="py-20 px-6 border-t border-buildo-border bg-buildo-dark">
-    <span class="text-buildo-cyan text-xs font-bold uppercase tracking-widest block mb-4">A New Way of Working</span>
-    <h2 class="text-3xl font-semibold mb-6 text-white">
-      The Growth Engine Your <span class="serif-italic">Business is Missing</span>
-    </h2>
-    
-    <div class="relative rounded-2xl overflow-hidden aspect-video bg-gray-800 flex items-center justify-center w-full shadow-[0_0_30px_rgba(255,255,255,0.05)]" data-purpose="video-player">
-      <!-- === VIDEO PLAYER ID REMAINS THE SAME, SCRIPT BELOW WILL LOAD THE NEW VIDEO === -->
-      <video
-        id="player"
-        class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
-        playsinline
-      ></video>
-    </div>
+  <section class="py-20 px-6 bg-white border-b border-google-border">
+    <div class="max-w-6xl mx-auto">
+        <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">A New Way of Working</span>
+        <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-google-text tracking-tight">
+          The Growth Engine Your <span class="text-google-blue">Business is Missing</span>
+        </h2>
+        
+        <div class="relative rounded-2xl overflow-hidden aspect-video bg-black flex items-center justify-center w-full shadow-google border border-google-border" data-purpose="video-player">
+          <video
+            id="player"
+            class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
+            playsinline
+          ></video>
+        </div>
 
-    <p class="mt-8 text-gray-400 text-lg">
-      BUILDO is your dedicated, on-demand growth team. We expand your marketing capacity and extend your team's capabilities without the overhead of a full-time hire.
-    </p>
+        <p class="mt-8 text-google-text-light text-lg max-w-4xl">
+          BUILDO is your dedicated, on-demand growth team. We expand your marketing capacity and extend your team's capabilities without the overhead of a full-time hire.
+        </p>
+    </div>
   </section>
   <!-- END: Value Proposition -->
 
   <!-- BEGIN: Why Choose Buildo Section -->
-  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border">
+  <section class="py-20 px-6 bg-google-surface text-google-text border-b border-google-border">
     <div class="text-center max-w-4xl mx-auto mb-16">
-      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-4">Why Choose BUILDO?</span>
-      <h2 class="text-3xl md:text-4xl font-semibold leading-tight">
-        Super-fast. Result-driven. Completely Risk-Free. Work with a growth partner that's purposefully <span class="serif-italic">built to deliver.</span>
+      <span class="text-xs font-bold uppercase tracking-widest text-google-text-light block mb-4">Why Choose BUILDO?</span>
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+        Super-fast. Result-driven. Completely Risk-Free. Work with a growth partner that's purposefully <span class="text-google-blue">built to deliver.</span>
       </h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
       
-      <div class="rounded-2xl overflow-hidden bg-cyan-900/40 flex flex-col border border-buildo-border">
-        <img src="https://images.unsplash.com/photo-1573164713347-df9f3901b05a?w=600&h=400&fit=crop" alt="Free Trial" class="w-full h-64 object-cover">
+      <!-- Card 1: Blue Accent (Missing Image Fixed Here) -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-blue shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Free Trial" class="w-full h-64 object-cover border-b border-google-border">
         <div class="p-8 flex-grow">
-          <h3 class="text-2xl font-serif italic text-buildo-light-blue mb-4">Zero Risk, <span class="font-sans not-italic font-bold">Free 2-Day Trial</span></h3>
-          <p class="text-sm text-gray-300">Don't pay a single rupee until you see our work. Experience our marketing strategies and lead generation for 2 days, absolutely free. No commitments.</p>
+          <h3 class="text-2xl text-google-blue mb-4 tracking-tight">Zero Risk, <span class="font-bold">Free 2-Day Trial</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">Don't pay a single rupee until you see our work. Experience our marketing strategies and lead generation for 2 days, absolutely free. No commitments.</p>
         </div>
       </div>
       
-      <div class="rounded-2xl overflow-hidden bg-slate-100 text-buildo-dark flex flex-col">
-        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=400&fit=crop" alt="No Advance Payment" class="w-full h-64 object-cover">
+      <!-- Card 2: Red Accent -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-red shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=400&fit=crop" alt="No Advance Payment" class="w-full h-64 object-cover border-b border-google-border">
         <div class="p-8 flex-grow">
-          <h3 class="text-2xl font-serif italic mb-4">No Advance <span class="font-sans not-italic font-bold">Payment</span></h3>
-          <p class="text-sm text-gray-800">We believe in building trust through results. You start your project with zero upfront cost and only pay after you see tangible outcomes.</p>
+          <h3 class="text-2xl text-google-red mb-4 tracking-tight">No Advance <span class="font-bold">Payment</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">We believe in building trust through results. You start your project with zero upfront cost and only pay after you see tangible outcomes.</p>
         </div>
       </div>
       
-      <div class="rounded-2xl overflow-hidden bg-buildo-cyan text-buildo-dark flex flex-col">
-        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Guaranteed Results" class="w-full h-64 object-cover">
+      <!-- Card 3: Green Accent -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-green shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Guaranteed Results" class="w-full h-64 object-cover border-b border-google-border">
         <div class="p-8 flex-grow">
-          <h3 class="text-2xl font-serif italic mb-4">Guaranteed Results <span class="font-sans not-italic font-bold">in 48 Hours</span></h3>
-          <p class="text-sm text-gray-800">Stop waiting weeks for results. Our expert team, powered by AI and proven strategies, delivers measurable progress in as little as 48 hours.</p>
+          <h3 class="text-2xl text-google-green mb-4 tracking-tight">Guaranteed Results <span class="font-bold">in 48 Hours</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">Stop waiting weeks for results. Our expert team, powered by AI and proven strategies, delivers measurable progress in as little as 48 hours.</p>
         </div>
       </div>
 
@@ -392,91 +459,96 @@
   <!-- END: Why Choose Buildo Section -->
 
   <!-- BEGIN: Stats Section (Success in Numbers) -->
-  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+  <section class="py-20 px-6 bg-white border-b border-google-border">
     <div class="text-center mb-16">
-      <span class="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-4">Success in Numbers</span>
-      <h2 class="text-3xl md:text-4xl font-semibold text-white">The best return on <span class="serif-italic">your investment</span></h2>
+      <span class="text-google-text-light text-xs font-bold uppercase tracking-widest block mb-4">Success in Numbers</span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">The best return on <span class="text-google-blue">your investment</span></h2>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-5xl mx-auto text-left">
-      <div class="border-t border-buildo-border pt-8">
-        <div class="text-6xl font-serif italic text-white mb-4">500+</div>
-        <p class="text-sm text-gray-400">Startups, enterprises and mid-market companies trust BUILDO to scale their growth and deliver high-quality leads.</p>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-blue mb-4">500+</div>
+        <p class="text-sm text-google-text-light leading-relaxed">Startups, enterprises and mid-market companies trust BUILDO to scale their growth and deliver high-quality leads.</p>
       </div>
-      <div class="border-t border-buildo-border pt-8">
-        <div class="text-6xl font-serif italic text-white mb-4">10k+</div>
-        <p class="text-sm text-gray-400">Verified leads generated for our clients to date, and counting.</p>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-red mb-4">10k+</div>
+        <p class="text-sm text-google-text-light leading-relaxed">Verified leads generated for our clients to date, and counting.</p>
       </div>
-      <div class="border-t border-buildo-border pt-8">
-        <div class="text-6xl font-serif italic text-white mb-4">48 Hours</div>
-        <p class="text-sm text-gray-400 mb-2">The average time it takes for our new clients to see their first tangible results and qualified leads.</p>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-yellow mb-4">48 Hrs</div>
+        <p class="text-sm text-google-text-light leading-relaxed mb-2">The average time it takes for our new clients to see their first tangible results and qualified leads.</p>
       </div>
-      <div class="border-t border-buildo-border pt-8">
-        <div class="text-6xl font-serif italic text-white mb-4">ZERO</div>
-        <p class="text-sm text-gray-400 mb-2">Advance payment required to start your project. We work first, you pay later. That's the BUILDO promise.</p>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-green mb-4">ZERO</div>
+        <p class="text-sm text-google-text-light leading-relaxed mb-2">Advance payment required to start your project. We work first, you pay later. That's the BUILDO promise.</p>
       </div>
     </div>
   </section>
   <!-- END: Stats Section -->
 
   <!-- BEGIN: Services Grid -->
-  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold">Every Digital Service Your Business Will Ever Need</h2>
+  <section class="py-20 px-6 bg-google-surface text-google-text border-b border-google-border">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Every Digital Service Your Business Will Ever Need</h2>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
-        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
-          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
         </div>
-        <span class="text-sm font-semibold">Website Development</span>
+        <span class="text-sm font-semibold text-google-text">Website Development</span>
       </div>
-      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
-        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
-          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
         </div>
-        <span class="text-sm font-semibold">Digital Marketing</span>
+        <span class="text-sm font-semibold text-google-text">Digital Marketing</span>
       </div>
-      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
-        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
-          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-yellow-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
         </div>
-        <span class="text-sm font-semibold">Lead Generation</span>
+        <span class="text-sm font-semibold text-google-text">Lead Generation</span>
       </div>
-      <div class="p-4 bg-buildo-dark/50 border border-buildo-border rounded-xl shadow-sm flex flex-col items-center text-center">
-        <div class="w-10 h-10 bg-buildo-cyan/20 rounded-lg flex items-center justify-center mb-3">
-          <svg class="w-6 h-6 text-buildo-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         </div>
-        <span class="text-sm font-semibold">BPO & Support</span>
+        <span class="text-sm font-semibold text-google-text">BPO & Support</span>
       </div>
+
     </div>
-    <div class="max-w-4xl mx-auto">
-       <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20can%20you%20tell%20me%20more%20about%20your%20services%20and%20pricing?" target="_blank" class="block text-center mt-8 w-full border border-buildo-border py-4 rounded-full font-bold hover:bg-white hover:text-buildo-dark transition-colors">See Pricing & Packages</a>
+    <div class="max-w-5xl mx-auto">
+       <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20can%20you%20tell%20me%20more%20about%20your%20services%20and%20pricing?" target="_blank" class="block text-center mt-12 w-full border border-google-border bg-white py-4 rounded-full font-medium text-google-blue hover:bg-google-surface transition-colors shadow-sm">See Pricing & Packages</a>
     </div>
   </section>
   <!-- END: Services Grid -->
 
   <!-- BEGIN: Comparison Table Section -->
-  <section class="py-20 px-6 bg-buildo-dark text-white border-t border-buildo-border overflow-hidden">
+  <section class="py-20 px-6 bg-white text-google-text border-b border-google-border overflow-hidden">
     <div class="max-w-6xl mx-auto text-center mb-16">
-      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-4">BUILDO vs. Traditional Alternatives</span>
-      <h2 class="text-3xl md:text-4xl font-semibold">Hiring or traditional agencies? <span class="serif-italic">There's a better way.</span></h2>
+      <span class="text-xs font-bold uppercase tracking-widest text-google-text-light block mb-4">BUILDO vs. Traditional Alternatives</span>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Hiring or traditional agencies? <span class="text-google-blue">There's a better way.</span></h2>
     </div>
     
-    <div class="max-w-6xl mx-auto overflow-x-auto">
+    <div class="max-w-6xl mx-auto overflow-x-auto pb-4">
       <table class="w-full text-left border-collapse min-w-[700px]">
         <thead>
-          <tr class="text-sm text-gray-400 border-b border-white/10">
-            <th class="py-4 px-4 font-normal"></th>
-            <th class="py-4 px-4 font-normal text-center">Speed (Results)</th>
-            <th class="py-4 px-4 font-normal text-center">Free Trial</th>
-            <th class="py-4 px-4 font-normal text-center">Advance Payment</th>
-            <th class="py-4 px-4 font-normal text-center">Lead Quality</th>
-            <th class="py-4 px-4 font-normal text-center">Cost-Effectiveness</th>
+          <tr class="text-sm text-google-text-light border-b border-google-border">
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider"></th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Speed (Results)</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Free Trial</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Advance Payment</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Lead Quality</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Cost-Effectiveness</th>
           </tr>
         </thead>
         <tbody class="text-sm">
-          <tr class="bg-buildo-cyan text-buildo-dark font-bold rounded-lg shadow-lg">
+          <tr class="bg-google-surface-alt text-google-blue font-bold rounded-lg shadow-sm border border-google-blue border-opacity-30">
             <td class="py-5 px-4 rounded-l-lg">BUILDO</td>
             <td class="py-5 px-4 text-center">48 Hours</td>
             <td class="py-5 px-4 text-center">✓</td>
@@ -485,29 +557,29 @@
             <td class="py-5 px-4 rounded-r-lg text-center">✓</td>
           </tr>
           <tr><td colspan="6" class="py-2"></td></tr>
-          <tr class="border-b border-white/10 text-gray-300">
-            <td class="py-4 px-4">In-house team</td>
-            <td class="py-4 px-4 text-center text-gray-500">Weeks</td>
-            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">In-house team</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Weeks</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
             <td class="py-4 px-4 text-center">Salaries</td>
             <td class="py-4 px-4 text-center">Variable</td>
-            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
           </tr>
-          <tr class="border-b border-white/10 text-gray-300">
-            <td class="py-4 px-4">Traditional Agencies</td>
-            <td class="py-4 px-4 text-center text-gray-500">Months</td>
-            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">Traditional Agencies</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Months</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
             <td class="py-4 px-4 text-center">50-100%</td>
             <td class="py-4 px-4 text-center">Variable</td>
-            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
           </tr>
-          <tr class="border-b border-white/10 text-gray-300">
-            <td class="py-4 px-4">Freelancers</td>
-            <td class="py-4 px-4 text-center text-gray-500">Weeks</td>
-            <td class="py-4 px-4 text-center text-gray-500">✕</td>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">Freelancers</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Weeks</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
             <td class="py-4 px-4 text-center">Often 100%</td>
-            <td class="py-4 px-4 text-center text-gray-500">Hit or Miss</td>
-            <td class="py-4 px-4 text-center">✓</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Hit or Miss</td>
+            <td class="py-4 px-4 text-center font-bold text-google-green">✓</td>
           </tr>
         </tbody>
       </table>
@@ -516,60 +588,60 @@
   <!-- END: Comparison Table Section -->
 
   <!-- BEGIN: 35 Indian Client Reviews Section -->
-  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+  <section class="py-20 px-6 bg-google-surface border-b border-google-border">
     <div class="text-center mb-12">
-      <span class="text-buildo-cyan text-xs font-bold uppercase tracking-widest block mb-4">Client Success</span>
-      <h2 class="text-3xl font-semibold">What our Indian clients <span class="serif-italic">are saying</span></h2>
+      <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">Client Success</span>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-google-text">What our Indian clients <span class="text-google-blue">are saying</span></h2>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto" id="reviews-container">
       
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"The 2-Day Free Trial blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
-        <div class="font-bold text-sm">Rahul Sharma</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"The 2-Day Free Trial blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
+        <div class="font-bold text-sm text-google-text">Rahul Sharma</div>
       </div>
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"Our e-commerce sales doubled after BUILDO revamped our website and took over our Meta Ads. The results in the first 48 hours were shocking!"</p>
-        <div class="font-bold text-sm">Priya Singh</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"Our e-commerce sales doubled after BUILDO revamped our website and took over our Meta Ads. The results in the first 48 hours were shocking!"</p>
+        <div class="font-bold text-sm text-google-text">Priya Singh</div>
       </div>
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"No advance payment is a game-changer. It shows they are confident in their work. We are now a long-term client."</p>
-        <div class="font-bold text-sm">Amit Patel</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"No advance payment is a game-changer. It shows they are confident in their work. We are now a long-term client."</p>
+        <div class="font-bold text-sm text-google-text">Amit Patel</div>
       </div>
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"BUILDO is a lifesaver for our sales team. The lead quality is consistently high, which has boosted our conversion rates significantly."</p>
-        <div class="font-bold text-sm">Sneha Reddy</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"BUILDO is a lifesaver for our sales team. The lead quality is consistently high, which has boosted our conversion rates significantly."</p>
+        <div class="font-bold text-sm text-google-text">Sneha Reddy</div>
       </div>
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"Great communication and top-notch quality delivered right on schedule. The free website audit was incredibly detailed and helpful."</p>
-        <div class="font-bold text-sm">Vikram Malhotra</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"Great communication and top-notch quality delivered right on schedule. The free website audit was incredibly detailed and helpful."</p>
+        <div class="font-bold text-sm text-google-text">Vikram Malhotra</div>
       </div>
-      <div class="bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border">
-        <div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-gray-300">"They understood our business goals perfectly from day one. Seamless process and fantastic ROI."</p>
-        <div class="font-bold text-sm">Ananya Gupta</div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"They understood our business goals perfectly from day one. Seamless process and fantastic ROI."</p>
+        <div class="font-bold text-sm text-google-text">Ananya Gupta</div>
       </div>
 
       <!-- Hidden Reviews -->
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Exceptional service! The new website is super clean, modern, and loads incredibly fast."</p><div class="font-bold text-sm">Rajesh Kumar</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"We saw a 40% increase in conversions after their website redesign and lead generation campaign."</p><div class="font-bold text-sm">Neha Desai</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Best digital marketing agency I have worked with by far. They actually deliver on their promises."</p><div class="font-bold text-sm">Kunal Kapoor</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Timely delivery and very responsive to our feedback. Himanshu and his team are true professionals."</p><div class="font-bold text-sm">Pooja Joshi</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Innovative, and highly skilled technical team. Our website performance has never been better."</p><div class="font-bold text-sm">Suresh Menon</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"The Google Ads campaigns performed beautifully, bringing in leads at a much lower cost-per-acquisition."</p><div class="font-bold text-sm">Kavita Iyer</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"A wonderful experience from start to finish. They handled everything for us."</p><div class="font-bold text-sm">Rohan Das</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Our BPO process is now much more efficient thanks to their support team."</p><div class="font-bold text-sm">Meera Nair</div></div>
-      <div class="hidden review-card-hidden bg-buildo-dark/50 p-6 rounded-2xl border border-buildo-border"><div class="flex text-buildo-cyan mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-gray-300">"Highly recommended for any serious business looking to scale their digital presence and sales."</p><div class="font-bold text-sm">Arjun Khanna</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Exceptional service! The new website is super clean, modern, and loads incredibly fast."</p><div class="font-bold text-sm text-google-text">Rajesh Kumar</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"We saw a 40% increase in conversions after their website redesign and lead generation campaign."</p><div class="font-bold text-sm text-google-text">Neha Desai</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Best digital marketing agency I have worked with by far. They actually deliver on their promises."</p><div class="font-bold text-sm text-google-text">Kunal Kapoor</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Timely delivery and very responsive to our feedback. Himanshu and his team are true professionals."</p><div class="font-bold text-sm text-google-text">Pooja Joshi</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Innovative, and highly skilled technical team. Our website performance has never been better."</p><div class="font-bold text-sm text-google-text">Suresh Menon</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"The Google Ads campaigns performed beautifully, bringing in leads at a much lower cost-per-acquisition."</p><div class="font-bold text-sm text-google-text">Kavita Iyer</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"A wonderful experience from start to finish. They handled everything for us."</p><div class="font-bold text-sm text-google-text">Rohan Das</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Our BPO process is now much more efficient thanks to their support team."</p><div class="font-bold text-sm text-google-text">Meera Nair</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Highly recommended for any serious business looking to scale their digital presence and sales."</p><div class="font-bold text-sm text-google-text">Arjun Khanna</div></div>
 
     </div>
 
     <div class="text-center mt-12">
-      <button id="view-more-reviews" class="bg-buildo-cyan text-buildo-dark font-bold py-4 px-10 rounded-full hover:opacity-90 transition-opacity">
+      <button id="view-more-reviews" class="bg-white border border-google-border text-google-blue font-medium py-3 px-8 rounded-full shadow-sm hover:bg-google-surface hover:shadow-google transition-all">
         View More
       </button>
     </div>
@@ -577,24 +649,23 @@
   <!-- END: 35 Indian Client Reviews Section -->
 
   <!-- BEGIN: Vertical Masterpieces Section -->
-  <section class="py-20 px-6 bg-buildo-dark border-t border-buildo-border">
+  <section class="py-20 px-6 bg-white border-b border-google-border">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-white">High-Converting <span class="serif-italic">Mobile Experiences</span></h2>
-      <p class="text-gray-400 mt-4 text-sm uppercase tracking-widest">Designed for mobile-first results</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">High-Converting <span class="text-google-blue">Mobile Experiences</span></h2>
+      <p class="text-google-text-light mt-4 text-sm uppercase tracking-widest font-medium">Designed for mobile-first results</p>
     </div>
     
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
-      <!-- === NEW VERTICAL IMAGES INSERTED HERE === -->
-      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
         <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 1">
       </div>
-      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
         <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 2">
       </div>
-      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
         <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 3">
       </div>
-      <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-gray-800 shadow-lg group">
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
         <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 4">
       </div>
     </div>
@@ -602,53 +673,66 @@
   <!-- END: Vertical Masterpieces Section -->
 
   <!-- BEGIN: Final CTA -->
-  <section class="py-24 px-6 text-center bg-buildo-dark border-t border-buildo-border">
-    <h2 class="text-4xl font-semibold mb-4">
+  <section class="py-24 px-6 text-center bg-google-surface-alt border-b border-google-blue border-opacity-20">
+    <h2 class="text-4xl font-semibold mb-4 text-google-blue tracking-tight">
       Ready to Grow Your Business?
     </h2>
-    <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Claim your Free 2-Day Trial and let's build your success story together.</p>
-    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20start%20my%20Free%20Trial!" target="_blank" class="inline-block bg-buildo-cyan text-buildo-dark font-bold py-5 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:opacity-90 transition-opacity">
+    <p class="text-lg text-google-text mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Claim your Free 2-Day Trial and let's build your success story together.</p>
+    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20start%20my%20Free%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-4 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:bg-google-blue-dark hover:shadow-google transition-all">
       Start My Free Trial Now
     </a>
   </section>
   <!-- END: Final CTA -->
 
   <!-- BEGIN: Footer -->
-  <footer class="bg-black text-white pt-20 pb-10 px-6 border-t border-buildo-border">
+  <footer class="bg-google-surface text-google-text-light pt-20 pb-10 px-6">
     <div class="max-w-6xl mx-auto">
-        <div class="text-3xl font-bold mb-12">BUILDO</div>
+        <div class="mb-12">
+            <!-- Footer Simple Logo -->
+            <div class="text-[28px] font-bold tracking-tighter flex items-center leading-none text-google-text-light grayscale select-none">
+              <span>B</span><span>u</span><span>i</span><span>l</span><span>d</span><span>o</span>
+            </div>
+            <div class="text-[0.55rem] font-bold tracking-[0.2em] text-google-text-light mt-[4px] uppercase">Marketing & Growth Agency</div>
+        </div>
+        
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           <div class="space-y-4">
-            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Services</h4>
-            <ul class="space-y-2 text-sm text-gray-400">
-              <li><a href="#" class="hover:text-white transition-colors">Website Development</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Digital Marketing</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Lead Generation</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">BPO Services</a></li>
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Services</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="#" class="hover:text-google-blue transition-colors">Website Development</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Digital Marketing</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Lead Generation</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">BPO Services</a></li>
             </ul>
           </div>
           <div class="space-y-4">
-            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Company</h4>
-            <ul class="space-y-2 text-sm text-gray-400">
-              <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Company</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="#" class="hover:text-google-blue transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Why Choose Us</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Pricing</a></li>
             </ul>
           </div>
           <div class="space-y-4">
-            <h4 class="font-bold uppercase text-xs text-gray-500 tracking-widest">Contact</h4>
-            <ul class="space-y-2 text-sm text-gray-400">
-              <li><a href="https://wa.me/917390928912" class="hover:text-white transition-colors">WhatsApp</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Get Free Audit</a></li>
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Contact</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="https://wa.me/917390928912" class="hover:text-google-blue transition-colors">WhatsApp</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Get Free Audit</a></li>
             </ul>
           </div>
         </div>
-        <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-          <p class="text-xs text-gray-500">© 2024 BUILDO Digital Services. All rights reserved.</p>
+        <div class="border-t border-google-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p class="text-xs text-google-text-light">© 2024 BUILDO Digital Services. All rights reserved.</p>
           <div class="flex gap-6">
-            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
-            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
-            <a class="w-6 h-6 bg-gray-700 rounded-full hover:bg-buildo-cyan transition-colors" href="#"></a>
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">Facebook</span>
+            </a>
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">Twitter</span>
+            </a>
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">LinkedIn</span>
+            </a>
           </div>
         </div>
     </div>
@@ -659,8 +743,23 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // NEW: Hero Section Video Player Initialization
       try {
-        // === NEW VIDEO SCRIPT INSERTED HERE ===
+        const heroPlayer = cloudinary.videoPlayer('hero-player', {
+          cloudName: 'dzq7qb6ew',
+          publicId: 'km_20260328_1440p_60f_20260328_170651_xlk1fs',
+          fluid: true,
+          controls: true,
+          autoplayMode: 'always',
+          loop: true,
+          muted: true
+        });
+      } catch (e) {
+        console.error("Cloudinary hero player could not be initialized.", e);
+      }
+
+      // ORIGINAL: Value Proposition Video Player Initialization
+      try {
         const player = cloudinary.videoPlayer('player', {
           cloudName: 'dzq7qb6ew',
           publicId: 'gemini_generated_video_aa21f76a_rikpbz',
