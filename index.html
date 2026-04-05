@@ -1,882 +1,823 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#0a0514]">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benax / Pisyn - Global Branding & Digital Design Agency</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Premium Fonts: Clash Display (Headings) & Satoshi (Body) via Fontshare -->
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
-    
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <!-- GSAP & ScrollTrigger for Premium Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Lenis for Smooth Momentum Scrolling -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-
-    <!-- Tailwind Config - Colorful Theme Based on Provided Logo -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: '#0a0514', // Dark Purple-ish Black
-                        surface: '#160b26', // Slightly lighter dark purple
-                        surfaceLight: '#24123d', // Highlight surface
-                        primary: '#ffffff',
-                        muted: '#a395b5', // Purplish grey for text
-                        accent: '#4B0082', // Deep Purple from Logo
-                        logoOrange: '#F59E0B', // Logo Arrow Color
-                        logoGreen: '#10B981', // Logo Arrow Color
-                        logoRed: '#EF4444' // Logo Arrow Color
-                    },
-                    fontFamily: {
-                        heading: ['"Clash Display"', 'sans-serif'],
-                        body: ['"Satoshi"', 'sans-serif'],
-                    },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'spin-slow-reverse': 'spin 15s linear infinite reverse',
-                        'marquee': 'marquee 25s linear infinite',
-                        'pulse-glow': 'pulseGlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: 0.5, transform: 'scale(1)' },
-                            '50%': { opacity: 0.8, transform: 'scale(1.1)' },
-                        }
-                    }
-                }
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>BUILDO | Empowering Business Growth with Digital Services</title>
+  
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Cloudinary Video Player CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.css" rel="stylesheet">
+  
+  <!-- Custom Tailwind Config for Google Material Theme -->
+  <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              /* Google Brand Colors */
+              'google-blue': '#1A73E8',
+              'google-blue-dark': '#1557B0',
+              'google-red': '#EA4335',
+              'google-yellow': '#FBBC05',
+              'google-green': '#34A853',
+              /* Google Surface & Text Colors */
+              'google-bg': '#FFFFFF',
+              'google-surface': '#F8F9FA',
+              'google-surface-alt': '#E8F0FE',
+              'google-border': '#DADCE0',
+              'google-text': '#202124',
+              'google-text-light': '#5F6368',
+            },
+            fontFamily: {
+              'sans': ['"Product Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              'google': '0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)',
+              'google-hover': '0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15)',
+              'google-subtle': '0 1px 2px 0 rgba(60,64,67,0.1), 0 1px 3px 1px rgba(60,64,67,0.05)',
             }
+          }
         }
+      }
     </script>
+    
+  <style data-purpose="custom-typography">
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      /* Simulating Google's Product Sans for specific headers if system fonts fail */
+      @font-face {
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('Inter'), local('Segoe UI');
+      }
 
-    <style>
-        /* Base Styling */
-        body {
-            background-color: #0a0514;
-            color: #ffffff;
-            overflow-x: hidden;
-            cursor: none;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+      .serif-italic {
+        font-family: serif;
+        font-style: italic;
+      }
+  </style>
+  
+  <!-- CSS for Scrolling Marquee Animation -->
+  <style data-purpose="scrolling-marquee-animation">
+      .marquee-row {
+        overflow: hidden;
+        display: flex;
+        -webkit-mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+      }
+      .marquee-content {
+        display: flex;
+        flex-shrink: 0;
+        gap: 0.75rem; /* 12px gap between images */
+        justify-content: space-around;
+        min-width: 100%;
+      }
+      .marquee-content img {
+        height: 10rem; /* 160px */
+        width: auto;
+        object-fit: cover;
+        border-radius: 0.5rem; /* rounded-lg */
+        flex-shrink: 0;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
+        border: 1px solid #DADCE0;
+      }
+      @keyframes scroll-left {
+        from {
+          transform: translateX(0);
         }
-
-        /* Gradient Text Utility */
-        .text-gradient {
-            background: linear-gradient(to right, #4B0082, #F59E0B, #EF4444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        to {
+          transform: translateX(calc(-100% - 0.75rem));
         }
-
-        /* Lenis Smooth Scroll */
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0514; }
-        ::-webkit-scrollbar-thumb { background: #4B0082; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #F59E0B; }
-
-        /* Custom Cursor - Colorful Mix Blend Difference */
-        .cursor-dot {
-            width: 10px;
-            height: 10px;
-            background-color: #F59E0B;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+      }
+      @keyframes scroll-right {
+        from {
+          transform: translateX(calc(-100% - 0.75rem));
         }
-        
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(16, 185, 129, 0.6); /* Green outline */
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+        to {
+          transform: translateX(0);
         }
-
-        body.cursor-hover .cursor-dot {
-            width: 80px;
-            height: 80px;
-            background-color: #ffffff;
-            mix-blend-mode: difference;
-        }
-        body.cursor-hover .cursor-follower {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(1.5);
-        }
-
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #0a0514;
-            z-index: 10000;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 2rem 4rem;
-        }
-
-        /* Image Reveal Hover - Made Smaller & Refined */
-        .img-wrapper {
-            overflow: hidden;
-            position: relative;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .img-wrapper img {
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
-            filter: grayscale(80%) brightness(0.8);
-        }
-        .img-wrapper:hover img {
-            transform: scale(1.1);
-            filter: grayscale(0%) brightness(1);
-        }
-
-        /* Outline Text Style - Colorful Hover */
-        .text-outline {
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.25);
-            transition: color 0.4s ease, -webkit-text-stroke 0.4s ease;
-        }
-        .text-outline:hover, .group:hover .text-outline {
-            color: transparent;
-            -webkit-text-stroke: 1.5px transparent;
-            background: linear-gradient(to right, #4B0082, #F59E0B, #EF4444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* GSAP elements */
-        .gsap-reveal { visibility: hidden; }
-        
-        /* Form Styling */
-        input, textarea {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 15px 0;
-            font-family: 'Satoshi', sans-serif;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-bottom: 2px solid #F59E0B; /* Orange focus */
-        }
-        input::placeholder, textarea::placeholder {
-            color: #a395b5;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-        }
-    </style>
+      }
+      .animate-scroll-left {
+        animation: scroll-left 45s linear infinite;
+      }
+      .animate-scroll-right {
+        animation: scroll-right 45s linear infinite;
+      }
+  </style>
+  
+  <!-- CSS for Tools Text Marquee -->
+  <style data-purpose="tools-text-marquee">
+      .text-marquee-wrapper {
+        overflow: hidden;
+        display: flex;
+        -webkit-mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, white 5%, white 95%, transparent);
+        white-space: nowrap;
+      }
+      .text-marquee-container {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        min-width: max-content;
+      }
+      .text-marquee-item {
+        font-weight: 500;
+        font-size: 1.15rem;
+        color: #5F6368;
+        margin: 0 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        letter-spacing: 0.025em;
+      }
+      .text-marquee-item span {
+        color: #1A73E8; 
+        margin-right: 0.5rem;
+        font-size: 1.25rem;
+      }
+      @keyframes text-scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @keyframes text-scroll-right {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
+      .animate-text-left {
+        animation: text-scroll-left 40s linear infinite;
+      }
+      .animate-text-right {
+        animation: text-scroll-right 40s linear infinite;
+      }
+  </style>
 </head>
-<body class="font-body antialiased">
-
-    <!-- Preloader Animation -->
-    <div id="preloader">
-        <div class="text-white text-3xl md:text-5xl font-heading font-bold overflow-hidden flex items-center gap-4">
-            <div class="preloader-text translate-y-full flex items-center gap-3">
-                <!-- Using uploaded logo for preloader -->
-                <img src="https://i.ibb.co/60V0mR6b/file-00000000dc7471fab87ca3710787e9cf.jpg" class="h-10 w-auto rounded" alt="Logo">
-                <span class="text-gradient">Pisyn.</span>
-            </div>
+<body class="bg-google-bg text-google-text font-sans antialiased">
+  <!-- BEGIN: Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-google-border px-4 py-4 flex justify-between items-center shadow-sm">
+    <div class="flex items-center">
+      <!-- NEW LOGO IMPLEMENTATION -->
+      <div class="flex flex-col items-start justify-center cursor-pointer">
+        <div class="text-[28px] font-bold tracking-tighter flex items-center leading-none select-none">
+          <span class="text-google-blue">B</span>
+          <span class="text-google-red">u</span>
+          <span class="text-google-yellow">i</span>
+          <span class="text-google-blue">l</span>
+          <span class="text-google-green">d</span>
+          <span class="text-google-red relative flex items-center justify-center h-6 w-6 ml-[1px]">
+             <!-- Abstract SVG representation of the 'O' symbol with arrow -->
+             <svg viewBox="0 0 24 24" fill="none" class="absolute w-7 h-7" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#EA4335"/>
+                <path d="M12 2L22 12C22 6.47715 17.5228 2 12 2Z" fill="#FBBC05"/>
+                <path d="M12 22C6.47715 22 2 17.5228 2 12L12 22Z" fill="#34A853"/>
+                <!-- Inner Arrow -->
+                <path d="M14 10L10 14M14 10H10M14 10V14" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="5" fill="white"/>
+                <path d="M13 11L9.5 14.5M13 11H10.5M13 11V13.5" stroke="#1A73E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+          </span>
         </div>
-        <div id="counter" class="text-gradient text-6xl md:text-[8vw] font-heading font-extrabold">0%</div>
+        <div class="text-[0.45rem] font-bold tracking-[0.2em] text-google-text-light mt-[3px] uppercase ml-1">Marketing & Growth Agency</div>
+      </div>
+      <!-- END LOGO IMPLEMENTATION -->
+    </div>
+    
+    <div class="flex items-center gap-4">
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20the%20Free%202-Day%20Trial." target="_blank" class="bg-google-blue text-white font-medium py-2 px-5 rounded-full text-sm hover:bg-google-blue-dark hover:shadow-google transition-all">
+        Start Free Trial
+      </a>
+      <button class="text-google-text-light hover:text-google-text transition-colors" id="open-menu-btn" data-purpose="mobile-menu-toggle">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <!-- END: Navigation -->
+
+  <!-- BEGIN: NEW MOBILE MENU OVERLAY -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white text-google-text flex flex-col font-sans overflow-y-auto">
+    <!-- Top Bar -->
+    <div class="bg-white px-4 py-4 flex justify-between items-center text-google-text sticky top-0 z-10 border-b border-google-border">
+      
+      <div class="flex flex-col items-start justify-center">
+        <div class="text-[24px] font-bold tracking-tighter flex items-center leading-none">
+          <span class="text-google-blue">B</span><span class="text-google-red">u</span><span class="text-google-yellow">i</span><span class="text-google-blue">l</span><span class="text-google-green">d</span><span class="text-google-red">o</span>
+        </div>
+      </div>
+
+      <button id="close-menu-btn" class="text-google-text-light hover:text-google-text transition-colors">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
-    <div class="cursor-follower hidden md:block" id="cursor-follower"></div>
+    <!-- Menu Links -->
+    <div class="px-5 py-2 flex-grow pb-10">
+      <ul class="text-[15px] font-medium text-google-text">
+        
+        <!-- SERVICES MENU ITEM -->
+        <li class="border-b border-google-border flex flex-col">
+          <div class="py-4 flex justify-between items-center cursor-pointer w-full hover:text-google-blue transition-colors" onclick="toggleMenu('services-content', 'services-icon')">
+            Our Services
+            <svg id="services-icon" class="w-4 h-4 text-google-text-light transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+          <div id="services-content" class="hidden flex-col gap-4 pb-6 pt-2 w-full pl-4 bg-google-surface rounded-lg px-4 mb-2">
+            <a href="#" class="font-normal text-google-text hover:text-google-blue pt-2">Website Development</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">Digital Marketing</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">Lead Generation</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue">BPO Services</a>
+            <a href="#" class="font-normal text-google-text hover:text-google-blue pb-2">AI Automation & Chatbots</a>
+          </div>
+        </li>
 
-    <!-- Colorful Ambient Glow Backgrounds -->
-    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[150px] -z-10 animate-pulse-glow"></div>
-    <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-logoOrange/10 rounded-full blur-[150px] -z-10 animate-pulse-glow" style="animation-delay: 2s;"></div>
+        <!-- PRICING & WHY US -->
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Pricing</li>
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Why Choose Us?</li>
+        <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Get Free Audit</li>
+        
+      </ul>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center mix-blend-difference transition-all duration-300" id="navbar">
-        <a href="#" class="flex items-center gap-3 hoverable">
-            <img src="https://i.ibb.co/60V0mR6b/file-00000000dc7471fab87ca3710787e9cf.jpg" class="h-10 w-auto rounded-md" alt="Pisyn Logo">
+      <!-- Bottom Buttons -->
+      <div class="mt-8 flex flex-col gap-3">
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Free%20Trial." target="_blank" class="text-center bg-google-blue text-white font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-blue-dark hover:shadow-google transition-all">
+          Start Free Trial
         </a>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase text-white">
-            <a href="#home" class="hover:text-logoOrange transition-colors hoverable relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-px bg-logoOrange transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#about" class="hover:text-logoGreen transition-colors hoverable relative group">Pages<span class="absolute -bottom-1 left-0 w-0 h-px bg-logoGreen transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#services" class="hover:text-logoRed transition-colors hoverable relative group">Services<span class="absolute -bottom-1 left-0 w-0 h-px bg-logoRed transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#portfolio" class="hover:text-logoOrange transition-colors hoverable relative group">Portfolio<span class="absolute -bottom-1 left-0 w-0 h-px bg-logoOrange transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#news" class="hover:text-logoGreen transition-colors hoverable relative group">News<span class="absolute -bottom-1 left-0 w-0 h-px bg-logoGreen transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#contact" class="hover:text-accent transition-colors hoverable relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span></a>
-        </div>
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20learning%20more." target="_blank" class="text-center bg-transparent border border-google-border text-google-blue font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-surface transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- END: NEW MOBILE MENU OVERLAY -->
 
-        <!-- Magnetic Button & Mobile Menu -->
-        <div class="flex items-center gap-6">
-            <a href="#contact" class="hidden md:flex hoverable border border-white/30 px-6 py-2.5 rounded-full text-xs tracking-widest uppercase font-medium hover:bg-gradient-to-r hover:from-accent hover:to-logoOrange hover:border-transparent transition-all duration-300 text-white shadow-lg">Get Appointment</a>
-            <button class="md:hidden flex flex-col space-y-1.5 hoverable text-white">
-                <span class="w-8 h-0.5 bg-white block"></span>
-                <span class="w-8 h-0.5 bg-white block"></span>
-                <span class="w-5 h-0.5 bg-white block ml-auto"></span>
-            </button>
-        </div>
-    </nav>
+  <!-- BEGIN: Hero Section (Updated with Video Intro) -->
+  <header class="relative px-6 pt-12 pb-16 overflow-hidden bg-white">
+    <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center">
+      
+      <!-- Minimal Text Area -->
+      <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 text-google-text tracking-tight max-w-3xl">
+        Skyrocket Your Business with a <span class="text-google-blue">Risk-Free 2-Day Trial</span>
+      </h1>
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20claim%20my%20Free%202-Day%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-3 px-8 rounded-full text-lg hover:bg-google-blue-dark hover:shadow-google transition-all mb-8">
+        Claim My Free Trial
+      </a>
 
-    <!-- Hero Section -->
-    <header id="home" class="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-12 overflow-hidden">
-        <!-- Parallax Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2564&auto=format&fit=crop" class="w-full h-full object-cover opacity-10 object-center" alt="Background" data-parallax="0.4">
-            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
-        </div>
-        
-        <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col justify-center">
-            <div class="flex items-center gap-4 mb-6 overflow-hidden">
-                <div class="w-12 h-[2px] bg-gradient-to-r from-logoOrange to-logoRed hero-line origin-left"></div>
-                <p class="text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-gradient hero-subtext">Global Branding & Digital Design Agency</p>
-            </div>
-            
-            <h1 class="text-[11vw] md:text-[8vw] font-extrabold font-heading leading-[0.9] tracking-tighter uppercase mb-6 relative">
-                <div class="overflow-hidden py-1"><div class="hero-title text-white">Turning Bold</div></div>
-                <div class="overflow-hidden py-1 flex items-center gap-4 md:gap-8">
-                    <div class="hero-title text-outline">Concepts Into</div>
-                    <!-- Hero Video/Image Thumbnail inside Text (Smaller) -->
-                    <div class="w-[12vw] md:w-[9vw] h-[8vw] md:h-[4.5vw] rounded-full overflow-hidden hero-title hidden sm:block border-2 border-logoGreen shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all" alt="texture">
-                    </div>
-                </div>
-                <div class="overflow-hidden py-1"><div class="hero-title text-white">Lasting Impressions.</div></div>
-            </h1>
-            
-            <div class="mt-8 md:mt-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 border-t border-white/10 pt-8">
-                <div class="max-w-xl hero-desc">
-                    <h3 class="text-2xl md:text-3xl font-heading font-bold mb-4 text-white">58k Successfully projects done in <span class="text-logoOrange">29 countries</span></h3>
-                    <p class="text-muted text-lg leading-relaxed font-light">
-                        We're a global branding & digital design agency focus on building digital product, services and eCommerce experience. Our ability to combine expertise and systems thinking is what fuels us as a team.
-                    </p>
-                </div>
-                
-                <!-- Rotating Colorful Circular Text Badge -->
-                <div class="relative w-36 h-36 flex items-center justify-center hoverable rounded-full border border-white/20 hover:border-logoOrange transition-colors cursor-pointer group hero-desc shrink-0 shadow-[0_0_30px_rgba(245,158,11,0.1)] hover:shadow-[0_0_40px_rgba(245,158,11,0.4)]" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">
-                    <svg class="animate-spin-slow w-full h-full opacity-80 group-hover:opacity-100 transition-opacity text-logoOrange" viewBox="0 0 100 100">
-                        <path id="textPath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none"></path>
-                        <text fill="currentColor" font-size="10.5" font-weight="700" letter-spacing="2.5">
-                            <textPath href="#textPath">EXPLORE OUR WORKS • BENAX AGENCY •</textPath>
-                        </text>
-                    </svg>
-                    <span class="material-symbols-outlined absolute text-3xl text-logoGreen group-hover:translate-y-2 transition-transform duration-300">arrow_downward</span>
-                </div>
-            </div>
-        </div>
-    </header>
+      <!-- NEW Intro Video Container -->
+      <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-google border border-google-border aspect-video bg-black relative mb-8">
+          <video
+            id="hero-player"
+            class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
+            playsinline
+          ></video>
+      </div>
 
-    <!-- Infinite Marquee Text Ticker with Colors -->
-    <div class="py-6 border-y border-white/10 overflow-hidden flex bg-surfaceLight/50 backdrop-blur-md">
-        <div class="flex whitespace-nowrap animate-marquee items-center">
-            <h2 class="text-4xl md:text-5xl font-bold font-heading uppercase mr-12 text-outline">Branding <span class="text-logoGreen mx-4">•</span> Digital Product <span class="text-logoOrange mx-4">•</span> eCommerce <span class="text-logoRed mx-4">•</span> UI/UX Design <span class="text-accent mx-4">•</span></h2>
+    </div>
+    
+    <!-- Image Scrolling Marquee (Kept below video with missing image replaced) -->
+    <div class="mt-6 space-y-4">
+      <!-- Row 1: Scrolls Left -->
+      <div class="marquee-row">
+        <div class="marquee-content animate-scroll-left">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Marketing Dashboard">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Team Collaboration">
+          <img src="https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=400&h=300&fit=crop" alt="Project Management">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" alt="Business Growth">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=300&fit=crop" alt="Data Analytics">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Website Performance">
+          <!-- Duplicate Set -->
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Marketing Dashboard">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Team Collaboration">
+          <img src="https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=400&h=300&fit=crop" alt="Project Management">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" alt="Business Growth">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=300&fit=crop" alt="Data Analytics">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Website Performance">
         </div>
-        <div class="flex whitespace-nowrap animate-marquee items-center" aria-hidden="true">
-            <h2 class="text-4xl md:text-5xl font-bold font-heading uppercase mr-12 text-outline">Branding <span class="text-logoGreen mx-4">•</span> Digital Product <span class="text-logoOrange mx-4">•</span> eCommerce <span class="text-logoRed mx-4">•</span> UI/UX Design <span class="text-accent mx-4">•</span></h2>
+      </div>
+      <!-- Row 2: Scrolls Right -->
+      <div class="marquee-row">
+        <div class="marquee-content animate-scroll-right">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Client Meeting">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
+          <!-- Missing Image Fixed Here -->
+          <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
+          <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
+          <!-- Duplicate Set -->
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop" alt="Client Meeting">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
+          <!-- Missing Image Fixed Here -->
+          <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
+          <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
         </div>
+      </div>
+    </div>
+  </header>
+  <!-- END: Hero Section -->
+
+  <!-- BEGIN: Tech & Tools Marquee -->
+  <section class="bg-google-surface py-12 px-6 overflow-hidden border-t border-b border-google-border">
+    <p class="text-google-text-light text-center text-sm font-semibold mb-8 uppercase tracking-widest">POWERED BY INDUSTRY-LEADING TECHNOLOGY</p>
+    
+    <div class="mt-8 space-y-6">
+      <!-- Row 1: Scrolling Left -->
+      <div class="text-marquee-wrapper">
+        <div class="text-marquee-container animate-text-left">
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Google Ads</div>
+            <div class="text-marquee-item"><span>✦</span> Meta Ads</div>
+            <div class="text-marquee-item"><span>✦</span> SEO & SEM</div>
+            <div class="text-marquee-item"><span>✦</span> WordPress</div>
+            <div class="text-marquee-item"><span>✦</span> Shopify</div>
+            <div class="text-marquee-item"><span>✦</span> AI Chatbots</div>
+            <div class="text-marquee-item"><span>✦</span> Lead Generation</div>
+            <div class="text-marquee-item"><span>✦</span> High-Ticket Sales</div>
+          </div>
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Google Ads</div>
+            <div class="text-marquee-item"><span>✦</span> Meta Ads</div>
+            <div class="text-marquee-item"><span>✦</span> SEO & SEM</div>
+            <div class="text-marquee-item"><span>✦</span> WordPress</div>
+            <div class="text-marquee-item"><span>✦</span> Shopify</div>
+            <div class="text-marquee-item"><span>✦</span> AI Chatbots</div>
+            <div class="text-marquee-item"><span>✦</span> Lead Generation</div>
+            <div class="text-marquee-item"><span>✦</span> High-Ticket Sales</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Scrolling Right -->
+      <div class="text-marquee-wrapper mt-4">
+        <div class="text-marquee-container animate-text-right">
+           <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Funnel Building</div>
+            <div class="text-marquee-item"><span>✦</span> E-commerce Solutions</div>
+            <div class="text-marquee-item"><span>✦</span> CRM Integration</div>
+            <div class="text-marquee-item"><span>✦</span> Performance Marketing</div>
+            <div class="text-marquee-item"><span>✦</span> Content Strategy</div>
+            <div class="text-marquee-item"><span>✦</span> Webflow</div>
+            <div class="text-marquee-item"><span>✦</span> Custom Web Apps</div>
+            <div class="text-marquee-item"><span>✦</span> Analytics & Reporting</div>
+          </div>
+          <div class="flex items-center">
+            <div class="text-marquee-item"><span>✦</span> Funnel Building</div>
+            <div class="text-marquee-item"><span>✦</span> E-commerce Solutions</div>
+            <div class="text-marquee-item"><span>✦</span> CRM Integration</div>
+            <div class="text-marquee-item"><span>✦</span> Performance Marketing</div>
+            <div class="text-marquee-item"><span>✦</span> Content Strategy</div>
+            <div class="text-marquee-item"><span>✦</span> Webflow</div>
+            <div class="text-marquee-item"><span>✦</span> Custom Web Apps</div>
+            <div class="text-marquee-item"><span>✦</span> Analytics & Reporting</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- About & Stats Section -->
-    <section id="about" class="py-32 md:py-48 px-6 md:px-12 max-w-7xl mx-auto relative">
-        <div class="grid md:grid-cols-12 gap-16 items-center">
-            <div class="md:col-span-6 gsap-reveal" data-parallax="-0.05">
-                <p class="text-xs font-bold tracking-[0.2em] uppercase text-logoGreen mb-6 flex items-center gap-2">
-                    <span class="w-8 h-px bg-logoGreen"></span> About Benax
-                </p>
-                <h2 class="text-4xl md:text-[3.5rem] font-bold font-heading leading-[1.1] tracking-tight mb-8">
-                    Empower your teams to reach their full potential.
-                </h2>
-                <p class="text-muted text-lg leading-relaxed font-light mb-8">
-                    Since 2012, we have provided strategy, design & development to innovative organizations. Spark innovation across every department, & cultivate a workplace culture where collaboration thrives.
-                </p>
-                <p class="text-xl md:text-2xl text-gray-200 font-heading border-l-4 border-logoOrange pl-6 py-2 bg-gradient-to-r from-logoOrange/10 to-transparent">
-                    "Those who generate millions of dollars in revenue for clients who have decided to trust knowledge."
-                </p>
-            </div>
-            
-            <div class="md:col-span-5 md:col-start-8 gsap-reveal delay-100 relative" data-parallax="0.1">
-                <!-- Colorful Animated Circle -->
-                <div class="absolute -top-20 -right-10 w-56 h-56 opacity-40 animate-spin-slow-reverse pointer-events-none z-0">
-                    <svg viewBox="0 0 100 100" class="w-full h-full text-accent">
-                        <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="15 10" />
-                        <circle cx="50" cy="50" r="38" fill="none" stroke="#F59E0B" stroke-width="1" stroke-dasharray="5 5" />
-                    </svg>
-                </div>
-                
-                <div class="bg-surface/80 backdrop-blur-xl border border-white/10 p-10 relative z-10 hoverable rounded-2xl shadow-2xl">
-                    <div class="mb-10 border-b border-white/10 pb-8 hover:border-logoOrange transition-colors">
-                        <h4 class="text-5xl md:text-6xl font-heading font-extrabold mb-2 text-white">58<span class="text-gradient">k</span></h4>
-                        <p class="text-sm tracking-[0.2em] text-muted uppercase font-bold">Successfully projects done</p>
-                    </div>
-                    <div class="mb-10 border-b border-white/10 pb-8 hover:border-logoGreen transition-colors">
-                        <h4 class="text-5xl md:text-6xl font-heading font-extrabold mb-2 text-white">29</h4>
-                        <p class="text-sm tracking-[0.2em] text-muted uppercase font-bold">Countries World-wide</p>
-                    </div>
-                    <div class="hover:border-logoRed transition-colors">
-                        <h4 class="text-5xl md:text-6xl font-heading font-extrabold mb-2 text-white">25<span class="text-gradient">k+</span></h4>
-                        <p class="text-sm tracking-[0.2em] text-muted uppercase font-bold">Clients Reviews in the world</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="mt-20 max-w-5xl mx-auto text-center px-4">
+      <h2 class="text-4xl font-semibold mb-6 text-google-text tracking-tight">
+        BUILDO is not just an agency, <span class="text-google-blue">it's your growth partner.</span>
+      </h2>
+      <p class="text-lg text-google-text-light mb-12 max-w-3xl mx-auto leading-relaxed">
+        From custom Website Development and high-converting Digital Marketing to qualified Lead Generation and BPO services—we provide the ultimate growth ecosystem. BUILDO transforms your business goals into unstoppable digital reality.
+      </p>
+      
+      <div class="relative w-full rounded-2xl overflow-hidden shadow-google transition-transform duration-500 hover:scale-[1.02] border border-google-border bg-white">
+          <img src="https://i.ibb.co/s9nkqp6t/file-000000006ddc7208864afe8a9b369b68.png" alt="BUILDO Team Collaboration" class="w-full h-auto object-cover">
+      </div>
+    </div>
+  </section>
+  <!-- END: Tech & Tools Marquee -->
 
-    <!-- Services Section -->
-    <section id="services" class="py-32 bg-surfaceLight px-6 md:px-12 relative overflow-hidden rounded-t-[3rem] shadow-[0_-20px_50px_rgba(75,0,130,0.1)]">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 gsap-reveal">
-                <p class="text-xs font-bold tracking-[0.2em] uppercase text-logoRed mb-4">Our Expertise</p>
-                <h2 class="text-4xl md:text-6xl font-bold font-heading uppercase tracking-tighter">WHAT SERVICES WE'RE <br>PROVIDING FOR YOU</h2>
-                <p class="text-muted mt-6 max-w-xl text-lg">Our ability to combine expertise and systems thinking is what fuels us as a team. We're a global branding & digital design agency focus on building digital product.</p>
-            </div>
-            
-            <div class="border-t border-white/10">
-                <!-- Service 001 -->
-                <div class="group border-b border-white/10 py-10 md:py-16 hoverable cursor-pointer relative overflow-hidden gsap-reveal">
-                    <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-logoOrange/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10"></div>
-                    <div class="grid md:grid-cols-12 items-center gap-6 relative z-10 px-4 md:px-8">
-                        <div class="md:col-span-1 text-muted text-xl font-heading group-hover:text-logoOrange transition-colors">001</div>
-                        <div class="md:col-span-5">
-                            <h3 class="text-3xl md:text-4xl font-bold font-heading text-outline group-hover:text-white transition-all duration-500">Design & Development</h3>
-                        </div>
-                        <div class="md:col-span-5">
-                            <p class="text-muted font-light leading-relaxed hidden md:block group-hover:text-white transition-colors">Combine expertise and systems thinking is what fuels us as a team. We're a global branding & digital design agency.</p>
-                        </div>
-                        <div class="md:col-span-1 text-right hidden md:block">
-                            <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center ml-auto group-hover:bg-logoOrange group-hover:border-transparent group-hover:text-black transition-all duration-500">
-                                <span class="material-symbols-outlined transform -rotate-45">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 002 -->
-                <div class="group border-b border-white/10 py-10 md:py-16 hoverable cursor-pointer relative overflow-hidden gsap-reveal">
-                    <div class="absolute inset-0 bg-gradient-to-r from-logoOrange/20 to-logoGreen/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10"></div>
-                    <div class="grid md:grid-cols-12 items-center gap-6 relative z-10 px-4 md:px-8">
-                        <div class="md:col-span-1 text-muted text-xl font-heading group-hover:text-logoGreen transition-colors">002</div>
-                        <div class="md:col-span-5">
-                            <h3 class="text-3xl md:text-4xl font-bold font-heading text-outline group-hover:text-white transition-all duration-500">Branding Identity</h3>
-                        </div>
-                        <div class="md:col-span-5">
-                            <p class="text-muted font-light leading-relaxed hidden md:block group-hover:text-white transition-colors">Combine expertise and systems thinking is what fuels us as a team. We're a global branding & digital design agency.</p>
-                        </div>
-                        <div class="md:col-span-1 text-right hidden md:block">
-                            <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center ml-auto group-hover:bg-logoGreen group-hover:border-transparent group-hover:text-black transition-all duration-500">
-                                <span class="material-symbols-outlined transform -rotate-45">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 003 -->
-                <div class="group border-b border-white/10 py-10 md:py-16 hoverable cursor-pointer relative overflow-hidden gsap-reveal">
-                    <div class="absolute inset-0 bg-gradient-to-r from-logoGreen/20 to-logoRed/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10"></div>
-                    <div class="grid md:grid-cols-12 items-center gap-6 relative z-10 px-4 md:px-8">
-                        <div class="md:col-span-1 text-muted text-xl font-heading group-hover:text-logoRed transition-colors">003</div>
-                        <div class="md:col-span-5">
-                            <h3 class="text-3xl md:text-4xl font-bold font-heading text-outline group-hover:text-white transition-all duration-500">Product Marketing</h3>
-                        </div>
-                        <div class="md:col-span-5">
-                            <p class="text-muted font-light leading-relaxed hidden md:block group-hover:text-white transition-colors">Combine expertise and systems thinking is what fuels us as a team. We're a global branding & digital design agency.</p>
-                        </div>
-                        <div class="md:col-span-1 text-right hidden md:block">
-                            <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center ml-auto group-hover:bg-logoRed group-hover:border-transparent group-hover:text-black transition-all duration-500">
-                                <span class="material-symbols-outlined transform -rotate-45">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 004 -->
-                <div class="group border-b border-white/10 py-10 md:py-16 hoverable cursor-pointer relative overflow-hidden gsap-reveal">
-                    <div class="absolute inset-0 bg-gradient-to-r from-logoRed/20 to-accent/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10"></div>
-                    <div class="grid md:grid-cols-12 items-center gap-6 relative z-10 px-4 md:px-8">
-                        <div class="md:col-span-1 text-muted text-xl font-heading group-hover:text-accent transition-colors">004</div>
-                        <div class="md:col-span-5">
-                            <h3 class="text-3xl md:text-4xl font-bold font-heading text-outline group-hover:text-white transition-all duration-500">Digital Marketing</h3>
-                        </div>
-                        <div class="md:col-span-5">
-                            <p class="text-muted font-light leading-relaxed hidden md:block group-hover:text-white transition-colors">Combine expertise and systems thinking is what fuels us as a team. We're a global branding & digital design agency.</p>
-                        </div>
-                        <div class="md:col-span-1 text-right hidden md:block">
-                            <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center ml-auto group-hover:bg-accent group-hover:border-transparent group-hover:text-white transition-all duration-500">
-                                <span class="material-symbols-outlined transform -rotate-45">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio / Featured Work - Smaller Images & Colorful -->
-    <section id="portfolio" class="py-32 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gsap-reveal">
-            <div>
-                <p class="text-xs font-bold tracking-[0.2em] uppercase text-gradient mb-4">Featured Work</p>
-                <h2 class="text-4xl md:text-[4.5rem] leading-none font-extrabold font-heading uppercase tracking-tighter">Excellency in <br><span class="text-outline">Creative Designs.</span></h2>
-            </div>
-            <div class="mt-8 md:mt-0 flex gap-6 text-sm tracking-widest uppercase font-bold text-muted">
-                <a href="#" class="hoverable hover:text-logoOrange transition-colors">Follow Dribbble</a>
-                <a href="#" class="hoverable hover:text-logoGreen transition-colors">Follow Behance</a>
-            </div>
+  <!-- BEGIN: Value Proposition Section -->
+  <section class="py-20 px-6 bg-white border-b border-google-border">
+    <div class="max-w-6xl mx-auto">
+        <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">A New Way of Working</span>
+        <h2 class="text-3xl md:text-4xl font-semibold mb-8 text-google-text tracking-tight">
+          The Growth Engine Your <span class="text-google-blue">Business is Missing</span>
+        </h2>
+        
+        <div class="relative rounded-2xl overflow-hidden aspect-video bg-black flex items-center justify-center w-full shadow-google border border-google-border" data-purpose="video-player">
+          <video
+            id="player"
+            class="cld-video-player cld-video-player-skin-dark w-full h-full object-cover"
+            playsinline
+          ></video>
         </div>
 
-        <!-- Parallax Scroll Grid - Adjusted layout for smaller images -->
-        <div class="grid md:grid-cols-2 gap-10 md:gap-16">
-            
-            <!-- Project 1 -->
-            <a href="#" class="group block hoverable gsap-reveal" data-parallax="0.05">
-                <div class="max-w-md mx-auto md:ml-0 md:mr-auto">
-                    <div class="img-wrapper w-full aspect-[4/3] mb-6 rounded-xl border-b-4 border-logoOrange shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Unique Campaign Strategy" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="bg-black/60 backdrop-blur-md text-logoOrange text-[10px] tracking-widest uppercase px-3 py-1.5 border border-logoOrange/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">Business</span>
-                            <span class="bg-black/60 backdrop-blur-md text-logoGreen text-[10px] tracking-widest uppercase px-3 py-1.5 border border-logoGreen/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">Creative</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-end border-b border-white/10 pb-4 group-hover:border-logoOrange transition-colors">
-                        <div>
-                            <h3 class="text-2xl font-bold font-heading mb-1 group-hover:text-logoOrange transition-colors">Unique Campaign Strategy</h3>
-                        </div>
-                        <span class="material-symbols-outlined transform -rotate-45 text-3xl text-white/50 group-hover:text-logoOrange group-hover:rotate-0 transition-all duration-500">arrow_forward</span>
-                    </div>
-                </div>
-            </a>
+        <p class="mt-8 text-google-text-light text-lg max-w-4xl">
+          BUILDO is your dedicated, on-demand growth team. We expand your marketing capacity and extend your team's capabilities without the overhead of a full-time hire.
+        </p>
+    </div>
+  </section>
+  <!-- END: Value Proposition -->
 
-            <!-- Project 2 (Offset/Parallax Down) -->
-            <a href="#" class="group block hoverable md:mt-32 gsap-reveal delay-100" data-parallax="-0.08">
-                <div class="max-w-md mx-auto md:mr-0 md:ml-auto">
-                    <div class="img-wrapper w-full aspect-[4/3] mb-6 rounded-xl border-b-4 border-logoGreen shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop" alt="Modern Web Presence" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">Business</span>
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">Creative</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-end border-b border-white/10 pb-4 group-hover:border-logoGreen transition-colors">
-                        <div>
-                            <h3 class="text-2xl font-bold font-heading mb-1 group-hover:text-logoGreen transition-colors">Modern Web Presence</h3>
-                        </div>
-                        <span class="material-symbols-outlined transform -rotate-45 text-3xl text-white/50 group-hover:text-logoGreen group-hover:rotate-0 transition-all duration-500">arrow_forward</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Project 3 -->
-            <a href="#" class="group block hoverable gsap-reveal" data-parallax="0.06">
-                <div class="max-w-md mx-auto md:ml-0 md:mr-auto">
-                    <div class="img-wrapper w-full aspect-[4/3] mb-6 rounded-xl border-b-4 border-logoRed shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000&auto=format&fit=crop" alt="Stylish Brand Aesthetics" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">Business</span>
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">Creative</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-end border-b border-white/10 pb-4 group-hover:border-logoRed transition-colors">
-                        <div>
-                            <h3 class="text-2xl font-bold font-heading mb-1 group-hover:text-logoRed transition-colors">Stylish Brand Aesthetics</h3>
-                            <p class="text-muted text-sm tracking-[0.2em] uppercase mt-2 hidden">Bold Identity Design</p>
-                        </div>
-                        <span class="material-symbols-outlined transform -rotate-45 text-3xl text-white/50 group-hover:text-logoRed group-hover:rotate-0 transition-all duration-500">arrow_forward</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Project 4 -->
-            <a href="#" class="group block hoverable md:mt-20 gsap-reveal delay-100" data-parallax="-0.04">
-                <div class="max-w-md mx-auto md:mr-0 md:ml-auto">
-                    <div class="img-wrapper w-full aspect-[4/3] mb-6 rounded-xl border-b-4 border-accent shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1000&auto=format&fit=crop" alt="Smart T-shirt Artwork" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">Business</span>
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[10px] tracking-widest uppercase px-3 py-1.5 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">Creative</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-end border-b border-white/10 pb-4 group-hover:border-accent transition-colors">
-                        <div>
-                            <h3 class="text-2xl font-bold font-heading mb-1 group-hover:text-accent transition-colors">Smart T-shirt Artwork</h3>
-                        </div>
-                        <span class="material-symbols-outlined transform -rotate-45 text-3xl text-white/50 group-hover:text-accent group-hover:rotate-0 transition-all duration-500">arrow_forward</span>
-                    </div>
-                </div>
-            </a>
+  <!-- BEGIN: Why Choose Buildo Section -->
+  <section class="py-20 px-6 bg-google-surface text-google-text border-b border-google-border">
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-google-text-light block mb-4">Why Choose BUILDO?</span>
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+        Super-fast. Result-driven. Completely Risk-Free. Work with a growth partner that's purposefully <span class="text-google-blue">built to deliver.</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      
+      <!-- Card 1: Blue Accent (Missing Image Fixed Here) -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-blue shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Free Trial" class="w-full h-64 object-cover border-b border-google-border">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl text-google-blue mb-4 tracking-tight">Zero Risk, <span class="font-bold">Free 2-Day Trial</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">Don't pay a single rupee until you see our work. Experience our marketing strategies and lead generation for 2 days, absolutely free. No commitments.</p>
         </div>
-    </section>
-
-    <!-- Awards Section - Colorful Theme -->
-    <section class="py-32 bg-surface px-6 md:px-12 border-y border-accent/20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/10 via-background to-background -z-10"></div>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-start">
-            <div class="md:col-span-5 gsap-reveal" data-parallax="0.05">
-                <p class="text-xs font-bold tracking-[0.2em] uppercase text-logoOrange mb-4">Recognitions</p>
-                <h2 class="text-4xl md:text-[4.5rem] font-bold font-heading leading-none uppercase tracking-tighter mb-8 text-outline">OUR <br>AWARDS.</h2>
-                <div class="w-24 h-24 mt-8">
-                    <!-- Spinning Colorful Award Badge -->
-                    <svg viewBox="0 0 100 100" class="animate-spin-slow text-logoGreen w-full h-full">
-                        <path id="awardPath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none"></path>
-                        <text fill="currentColor" font-size="11" font-weight="bold" letter-spacing="1.5">
-                            <textPath href="#awardPath">AWARD WINNING AGENCY • 2016 •</textPath>
-                        </text>
-                    </svg>
-                </div>
-            </div>
-            
-            <div class="md:col-span-7 gsap-reveal delay-100 border-t border-white/10" data-parallax="-0.05">
-                
-                <!-- Clutch Awards -->
-                <div class="py-6 border-b border-white/10 group hoverable cursor-pointer hover:bg-white/5 px-4 rounded-lg transition-all">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="text-2xl md:text-3xl font-bold font-heading group-hover:text-logoOrange transition-colors">Clutch Awards</div>
-                        <div class="text-white font-mono text-xl bg-accent/30 px-3 py-1 rounded">2016</div>
-                    </div>
-                    <div class="flex flex-wrap gap-4 text-muted text-sm tracking-widest uppercase">
-                        <span>Top B2B Company</span><span class="text-logoOrange">•</span>
-                        <span>Interaction Featured Project</span><span class="text-logoGreen">•</span>
-                        <span>Dribbble Trending</span><span class="text-logoRed">•</span>
-                        <span>Best Startup Website</span>
-                    </div>
-                </div>
-
-                <!-- Awwwards -->
-                <div class="py-6 border-b border-white/10 group hoverable cursor-pointer hover:bg-white/5 px-4 rounded-lg transition-all mt-2">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="text-2xl md:text-3xl font-bold font-heading group-hover:text-logoGreen transition-colors">Awwwards</div>
-                        <div class="text-white font-mono text-xl bg-logoGreen/20 px-3 py-1 rounded">2016</div>
-                    </div>
-                    <div class="flex flex-wrap gap-4 text-muted text-sm tracking-widest uppercase">
-                        <span>Top Web Design Agency</span><span class="text-accent">•</span>
-                        <span>Mobile excellence</span>
-                    </div>
-                </div>
-
-                <!-- W3 Awards -->
-                <div class="py-6 border-b border-white/10 group hoverable cursor-pointer hover:bg-white/5 px-4 rounded-lg transition-all mt-2">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="text-2xl md:text-3xl font-bold font-heading group-hover:text-logoRed transition-colors">W3 Awards</div>
-                        <div class="text-white font-mono text-xl bg-logoRed/20 px-3 py-1 rounded">2016</div>
-                    </div>
-                    <div class="flex flex-wrap gap-4 text-muted text-sm tracking-widest uppercase">
-                        <span>Gold Winner – Web Apps</span><span class="text-logoOrange">•</span>
-                        <span>Mobile excellence</span>
-                    </div>
-                </div>
-                
-            </div>
+      </div>
+      
+      <!-- Card 2: Red Accent -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-red shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=400&fit=crop" alt="No Advance Payment" class="w-full h-64 object-cover border-b border-google-border">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl text-google-red mb-4 tracking-tight">No Advance <span class="font-bold">Payment</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">We believe in building trust through results. You start your project with zero upfront cost and only pay after you see tangible outcomes.</p>
         </div>
-    </section>
-
-    <!-- Team & Testimonials -->
-    <section class="py-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden relative">
-        <div class="text-center mb-20 gsap-reveal">
-            <h2 class="text-4xl md:text-6xl font-bold font-heading uppercase mb-6 text-gradient">MEET WITH <br>TEAM MEMBERS</h2>
-            <p class="text-muted max-w-2xl mx-auto text-lg">We are a great skilled and talented team behind the creativity and your amazing digital craft.</p>
+      </div>
+      
+      <!-- Card 3: Green Accent -->
+      <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-green shadow-subtle hover:shadow-google-hover transition-shadow">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Guaranteed Results" class="w-full h-64 object-cover border-b border-google-border">
+        <div class="p-8 flex-grow">
+          <h3 class="text-2xl text-google-green mb-4 tracking-tight">Guaranteed Results <span class="font-bold">in 48 Hours</span></h3>
+          <p class="text-sm text-google-text-light leading-relaxed">Stop waiting weeks for results. Our expert team, powered by AI and proven strategies, delivers measurable progress in as little as 48 hours.</p>
         </div>
+      </div>
 
-        <div class="grid md:grid-cols-2 gap-16 items-center bg-surfaceLight/40 p-10 md:p-16 border border-white/10 rounded-3xl relative backdrop-blur-sm" data-parallax="0.05">
-            <!-- Large Floating quote icon in Purple -->
-            <span class="material-symbols-outlined absolute top-10 left-10 text-8xl text-accent/30 z-0 pointer-events-none">format_quote</span>
-            
-            <div class="relative z-10 gsap-reveal">
-                <div class="flex items-center gap-2 text-logoOrange mb-6">
-                    <span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
-                </div>
-                <h3 class="text-xl md:text-3xl font-heading leading-snug font-light mb-8 text-white">
-                    "Their design services bring your brand to life through visually compelling, user-centric experiences. From creating memorable visual identities to intuitive UI/UX for digital platforms."
-                </h3>
-                <div>
-                    <h4 class="text-xl font-bold font-heading text-logoGreen">Sophia Johnson</h4>
-                    <p class="text-muted text-sm tracking-widest uppercase mt-1 font-bold">Lead UI/UX Designer</p>
-                </div>
-            </div>
+    </div>
+  </section>
+  <!-- END: Why Choose Buildo Section -->
 
-            <div class="relative flex justify-center items-center gsap-reveal delay-100">
-                <div class="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 border-accent p-2 relative hoverable shadow-[0_0_30px_rgba(75,0,130,0.4)]">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" alt="Sophia Johnson" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500">
-                    
-                    <!-- overlapping animated circle stats -->
-                    <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-logoRed to-logoOrange w-28 h-28 md:w-32 md:h-32 rounded-full flex flex-col justify-center items-center text-center p-4 shadow-2xl animate-[bounce_5s_infinite]">
-                        <span class="text-2xl md:text-3xl font-heading font-extrabold text-white leading-none">583k</span>
-                        <span class="text-[8px] md:text-[9px] uppercase tracking-widest text-white/90 mt-1 font-bold">Client Happy <br>Since 2015</span>
-                    </div>
-                </div>
-            </div>
+  <!-- BEGIN: Stats Section (Success in Numbers) -->
+  <section class="py-20 px-6 bg-white border-b border-google-border">
+    <div class="text-center mb-16">
+      <span class="text-google-text-light text-xs font-bold uppercase tracking-widest block mb-4">Success in Numbers</span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">The best return on <span class="text-google-blue">your investment</span></h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 max-w-5xl mx-auto text-left">
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-blue mb-4">500+</div>
+        <p class="text-sm text-google-text-light leading-relaxed">Startups, enterprises and mid-market companies trust BUILDO to scale their growth and deliver high-quality leads.</p>
+      </div>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-red mb-4">10k+</div>
+        <p class="text-sm text-google-text-light leading-relaxed">Verified leads generated for our clients to date, and counting.</p>
+      </div>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-yellow mb-4">48 Hrs</div>
+        <p class="text-sm text-google-text-light leading-relaxed mb-2">The average time it takes for our new clients to see their first tangible results and qualified leads.</p>
+      </div>
+      <div class="border-t border-google-border pt-8">
+        <div class="text-6xl font-light tracking-tighter text-google-green mb-4">ZERO</div>
+        <p class="text-sm text-google-text-light leading-relaxed mb-2">Advance payment required to start your project. We work first, you pay later. That's the BUILDO promise.</p>
+      </div>
+    </div>
+  </section>
+  <!-- END: Stats Section -->
+
+  <!-- BEGIN: Services Grid -->
+  <section class="py-20 px-6 bg-google-surface text-google-text border-b border-google-border">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Every Digital Service Your Business Will Ever Need</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
         </div>
-    </section>
-
-    <!-- Trusted By / Marquee in Colorful Gradient -->
-    <div class="py-8 border-y border-white/5 overflow-hidden flex bg-gradient-to-r from-accent via-logoRed to-logoOrange">
-        <div class="flex whitespace-nowrap animate-marquee items-center text-white">
-            <h2 class="text-2xl md:text-4xl font-bold font-heading uppercase mr-12 drop-shadow-md">Trusted by 500+ teams to empower 2,00,000+ people <span class="mx-4 text-black opacity-50">•</span></h2>
-            <h2 class="text-2xl md:text-4xl font-bold font-heading uppercase mr-12 drop-shadow-md">Trusted by 500+ teams to empower 2,00,000+ people <span class="mx-4 text-black opacity-50">•</span></h2>
-            <h2 class="text-2xl md:text-4xl font-bold font-heading uppercase mr-12 drop-shadow-md">Trusted by 500+ teams to empower 2,00,000+ people <span class="mx-4 text-black opacity-50">•</span></h2>
+        <span class="text-sm font-semibold text-google-text">Website Development</span>
+      </div>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
         </div>
+        <span class="text-sm font-semibold text-google-text">Digital Marketing</span>
+      </div>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-yellow-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold text-google-text">Lead Generation</span>
+      </div>
+      
+      <div class="p-6 bg-white border border-google-border rounded-xl shadow-subtle hover:shadow-google transition-shadow flex flex-col items-center text-center cursor-pointer">
+        <div class="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 text-google-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <span class="text-sm font-semibold text-google-text">BPO & Support</span>
+      </div>
+
+    </div>
+    <div class="max-w-5xl mx-auto">
+       <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20can%20you%20tell%20me%20more%20about%20your%20services%20and%20pricing?" target="_blank" class="block text-center mt-12 w-full border border-google-border bg-white py-4 rounded-full font-medium text-google-blue hover:bg-google-surface transition-colors shadow-sm">See Pricing & Packages</a>
+    </div>
+  </section>
+  <!-- END: Services Grid -->
+
+  <!-- BEGIN: Comparison Table Section -->
+  <section class="py-20 px-6 bg-white text-google-text border-b border-google-border overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-google-text-light block mb-4">BUILDO vs. Traditional Alternatives</span>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Hiring or traditional agencies? <span class="text-google-blue">There's a better way.</span></h2>
+    </div>
+    
+    <div class="max-w-6xl mx-auto overflow-x-auto pb-4">
+      <table class="w-full text-left border-collapse min-w-[700px]">
+        <thead>
+          <tr class="text-sm text-google-text-light border-b border-google-border">
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider"></th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Speed (Results)</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Free Trial</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Advance Payment</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Lead Quality</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Cost-Effectiveness</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="bg-google-surface-alt text-google-blue font-bold rounded-lg shadow-sm border border-google-blue border-opacity-30">
+            <td class="py-5 px-4 rounded-l-lg">BUILDO</td>
+            <td class="py-5 px-4 text-center">48 Hours</td>
+            <td class="py-5 px-4 text-center">✓</td>
+            <td class="py-5 px-4 text-center">Zero</td>
+            <td class="py-5 px-4 text-center">Verified</td>
+            <td class="py-5 px-4 rounded-r-lg text-center">✓</td>
+          </tr>
+          <tr><td colspan="6" class="py-2"></td></tr>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">In-house team</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Weeks</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
+            <td class="py-4 px-4 text-center">Salaries</td>
+            <td class="py-4 px-4 text-center">Variable</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
+          </tr>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">Traditional Agencies</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Months</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
+            <td class="py-4 px-4 text-center">50-100%</td>
+            <td class="py-4 px-4 text-center">Variable</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
+          </tr>
+          <tr class="border-b border-google-border text-google-text">
+            <td class="py-4 px-4 font-medium">Freelancers</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Weeks</td>
+            <td class="py-4 px-4 text-center text-google-text-light">✕</td>
+            <td class="py-4 px-4 text-center">Often 100%</td>
+            <td class="py-4 px-4 text-center text-google-text-light">Hit or Miss</td>
+            <td class="py-4 px-4 text-center font-bold text-google-green">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <!-- END: Comparison Table Section -->
+
+  <!-- BEGIN: 35 Indian Client Reviews Section -->
+  <section class="py-20 px-6 bg-google-surface border-b border-google-border">
+    <div class="text-center mb-12">
+      <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">Client Success</span>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-google-text">What our Indian clients <span class="text-google-blue">are saying</span></h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto" id="reviews-container">
+      
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"The 2-Day Free Trial blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
+        <div class="font-bold text-sm text-google-text">Rahul Sharma</div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"Our e-commerce sales doubled after BUILDO revamped our website and took over our Meta Ads. The results in the first 48 hours were shocking!"</p>
+        <div class="font-bold text-sm text-google-text">Priya Singh</div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"No advance payment is a game-changer. It shows they are confident in their work. We are now a long-term client."</p>
+        <div class="font-bold text-sm text-google-text">Amit Patel</div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"BUILDO is a lifesaver for our sales team. The lead quality is consistently high, which has boosted our conversion rates significantly."</p>
+        <div class="font-bold text-sm text-google-text">Sneha Reddy</div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"Great communication and top-notch quality delivered right on schedule. The free website audit was incredibly detailed and helpful."</p>
+        <div class="font-bold text-sm text-google-text">Vikram Malhotra</div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
+        <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"They understood our business goals perfectly from day one. Seamless process and fantastic ROI."</p>
+        <div class="font-bold text-sm text-google-text">Ananya Gupta</div>
+      </div>
+
+      <!-- Hidden Reviews -->
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Exceptional service! The new website is super clean, modern, and loads incredibly fast."</p><div class="font-bold text-sm text-google-text">Rajesh Kumar</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"We saw a 40% increase in conversions after their website redesign and lead generation campaign."</p><div class="font-bold text-sm text-google-text">Neha Desai</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Best digital marketing agency I have worked with by far. They actually deliver on their promises."</p><div class="font-bold text-sm text-google-text">Kunal Kapoor</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Timely delivery and very responsive to our feedback. Himanshu and his team are true professionals."</p><div class="font-bold text-sm text-google-text">Pooja Joshi</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Innovative, and highly skilled technical team. Our website performance has never been better."</p><div class="font-bold text-sm text-google-text">Suresh Menon</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"The Google Ads campaigns performed beautifully, bringing in leads at a much lower cost-per-acquisition."</p><div class="font-bold text-sm text-google-text">Kavita Iyer</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"A wonderful experience from start to finish. They handled everything for us."</p><div class="font-bold text-sm text-google-text">Rohan Das</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Our BPO process is now much more efficient thanks to their support team."</p><div class="font-bold text-sm text-google-text">Meera Nair</div></div>
+      <div class="hidden review-card-hidden bg-white p-6 rounded-2xl border border-google-border shadow-subtle"><div class="flex text-google-yellow mb-3 text-sm">★★★★★</div><p class="italic mb-4 text-sm text-google-text-light">"Highly recommended for any serious business looking to scale their digital presence and sales."</p><div class="font-bold text-sm text-google-text">Arjun Khanna</div></div>
+
     </div>
 
-    <!-- Contact Form Banner -->
-    <section id="contact" class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
-        <div class="grid md:grid-cols-2 gap-16">
-            <div class="gsap-reveal" data-parallax="-0.05">
-                <h2 class="text-5xl md:text-6xl font-extrabold font-heading uppercase tracking-tighter text-outline mb-6">
-                    Stay In touch With The Latest In Binax Creative Agency
-                </h2>
-                <p class="text-muted text-lg font-light mb-10">Have a bold concept? Let's turn it into a lasting impression. Drop us a message and our team will get back to you shortly.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4 text-xl">
-                        <span class="material-symbols-outlined text-logoOrange text-3xl">location_on</span>
-                        <p class="font-light">152 Thatcher Road St, Mahattan, NY 10463, US</p>
-                    </div>
-                    <div class="flex items-center gap-4 text-xl">
-                        <span class="material-symbols-outlined text-logoGreen text-3xl">mail</span>
-                        <p class="font-light hover:text-white transition-colors cursor-pointer hoverable">hellobinax@gmail.com</p>
-                    </div>
-                    <div class="flex items-center gap-4 text-xl">
-                        <span class="material-symbols-outlined text-logoRed text-3xl">call</span>
-                        <p class="font-light hover:text-white transition-colors cursor-pointer hoverable">+493 993 9838 86</p>
-                    </div>
-                </div>
-            </div>
+    <div class="text-center mt-12">
+      <button id="view-more-reviews" class="bg-white border border-google-border text-google-blue font-medium py-3 px-8 rounded-full shadow-sm hover:bg-google-surface hover:shadow-google transition-all">
+        View More
+      </button>
+    </div>
+  </section>
+  <!-- END: 35 Indian Client Reviews Section -->
 
-            <div class="bg-surface/80 p-8 md:p-12 border-t-4 border-accent rounded-xl shadow-2xl gsap-reveal delay-100 backdrop-blur-md" data-parallax="0.05">
-                <form action="#" class="space-y-8">
-                    <div>
-                        <input type="text" placeholder="Your name" class="hoverable">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Your email" class="hoverable">
-                    </div>
-                    <div>
-                        <input type="tel" placeholder="Your phone" class="hoverable">
-                    </div>
-                    <div>
-                        <textarea rows="4" placeholder="Your message" class="hoverable resize-none"></textarea>
-                    </div>
-                    <button type="button" class="w-full bg-gradient-to-r from-accent to-logoOrange text-white py-4 rounded font-bold tracking-widest uppercase hover:opacity-90 transition-opacity duration-300 hoverable mt-4 shadow-lg shadow-accent/30">
-                        Send Your Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+  <!-- BEGIN: Vertical Masterpieces Section -->
+  <section class="py-20 px-6 bg-white border-b border-google-border">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">High-Converting <span class="text-google-blue">Mobile Experiences</span></h2>
+      <p class="text-google-text-light mt-4 text-sm uppercase tracking-widest font-medium">Designed for mobile-first results</p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
+        <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 1">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
+        <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 2">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
+        <img src="https://i.ibb.co/SwBf4L0n/IMG-20260320-WA0135.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 3">
+      </div>
+      <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-google-surface shadow-google border border-google-border group">
+        <img src="https://i.ibb.co/DP7TQKzG/IMG-20260320-WA0131.jpg" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" alt="BUILDO Mobile Ad 4">
+      </div>
+    </div>
+  </section>
+  <!-- END: Vertical Masterpieces Section -->
 
-    <!-- Minimal Modern Footer with Logos -->
-    <footer class="border-t border-accent/20 relative z-10 bg-background pt-16 pb-8 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-            <div class="col-span-2 md:col-span-1">
-                <a href="#" class="flex items-center gap-3 mb-6 hoverable block w-fit">
-                    <img src="https://i.ibb.co/60V0mR6b/file-00000000dc7471fab87ca3710787e9cf.jpg" class="h-12 w-auto rounded-md shadow-md" alt="Pisyn Logo">
-                </a>
-                <p class="text-muted text-sm leading-relaxed pr-4">Turning bold concepts into lasting impressions for Branding. A global branding & digital design agency.</p>
-            </div>
-            
-            <div>
-                <h4 class="text-white font-bold tracking-widest uppercase mb-6 text-sm flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-logoOrange"></span> Quick Links</h4>
-                <ul class="space-y-4 text-muted text-sm font-light">
-                    <li><a href="#" class="hover:text-logoOrange transition-colors hoverable">About Us</a></li>
-                    <li><a href="#" class="hover:text-logoOrange transition-colors hoverable">Services</a></li>
-                    <li><a href="#" class="hover:text-logoOrange transition-colors hoverable">Our Projects</a></li>
-                    <li><a href="#" class="hover:text-logoOrange transition-colors hoverable">Our Team</a></li>
-                    <li><a href="#" class="hover:text-logoOrange transition-colors hoverable">Contact Us</a></li>
-                </ul>
-            </div>
+  <!-- BEGIN: Final CTA -->
+  <section class="py-24 px-6 text-center bg-google-surface-alt border-b border-google-blue border-opacity-20">
+    <h2 class="text-4xl font-semibold mb-4 text-google-blue tracking-tight">
+      Ready to Grow Your Business?
+    </h2>
+    <p class="text-lg text-google-text mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Claim your Free 2-Day Trial and let's build your success story together.</p>
+    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20start%20my%20Free%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-4 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:bg-google-blue-dark hover:shadow-google transition-all">
+      Start My Free Trial Now
+    </a>
+  </section>
+  <!-- END: Final CTA -->
 
-            <div>
-                <h4 class="text-white font-bold tracking-widest uppercase mb-6 text-sm flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-logoGreen"></span> Our Services</h4>
-                <ul class="space-y-4 text-muted text-sm font-light">
-                    <li><a href="#" class="hover:text-logoGreen transition-colors hoverable">Digital Marketing</a></li>
-                    <li><a href="#" class="hover:text-logoGreen transition-colors hoverable">Branding Strategy</a></li>
-                    <li><a href="#" class="hover:text-logoGreen transition-colors hoverable">Business Consulting</a></li>
-                    <li><a href="#" class="hover:text-logoGreen transition-colors hoverable">UI/UX Design</a></li>
-                    <li><a href="#" class="hover:text-logoGreen transition-colors hoverable">SEO Analytics</a></li>
-                </ul>
+  <!-- BEGIN: Footer -->
+  <footer class="bg-google-surface text-google-text-light pt-20 pb-10 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="mb-12">
+            <!-- Footer Simple Logo -->
+            <div class="text-[28px] font-bold tracking-tighter flex items-center leading-none text-google-text-light grayscale select-none">
+              <span>B</span><span>u</span><span>i</span><span>l</span><span>d</span><span>o</span>
             </div>
-
-            <div>
-                <h4 class="text-white font-bold tracking-widest uppercase mb-6 text-sm flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-logoRed"></span> Follow Us</h4>
-                <ul class="space-y-4 text-muted text-sm font-light">
-                    <li><a href="#" class="hover:text-logoRed transition-colors hoverable">Dribbble</a></li>
-                    <li><a href="#" class="hover:text-logoRed transition-colors hoverable">Behance</a></li>
-                    <li><a href="#" class="hover:text-logoRed transition-colors hoverable">LinkedIn</a></li>
-                    <li><a href="#" class="hover:text-logoRed transition-colors hoverable">Instagram</a></li>
-                </ul>
-            </div>
+            <div class="text-[0.55rem] font-bold tracking-[0.2em] text-google-text-light mt-[4px] uppercase">Marketing & Growth Agency</div>
         </div>
         
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10 text-xs font-bold tracking-widest uppercase text-muted">
-            <p>Copyright @2026 All Rights Reserved.</p>
-            
-            <div class="flex flex-wrap gap-6">
-                <a href="#" class="hover:text-white transition-colors hoverable">Faqs</a>
-                <a href="#" class="hover:text-white transition-colors hoverable">Setting</a>
-                <a href="#" class="hover:text-white transition-colors hoverable">Privacy</a>
-                <a href="#" class="hover:text-white transition-colors hoverable">Contact</a>
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Services</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="#" class="hover:text-google-blue transition-colors">Website Development</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Digital Marketing</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Lead Generation</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">BPO Services</a></li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Company</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="#" class="hover:text-google-blue transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Why Choose Us</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-bold uppercase text-xs text-google-text tracking-widest">Contact</h4>
+            <ul class="space-y-2 text-sm text-google-text-light">
+              <li><a href="https://wa.me/917390928912" class="hover:text-google-blue transition-colors">WhatsApp</a></li>
+              <li><a href="#" class="hover:text-google-blue transition-colors">Get Free Audit</a></li>
+            </ul>
+          </div>
         </div>
-    </footer>
+        <div class="border-t border-google-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p class="text-xs text-google-text-light">© 2024 BUILDO Digital Services. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">Facebook</span>
+            </a>
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">Twitter</span>
+            </a>
+            <a class="w-8 h-8 bg-white border border-google-border shadow-subtle rounded-full hover:bg-google-surface-alt transition-colors flex items-center justify-center text-google-text-light hover:text-google-blue" href="#">
+                <span class="sr-only">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+    </div>
+  </footer>
+  <!-- END: Footer -->
 
-    <!-- Complex JavaScript for GSAP, Lenis Smooth Scroll, and Custom Interactions -->
-    <script>
-        // 1. Initialize Lenis (Smooth Momentum Scrolling)
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // NEW: Hero Section Video Player Initialization
+      try {
+        const heroPlayer = cloudinary.videoPlayer('hero-player', {
+          cloudName: 'dzq7qb6ew',
+          publicId: 'km_20260328_1440p_60f_20260328_170651_xlk1fs',
+          fluid: true,
+          controls: true,
+          autoplayMode: 'always',
+          loop: true,
+          muted: true
+        });
+      } catch (e) {
+        console.error("Cloudinary hero player could not be initialized.", e);
+      }
+
+      // ORIGINAL: Value Proposition Video Player Initialization
+      try {
+        const player = cloudinary.videoPlayer('player', {
+          cloudName: 'dzq7qb6ew',
+          publicId: 'gemini_generated_video_aa21f76a_rikpbz',
+          fluid: true,
+          controls: true,
+          autoplayMode: 'always',
+          loop: true,
+          muted: true
+        });
+      } catch (e) {
+        console.error("Cloudinary player could not be initialized.", e);
+      }
+      
+      const openBtn = document.getElementById('open-menu-btn');
+      const closeBtn = document.getElementById('close-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (openBtn && closeBtn && mobileMenu) {
+        openBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('hidden');
+          document.body.style.overflow = 'hidden'; 
         });
 
-        // Integrate Lenis with GSAP ScrollTrigger
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0, 0);
-
-        // Wait for DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // 2. Preloader Animation Sequence
-            const counter = document.getElementById('counter');
-            const preloader = document.getElementById('preloader');
-            
-            let count = 0;
-            const updateCounter = setInterval(() => {
-                count += Math.floor(Math.random() * 10) + 1; // Random jump
-                if(count > 100) count = 100;
-                counter.innerText = count + '%';
-                
-                if(count === 100) {
-                    clearInterval(updateCounter);
-                    // GSAP Exit Animation for Preloader
-                    const tl = gsap.timeline();
-                    tl.to(".preloader-text", { y: "0%", duration: 0.8, ease: "power4.out" })
-                      .to(counter, { opacity: 0, duration: 0.4 }, "+=0.2")
-                      .to(preloader, { yPercent: -100, duration: 1, ease: "power4.inOut" })
-                      // Start Hero Animation after preloader
-                      .fromTo(".hero-line", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, "-=0.2")
-                      .fromTo(".hero-subtext", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6 }, "-=0.4")
-                      .fromTo(".hero-title", { y: "150%" }, { y: "0%", duration: 1, stagger: 0.15, ease: "power4.out" }, "-=0.6")
-                      .fromTo(".hero-desc", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.4");
-                }
-            }, 25); // Speed of counter
-
-            // 3. Custom Cursor Logic
-            const cursorDot = document.getElementById('cursor-dot');
-            const cursorFollower = document.getElementById('cursor-follower');
-            const hoverables = document.querySelectorAll('.hoverable, a, button, input, textarea');
-
-            gsap.set(cursorDot, { xPercent: -50, yPercent: -50 });
-            gsap.set(cursorFollower, { xPercent: -50, yPercent: -50 });
-
-            window.addEventListener('mousemove', (e) => {
-                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0 });
-                gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power3.out" });
-            });
-
-            hoverables.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-
-            if(window.innerWidth <= 768) {
-                cursorDot.remove();
-                cursorFollower.remove();
-                document.body.style.cursor = 'auto';
-            }
-
-            // 4. GSAP ScrollReveal Animations
-            const revealElements = document.querySelectorAll('.gsap-reveal');
-            
-            revealElements.forEach(el => {
-                gsap.fromTo(el, 
-                    { autoAlpha: 0, y: 60 },
-                    { 
-                        autoAlpha: 1, 
-                        y: 0, 
-                        duration: 1.2, 
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: el,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        }
-                    }
-                );
-            });
-
-            // 5. Advanced Parallax (Up to Down & Down to Up depending on data-parallax value)
-            gsap.utils.toArray('[data-parallax]').forEach(el => {
-                const speed = parseFloat(el.getAttribute('data-parallax'));
-                gsap.to(el, {
-                    y: () => `${speed * 300}px`, // Multiplier for movement intensity
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true
-                    }
-                });
-            });
-
-            // 6. Navbar Blur on Scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.style.paddingTop = '1rem';
-                    navbar.style.paddingBottom = '1rem';
-                    navbar.style.background = 'rgba(10, 5, 20, 0.8)'; // Darker purple tint
-                    navbar.style.backdropFilter = 'blur(12px)';
-                    navbar.style.borderBottom = '1px solid rgba(75,0,130,0.3)'; // Purple border
-                } else {
-                    navbar.style.paddingTop = '1.5rem';
-                    navbar.style.paddingBottom = '1.5rem';
-                    navbar.style.background = 'transparent';
-                    navbar.style.backdropFilter = 'none';
-                    navbar.style.borderBottom = 'none';
-                }
-            });
+        closeBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = ''; 
         });
-    </script>
+      }
+
+      const viewMoreBtn = document.getElementById('view-more-reviews');
+      const hiddenReviews = document.querySelectorAll('.review-card-hidden');
+
+      if (viewMoreBtn && hiddenReviews.length > 0) {
+        viewMoreBtn.addEventListener('click', () => {
+          hiddenReviews.forEach(card => {
+            card.classList.remove('hidden');
+          });
+          viewMoreBtn.style.display = 'none';
+        });
+      }
+    });
+
+    function toggleMenu(contentId, iconId) {
+      const content = document.getElementById(contentId);
+      const icon = document.getElementById(iconId);
+      
+      if (content && icon) {
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+          content.classList.add('flex');
+          icon.classList.add('rotate-180');
+        } else {
+          content.classList.add('hidden');
+          content.classList.remove('flex');
+          icon.classList.remove('rotate-180');
+        }
+      }
+    }
+  </script>
 </body>
 </html>
