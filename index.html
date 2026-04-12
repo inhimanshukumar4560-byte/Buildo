@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,6 +128,15 @@
       .animate-scroll-right {
         animation: scroll-right 45s linear infinite;
       }
+
+      /* Custom styles for new image slider */
+      .image-slider-container {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+      .image-slider-container::-webkit-scrollbar {
+        display: none;
+      }
   </style>
   
   <!-- CSS for Tools Text Marquee -->
@@ -180,7 +188,7 @@
   <!-- BEGIN: Navigation -->
   <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-google-border px-4 py-4 flex justify-between items-center shadow-sm">
     <div class="flex items-center">
-      <!-- NEW LOGO IMPLEMENTATION -->
+      <!-- LOGO IMPLEMENTATION -->
       <div class="flex flex-col items-start justify-center cursor-pointer">
         <div class="text-[28px] font-bold tracking-tighter flex items-center leading-none select-none">
           <span class="text-google-blue">B</span>
@@ -207,8 +215,12 @@
     </div>
     
     <div class="flex items-center gap-4">
-      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20the%20Free%202-Day%20Trial." target="_blank" class="bg-google-blue text-white font-medium py-2 px-5 rounded-full text-sm hover:bg-google-blue-dark hover:shadow-google transition-all">
-        Start Free Trial
+      <!-- DYNAMIC BLOG BUTTON (Hidden by default, shown by Firebase) -->
+      <a id="dynamic-blog-btn" href="#" target="_blank" class="hidden text-google-text font-bold hover:text-google-blue transition-colors text-sm px-2">
+        Blog
+      </a>
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20your%20Result-Oriented%20Solutions." target="_blank" class="bg-google-blue text-white font-medium py-2 px-5 rounded-full text-sm hover:bg-google-blue-dark hover:shadow-google transition-all">
+        Get Result-Oriented Solutions
       </a>
       <button class="text-google-text-light hover:text-google-text transition-colors" id="open-menu-btn" data-purpose="mobile-menu-toggle">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -224,7 +236,7 @@
     <!-- Top Bar -->
     <div class="bg-white px-4 py-4 flex justify-between items-center text-google-text sticky top-0 z-10 border-b border-google-border">
       
-      <div class="flex flex-col items-start justify-center">
+      <div class="flex flex-col items-start justify-center cursor-pointer">
         <div class="text-[24px] font-bold tracking-tighter flex items-center leading-none">
           <span class="text-google-blue">B</span><span class="text-google-red">u</span><span class="text-google-yellow">i</span><span class="text-google-blue">l</span><span class="text-google-green">d</span><span class="text-google-red">o</span>
         </div>
@@ -260,13 +272,17 @@
         <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Pricing</li>
         <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Why Choose Us?</li>
         <li class="border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">Get Free Audit</li>
+        <!-- DYNAMIC MOBILE BLOG BTN -->
+        <li id="dynamic-mobile-blog-btn" class="hidden border-b border-google-border py-4 cursor-pointer hover:text-google-blue transition-colors">
+            <a href="#" target="_blank" class="w-full block">Blog</a>
+        </li>
         
       </ul>
 
       <!-- Bottom Buttons -->
       <div class="mt-8 flex flex-col gap-3">
-        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Free%20Trial." target="_blank" class="text-center bg-google-blue text-white font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-blue-dark hover:shadow-google transition-all">
-          Start Free Trial
+        <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'd%20like%20to%20start%20my%20Result-Oriented%20Solutions." target="_blank" class="text-center bg-google-blue text-white font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-blue-dark hover:shadow-google transition-all">
+          Get Result-Oriented Solutions
         </a>
         <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20interested%20in%20learning%20more." target="_blank" class="text-center bg-transparent border border-google-border text-google-blue font-medium py-3 px-4 rounded-full text-sm w-full hover:bg-google-surface transition-colors">
           Contact Us
@@ -276,16 +292,16 @@
   </div>
   <!-- END: NEW MOBILE MENU OVERLAY -->
 
-  <!-- BEGIN: Hero Section (Updated with Video Intro) -->
+  <!-- BEGIN: Hero Section -->
   <header class="relative px-6 pt-12 pb-16 overflow-hidden bg-white">
     <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center">
       
-      <!-- Minimal Text Area -->
+      <!-- Minimal Text Area (Text Updated per request) -->
       <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 text-google-text tracking-tight max-w-3xl">
-        Skyrocket Your Business with a <span class="text-google-blue">Risk-Free 2-Day Trial</span>
+        Skyrocket Your Business with <span class="text-google-blue">Result-Oriented Solutions</span>
       </h1>
-      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20claim%20my%20Free%202-Day%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-3 px-8 rounded-full text-lg hover:bg-google-blue-dark hover:shadow-google transition-all mb-8">
-        Claim My Free Trial
+      <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I%20want%20to%20get%20Result-Oriented%20Solutions!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-3 px-8 rounded-full text-lg hover:bg-google-blue-dark hover:shadow-google transition-all mb-8">
+        Get Result-Oriented Solutions
       </a>
 
       <!-- NEW Intro Video Container -->
@@ -299,7 +315,7 @@
 
     </div>
     
-    <!-- Image Scrolling Marquee (Kept below video with missing image replaced) -->
+    <!-- Image Scrolling Marquee -->
     <div class="mt-6 space-y-4">
       <!-- Row 1: Scrolls Left -->
       <div class="marquee-row">
@@ -326,7 +342,6 @@
           <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
           <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
-          <!-- Missing Image Fixed Here -->
           <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
           <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
           <!-- Duplicate Set -->
@@ -334,7 +349,6 @@
           <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400&h=300&fit=crop" alt="E-commerce Success">
           <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop" alt="Web Design">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Digital Strategy">
-          <!-- Missing Image Fixed Here -->
           <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Customer Support">
           <img src="https://images.unsplash.com/photo-1579389083046-e3df9c2b3325?w=400&h=300&fit=crop" alt="Growth Chart">
         </div>
@@ -342,6 +356,83 @@
     </div>
   </header>
   <!-- END: Hero Section -->
+
+  <!-- BEGIN: "Our Projects" Slider Section (Image + Link) -->
+  <section class="bg-white py-16 px-6 overflow-hidden border-t border-google-border">
+    <div class="max-w-6xl mx-auto mb-10">
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text text-center tracking-tight mb-4">Our <span class="text-google-blue">Projects</span></h2>
+      <p class="text-center text-google-text-light text-sm md:text-base max-w-2xl mx-auto">Explore our portfolio of result-oriented projects. Scroll through to see our latest work and click any image to view it in full screen.</p>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto group">
+      <!-- Scroll Left Button -->
+      <button onclick="scrollSlider('projects-slider', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 shadow-google hover:bg-google-surface border border-google-border rounded-full w-12 h-12 flex items-center justify-center opacity-80 hover:opacity-100 transition-all text-google-blue">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+
+      <!-- Scroll Right Button -->
+      <button onclick="scrollSlider('projects-slider', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 shadow-google hover:bg-google-surface border border-google-border rounded-full w-12 h-12 flex items-center justify-center opacity-80 hover:opacity-100 transition-all text-google-blue">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+
+      <!-- Dynamic Projects Container -->
+      <div id="projects-slider" class="flex overflow-x-auto gap-6 snap-x snap-mandatory image-slider-container px-2 py-4">
+        <!-- Prototypes Removed: Will be populated by Firebase -->
+      </div>
+    </div>
+  </section>
+  <!-- END: "Our Projects" Slider Section -->
+
+  <!-- BEGIN: "Why Choose Us" Slider Section (Image Only) -->
+  <section class="bg-google-surface py-16 px-6 overflow-hidden border-t border-google-border">
+    <div class="max-w-6xl mx-auto mb-10">
+      <h2 class="text-3xl md:text-4xl font-semibold text-google-text text-center tracking-tight mb-4">Why <span class="text-google-blue">Choose Us</span></h2>
+      <p class="text-center text-google-text-light text-sm md:text-base max-w-2xl mx-auto">Discover what makes BUILDO the perfect growth partner for your business.</p>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto group">
+      <!-- Scroll Left Button -->
+      <button onclick="scrollSlider('why-choose-slider', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 shadow-google hover:bg-google-surface border border-google-border rounded-full w-12 h-12 flex items-center justify-center opacity-80 hover:opacity-100 transition-all text-google-blue">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+
+      <!-- Scroll Right Button -->
+      <button onclick="scrollSlider('why-choose-slider', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 shadow-google hover:bg-google-surface border border-google-border rounded-full w-12 h-12 flex items-center justify-center opacity-80 hover:opacity-100 transition-all text-google-blue">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+
+      <!-- Dynamic Why Choose Us Container -->
+      <div id="why-choose-slider" class="flex overflow-x-auto gap-6 snap-x snap-mandatory image-slider-container px-2 py-4">
+        <!-- Prototypes Removed: Will be populated by Firebase -->
+      </div>
+    </div>
+  </section>
+  <!-- END: "Why Choose Us" Slider Section -->
+
+  <!-- Fullscreen Image Modal -->
+  <div id="fullscreen-modal" class="hidden fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center">
+    
+    <!-- Controls Bar -->
+    <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-[210] bg-gradient-to-b from-black/50 to-transparent">
+      <div class="flex gap-4">
+        <button onclick="zoomImage(0.2)" class="text-white hover:text-google-blue bg-white/10 p-2 rounded-full transition-colors" title="Zoom In">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+        </button>
+        <button onclick="zoomImage(-0.2)" class="text-white hover:text-google-blue bg-white/10 p-2 rounded-full transition-colors" title="Zoom Out">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path></svg>
+        </button>
+        <button onclick="resetZoom()" class="text-white hover:text-google-blue bg-white/10 p-2 rounded-full transition-colors text-sm font-bold px-4" title="Reset Zoom">Reset</button>
+      </div>
+      <button onclick="closeFullscreenImage()" class="text-white hover:text-google-red bg-white/10 p-2 rounded-full transition-colors" title="Close">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <!-- Image Container -->
+    <div class="w-full h-full flex items-center justify-center p-4 overflow-auto">
+      <img id="fullscreen-img-element" src="" class="max-w-full max-h-full object-contain transition-transform duration-200" style="transform: scale(1);">
+    </div>
+  </div>
 
   <!-- BEGIN: Tech & Tools Marquee -->
   <section class="bg-google-surface py-12 px-6 overflow-hidden border-t border-b border-google-border">
@@ -416,764 +507,9 @@
   </section>
   <!-- END: Tech & Tools Marquee -->
 
-  <!-- BEGIN: Web Services Pricing Section (9:16 Cards) -->
-  <section class="py-20 bg-google-surface-alt border-b border-google-border overflow-hidden">
-    <div class="max-w-6xl mx-auto mb-12 text-center px-6">
-       <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">Pricing Ladder</span>
-       <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">
-          Web Development <span class="text-google-blue">Packages</span>
-       </h2>
-       <p class="mt-4 text-google-text-light text-sm max-w-2xl mx-auto leading-relaxed">From low-budget starter sites to high-end enterprise solutions, we have a perfect fit for every business. Swipe through and pick the plan that suits you best.</p>
-    </div>
-
-    <!-- Horizontal Scrolling Wrapper -->
-    <div class="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scrollbar px-6 md:px-12 max-w-[1600px] mx-auto items-center">
-       
-       <!-- Function to generate WhatsApp link -->
-       <script>
-         function getWaLink(planName, price) {
-            const msg = `Hi Himanshu, I'm interested in the ${planName} Web Development plan priced at ${price}. Please share more details.`;
-            return `https://wa.me/917390928912?text=${encodeURIComponent(msg)}`;
-         }
-       </script>
-
-       <!-- STARTER LEVEL (Green) -->
-       <!-- Card 1 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-green/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-green mb-2">Starter Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Basic Lite</h3>
-             <div class="text-2xl font-bold text-google-text">₹8,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> WhatsApp Integration</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Basic%20Lite%20Web%20Development%20plan%20priced%20at%20%E2%82%B98%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-green hover:text-white hover:border-google-green transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.01 2.012c-5.495 0-9.974 4.47-9.974 9.96 0 1.764.456 3.486 1.327 5.006L2 22l5.163-1.344c1.464.814 3.123 1.246 4.847 1.246 5.493 0 9.972-4.47 9.972-9.96 0-5.49-4.479-9.93-9.972-9.93zm5.443 12.111c-.3.15-1.768.87-2.04.97-.272.1-.472.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 2 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-green/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-green mb-2">Starter Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Basic</h3>
-             <div class="text-2xl font-bold text-google-text">₹12,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Social Links Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Basic%20Web%20Development%20plan%20priced%20at%20%E2%82%B912%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-green hover:text-white hover:border-google-green transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 3 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-green/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-green mb-2">Starter Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Basic Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹15,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Fast Speed Optimization</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Basic%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B915%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-green hover:text-white hover:border-google-green transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 4 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-green/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-green mb-2">Starter Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Starter Business</h3>
-             <div class="text-2xl font-bold text-google-text">₹18,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> SSL Security Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Starter%20Business%20Web%20Development%20plan%20priced%20at%20%E2%82%B918%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-green hover:text-white hover:border-google-green transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 5 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-green/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-green mb-2">Starter Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Starter Pro</h3>
-             <div class="text-2xl font-bold text-google-text">₹20,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-green mt-[2px]">✓</span> Basic Animations</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Starter%20Pro%20Web%20Development%20plan%20priced%20at%20%E2%82%B920%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-green hover:text-white hover:border-google-green transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- MEDIUM LEVEL (Blue) -->
-       <!-- Card 6 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">Medium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Standard</h3>
-             <div class="text-2xl font-bold text-google-text">₹22,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Image Optimization</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Standard%20Web%20Development%20plan%20priced%20at%20%E2%82%B922%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 7 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">Medium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Standard Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹25,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WordPress CMS Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Standard%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B925%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 8 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">Medium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Business Standard</h3>
-             <div class="text-2xl font-bold text-google-text">₹28,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Custom UI/UX Design</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Business%20Standard%20Web%20Development%20plan%20priced%20at%20%E2%82%B928%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 9 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">Medium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Business Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹30,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Blog Section Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Business%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B930%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 10 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">Medium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Growth Plan</h3>
-             <div class="text-2xl font-bold text-google-text">₹35,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> Analytics Tracking</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Growth%20Plan%20Web%20Development%20plan%20priced%20at%20%E2%82%B935%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- ADVANCED LEVEL (Yellow) -->
-       <!-- Card 11 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-yellow/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-yellow-600 mb-2">Advanced Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Advanced</h3>
-             <div class="text-2xl font-bold text-google-text">₹40,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Lead Capture Forms</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Advanced%20Web%20Development%20plan%20priced%20at%20%E2%82%B940%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-yellow hover:text-white hover:border-google-yellow transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 12 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-yellow/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-yellow-600 mb-2">Advanced Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Advanced Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹45,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Login/Signup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Advanced%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B945%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-yellow hover:text-white hover:border-google-yellow transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 13 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-yellow/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-yellow-600 mb-2">Advanced Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Business Advanced</h3>
-             <div class="text-2xl font-bold text-google-text">₹50,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Dashboard Panel</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Business%20Advanced%20Web%20Development%20plan%20priced%20at%20%E2%82%B950%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-yellow hover:text-white hover:border-google-yellow transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 14 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-yellow/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-yellow-600 mb-2">Advanced Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Growth Pro</h3>
-             <div class="text-2xl font-bold text-google-text">₹60,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Secure Database Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Growth%20Pro%20Web%20Development%20plan%20priced%20at%20%E2%82%B960%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-yellow hover:text-white hover:border-google-yellow transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 15 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-yellow/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-yellow-600 mb-2">Advanced Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Premium Business</h3>
-             <div class="text-2xl font-bold text-google-text">₹70,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-yellow-500 mt-[2px]">✓</span> High Performance Caching</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Premium%20Business%20Web%20Development%20plan%20priced%20at%20%E2%82%B970%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-yellow hover:text-white hover:border-google-yellow transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- PREMIUM / HIGH-END (Red) -->
-       <!-- Card 16 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-red/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-red mb-2">Premium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Premium</h3>
-             <div class="text-2xl font-bold text-google-text">₹80,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> High Performance Caching</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic E-commerce Setup</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Premium%20Web%20Development%20plan%20priced%20at%20%E2%82%B980%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-red hover:text-white hover:border-google-red transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 17 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-red/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-red mb-2">Premium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Premium Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹1,00,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> High Performance Caching</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic E-commerce Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Payment Gateway Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Product Management System</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Premium%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B91%2C000%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-red hover:text-white hover:border-google-red transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 18 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/Kxr3TWSR/file-00000000f16c71faba887c680540f6bb.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-red/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-red mb-2">Premium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">E-commerce Pro</h3>
-             <div class="text-2xl font-bold text-google-text">₹1,20,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> High Performance Caching</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic E-commerce Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Payment Gateway Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Product Management System</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Cart + Checkout Process</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20E-commerce%20Pro%20Web%20Development%20plan%20priced%20at%20%E2%82%B91%2C20%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-red hover:text-white hover:border-google-red transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 19 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/SwXQ6Qvw/file-00000000ef9c71fa846fd9677377eb92.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-red/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-red mb-2">Premium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Enterprise</h3>
-             <div class="text-2xl font-bold text-google-text">₹1,50,000</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> High Performance Caching</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic E-commerce Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Payment Gateway Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Product Management System</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Cart + Checkout Process</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced Order System</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Full Custom Admin Panel</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Enterprise%20Web%20Development%20plan%20priced%20at%20%E2%82%B91%2C50%2C000.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-red hover:text-white hover:border-google-red transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-       <!-- Card 20 -->
-       <div class="w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative" style="background-image: url('https://i.ibb.co/5Wj16TYH/file-00000000d7bc71fabeab42321c8833ab.png'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-white/90 z-0"></div>
-          <div class="relative z-10 p-6 bg-google-red/10 border-b border-google-border/50 text-center shrink-0">
-             <div class="text-xs font-bold uppercase tracking-widest text-google-red mb-2">Premium Level</div>
-             <h3 class="text-xl font-bold text-google-text mb-1">Enterprise Plus</h3>
-             <div class="text-2xl font-bold text-google-text">₹2,00,000+</div>
-          </div>
-          <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-             <ul class="space-y-4 text-sm text-google-text-light font-medium">
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Mobile Responsive</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Contact Form</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WhatsApp Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Social Links Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic On-Page SEO</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fast Speed Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> SSL Security Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Google Map Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic Animations</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Image Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> WordPress CMS Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Editable Content Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Custom UI/UX Design</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Blog Section Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced SEO Structure</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Analytics Tracking</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Lead Capture Forms</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Dynamic API Integration</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Login/Signup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> User Dashboard Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Secure Database Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Conversion Optimization</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> High Performance Caching</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Basic E-commerce Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Payment Gateway Setup</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Product Management System</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Cart + Checkout Process</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Advanced Order System</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Full Custom Admin Panel</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Priority 24/7 Support</li>
-                <li class="flex items-start gap-2"><span class="text-google-red mt-[2px]">✓</span> Fully Scalable Architecture</li>
-             </ul>
-          </div>
-          <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-             <a href="https://wa.me/917390928912?text=Hi%20Himanshu%2C%20I%27m%20interested%20in%20the%20Enterprise%20Plus%20Web%20Development%20plan%20priced%20at%20%E2%82%B92%2C00%2C000%2B.%20Please%20share%20more%20details." target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-red hover:text-white hover:border-google-red transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
-             </a>
-          </div>
-       </div>
-
-    </div>
-  </section>
-  <!-- END: Web Services Pricing Section (9:16 Cards) -->
+  <!-- Container for dynamically added Service Categories from Firebase -->
+  <!-- Hardcoded prototypes removed as requested, UI entirely fetched from Firebase -->
+  <div id="dynamic-services-container"></div>
 
   <!-- BEGIN: Value Proposition Section -->
   <section class="py-20 px-6 bg-white border-b border-google-border">
@@ -1208,11 +544,11 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
       
-      <!-- Card 1: Blue Accent (Missing Image Fixed Here) -->
+      <!-- Card 1: Blue Accent -->
       <div class="rounded-2xl overflow-hidden bg-white flex flex-col border border-google-border border-t-4 border-t-google-blue shadow-subtle hover:shadow-google-hover transition-shadow">
         <img src="https://i.ibb.co/0ydBwSs8/file-00000000a12c71faac3225712fc1acbe.png" alt="Free Trial" class="w-full h-64 object-cover border-b border-google-border">
         <div class="p-8 flex-grow">
-          <h3 class="text-2xl text-google-blue mb-4 tracking-tight">Zero Risk, <span class="font-bold">Free 2-Day Trial</span></h3>
+          <h3 class="text-2xl text-google-blue mb-4 tracking-tight">Zero Risk, <span class="font-bold">Result-Oriented Trial</span></h3>
           <p class="text-sm text-google-text-light leading-relaxed">Don't pay a single rupee until you see our work. Experience our marketing strategies and lead generation for 2 days, absolutely free. No commitments.</p>
         </div>
       </div>
@@ -1322,7 +658,7 @@
           <tr class="text-sm text-google-text-light border-b border-google-border">
             <th class="py-4 px-4 font-semibold uppercase tracking-wider"></th>
             <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Speed (Results)</th>
-            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Free Trial</th>
+            <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Trial</th>
             <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Advance Payment</th>
             <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Lead Quality</th>
             <th class="py-4 px-4 font-semibold uppercase tracking-wider text-center">Cost-Effectiveness</th>
@@ -1379,7 +715,7 @@
       
       <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
         <div class="flex text-google-yellow mb-3 text-sm">★★★★★</div>
-        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"The 2-Day Free Trial blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
+        <p class="italic mb-4 text-sm text-google-text-light leading-relaxed">"The Result-Oriented Solutions blew my mind. I didn't pay anything upfront and got real, qualified leads for my real estate business. Highly recommended!"</p>
         <div class="font-bold text-sm text-google-text">Rahul Sharma</div>
       </div>
       <div class="bg-white p-6 rounded-2xl border border-google-border shadow-subtle hover:shadow-google transition-shadow">
@@ -1458,9 +794,9 @@
     <h2 class="text-4xl font-semibold mb-4 text-google-blue tracking-tight">
       Ready to Grow Your Business?
     </h2>
-    <p class="text-lg text-google-text mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Claim your Free 2-Day Trial and let's build your success story together.</p>
-    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20start%20my%20Free%20Trial!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-4 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:bg-google-blue-dark hover:shadow-google transition-all">
-      Start My Free Trial Now
+    <p class="text-lg text-google-text mb-8 max-w-2xl mx-auto">Stop paying for promises. Start paying for results. Connect with us for Result-Oriented Solutions and let's build your success story together.</p>
+    <a href="https://wa.me/917390928912?text=Hi%20Himanshu,%20I'm%20ready%20to%20get%20Result-Oriented%20Solutions!" target="_blank" class="inline-block bg-google-blue text-white font-medium py-4 px-10 rounded-full text-lg w-full max-w-md mx-auto hover:bg-google-blue-dark hover:shadow-google transition-all">
+      Start Getting Results Now
     </a>
   </section>
   <!-- END: Final CTA -->
@@ -1568,6 +904,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.js"></script>
   
+  <!-- UI Interactions Script -->
   <script>
     // New WhatsApp Modal Logic
     function openWaModal() {
@@ -1595,8 +932,46 @@
       closeWaModal();
     }
 
+    // Scroll Logic
+    function scrollSlider(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        if(!slider) return;
+        const scrollAmount = window.innerWidth * 0.8; 
+        slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    let currentZoom = 1;
+    function openFullscreenImage(element) {
+        const modal = document.getElementById('fullscreen-modal');
+        const imgElement = document.getElementById('fullscreen-img-element');
+        const sourceImg = element.querySelector('img').src;
+        
+        imgElement.src = sourceImg;
+        currentZoom = 1;
+        imgElement.style.transform = `scale(${currentZoom})`;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeFullscreenImage() {
+        document.getElementById('fullscreen-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function zoomImage(amount) {
+        currentZoom += amount;
+        if(currentZoom < 0.5) currentZoom = 0.5;
+        if(currentZoom > 3) currentZoom = 3;
+        document.getElementById('fullscreen-img-element').style.transform = `scale(${currentZoom})`;
+    }
+
+    function resetZoom() {
+        currentZoom = 1;
+        document.getElementById('fullscreen-img-element').style.transform = `scale(${currentZoom})`;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      // NEW: Hero Section Video Player Initialization
       try {
         const heroPlayer = cloudinary.videoPlayer('hero-player', {
           cloudName: 'dzq7qb6ew',
@@ -1611,7 +986,6 @@
         console.error("Cloudinary hero player could not be initialized.", e);
       }
 
-      // ORIGINAL: Value Proposition Video Player Initialization
       try {
         const player = cloudinary.videoPlayer('player', {
           cloudName: 'dzq7qb6ew',
@@ -1671,6 +1045,180 @@
         }
       }
     }
+  </script>
+
+  <!-- FIREBASE DATA FETCH (USER PANEL) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB4jDUkGOAtZDzWfQ-KKTPGlLu05NdMQMU",
+      authDomain: "flipmed-9abe8.firebaseapp.com",
+      databaseURL: "https://flipmed-9abe8-default-rtdb.firebaseio.com",
+      projectId: "flipmed-9abe8",
+      storageBucket: "flipmed-9abe8.firebasestorage.app",
+      messagingSenderId: "115049987394",
+      appId: "1:115049987394:web:c8140220615408486f9cdb",
+      measurementId: "G-SKFVC60VHX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    // FETCH BLOG LINK
+    const blogRef = ref(db, 'settings/blog');
+    onValue(blogRef, (snapshot) => {
+        const data = snapshot.val();
+        if(data && data.link) {
+            const btn = document.getElementById('dynamic-blog-btn');
+            const mobileBtn = document.getElementById('dynamic-mobile-blog-btn');
+            
+            if(btn) {
+                btn.href = data.link;
+                btn.classList.remove('hidden');
+            }
+            if(mobileBtn) {
+                mobileBtn.querySelector('a').href = data.link;
+                mobileBtn.classList.remove('hidden');
+            }
+        }
+    });
+
+    // FETCH "OUR PROJECTS" (Image + Link)
+    const projectsRef = ref(db, 'projects');
+    onValue(projectsRef, (snapshot) => {
+        const data = snapshot.val();
+        const slider = document.getElementById('projects-slider');
+        if(slider && data) {
+            slider.innerHTML = ''; // Clear container
+            Object.values(data).forEach(item => {
+                const div = document.createElement('div');
+                div.className = "w-[85vw] md:w-[60vw] lg:w-[800px] flex-shrink-0 aspect-video snap-center rounded-2xl overflow-hidden shadow-google border border-google-border relative group cursor-pointer";
+                div.onclick = function() { window.openFullscreenImage(this); };
+                
+                div.innerHTML = `
+                    <img src="${item.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors flex items-center justify-center pointer-events-none">
+                        <span class="bg-black/60 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">Click to Expand</span>
+                    </div>
+                `;
+                
+                // Add link overlay if exists
+                if(item.link) {
+                    const linkBtn = document.createElement('a');
+                    linkBtn.href = item.link;
+                    linkBtn.target = "_blank";
+                    linkBtn.className = "absolute bottom-6 right-6 bg-google-blue text-white font-bold px-6 py-3 rounded-full shadow-google hover:bg-google-blue-dark transition-colors z-10 text-sm md:text-base";
+                    linkBtn.innerText = "Visit Link";
+                    linkBtn.onclick = function(e) { e.stopPropagation(); }; // Prevent fullscreen trigger on button click
+                    div.appendChild(linkBtn);
+                }
+                
+                slider.appendChild(div);
+            });
+        }
+    });
+
+    // FETCH "WHY CHOOSE US" (Image Only)
+    const whyRef = ref(db, 'why_choose_us');
+    onValue(whyRef, (snapshot) => {
+        const data = snapshot.val();
+        const slider = document.getElementById('why-choose-slider');
+        if(slider && data) {
+            slider.innerHTML = ''; // Clear container
+            Object.values(data).forEach(item => {
+                const div = document.createElement('div');
+                div.className = "w-[85vw] md:w-[60vw] lg:w-[800px] flex-shrink-0 aspect-video snap-center rounded-2xl overflow-hidden shadow-google border border-google-border cursor-pointer relative group";
+                div.onclick = function() { window.openFullscreenImage(this); };
+                
+                div.innerHTML = `
+                    <img src="${item.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors flex items-center justify-center pointer-events-none">
+                        <span class="bg-black/60 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">Click to Expand</span>
+                    </div>
+                `;
+                
+                slider.appendChild(div);
+            });
+        }
+    });
+
+    // FETCH SERVICES / PRICING PACKAGES
+    const servicesRef = ref(db, 'services');
+    onValue(servicesRef, (snapshot) => {
+        const data = snapshot.val();
+        const mainContainer = document.getElementById('dynamic-services-container');
+        if(mainContainer && data) {
+            mainContainer.innerHTML = ''; // Clear
+            
+            // Group by category
+            const categories = {};
+            Object.values(data).forEach(item => {
+                if(!categories[item.category]) categories[item.category] = [];
+                categories[item.category].push(item);
+            });
+
+            // Create Sections
+            Object.keys(categories).forEach(cat => {
+                const section = document.createElement('section');
+                section.className = "py-20 bg-google-surface-alt border-b border-google-border overflow-hidden";
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = "max-w-6xl mx-auto mb-12 text-center px-6";
+                titleDiv.innerHTML = `
+                   <span class="text-google-blue text-xs font-bold uppercase tracking-widest block mb-4">Pricing Ladder</span>
+                   <h2 class="text-3xl md:text-4xl font-semibold text-google-text tracking-tight">
+                      ${cat} <span class="text-google-blue">Packages</span>
+                   </h2>
+                `;
+                section.appendChild(titleDiv);
+
+                const scrollDiv = document.createElement('div');
+                scrollDiv.className = "flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scrollbar px-6 md:px-12 max-w-[1600px] mx-auto items-center";
+                
+                categories[cat].forEach(plan => {
+                    const card = document.createElement('div');
+                    card.className = "w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative";
+                    card.style.backgroundImage = `url('${plan.image}')`;
+                    card.style.backgroundSize = 'cover';
+                    card.style.backgroundPosition = 'center';
+
+                    let featuresHtml = '';
+                    if(plan.features && Array.isArray(plan.features)){
+                        plan.features.forEach(f => {
+                            featuresHtml += `<li class="flex items-start gap-2"><span class="text-google-blue mt-[2px]">✓</span> ${f}</li>`;
+                        });
+                    }
+
+                    const waMsg = encodeURIComponent(`Hi Himanshu, I'm interested in the ${plan.name} plan from ${cat} priced at ${plan.price}. Please share more details.`);
+
+                    card.innerHTML = `
+                        <div class="absolute inset-0 bg-white/90 z-0"></div>
+                        <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
+                            <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">${cat}</div>
+                            <h3 class="text-xl font-bold text-google-text mb-1">${plan.name}</h3>
+                            <div class="text-2xl font-bold text-google-text">${plan.price}</div>
+                        </div>
+                        <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
+                            <ul class="space-y-4 text-sm text-google-text-light font-medium">${featuresHtml}</ul>
+                        </div>
+                        <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
+                            <a href="https://wa.me/917390928912?text=${waMsg}" target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
+                            </a>
+                        </div>
+                    `;
+                    scrollDiv.appendChild(card);
+                });
+
+                section.appendChild(scrollDiv);
+                mainContainer.appendChild(section);
+            });
+        }
+    });
   </script>
 </body>
 </html>
