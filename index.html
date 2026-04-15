@@ -1181,7 +1181,7 @@
                 
                 categories[cat].forEach(plan => {
                     const card = document.createElement('div');
-                    card.className = "w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative";
+                    card.className = "group w-[85vw] md:w-[280px] lg:w-[calc(25%-1.125rem)] flex-shrink-0 aspect-[9/16] snap-center border border-google-border rounded-2xl shadow-subtle hover:shadow-google-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden relative";
                     card.style.backgroundImage = `url('${plan.image}')`;
                     card.style.backgroundSize = 'cover';
                     card.style.backgroundPosition = 'center';
@@ -1193,21 +1193,34 @@
                         });
                     }
 
+                    let extraPriceInfo = '';
+                    if(cat.toLowerCase().includes('digital marketing')) {
+                        extraPriceInfo = '<div class="mt-2"><span class="inline-block bg-google-yellow text-google-text text-xs font-bold px-2 py-1 rounded shadow-sm">1 Week Trial @ ₹3,000</span></div>';
+                    } else if(cat.toLowerCase().includes('website') || cat.toLowerCase().includes('development')) {
+                        extraPriceInfo = '<div class="mt-2"><span class="inline-block bg-white text-google-red text-xs font-bold px-2 py-1 rounded shadow-sm border border-google-red/20">50% Advance, 50% Later</span></div>';
+                    }
+
                     const waMsg = encodeURIComponent(`Hi Himanshu, I'm interested in the ${plan.name} plan from ${cat} priced at ${plan.price}. Please share more details.`);
+                    const waConcessionMsg = encodeURIComponent(`Hi Himanshu, I'm looking for a concession on the ${plan.name} plan from ${cat} (${plan.price}). Can we discuss this?`);
 
                     card.innerHTML = `
-                        <div class="absolute inset-0 bg-white/90 z-0"></div>
-                        <div class="relative z-10 p-6 bg-google-blue/10 border-b border-google-border/50 text-center shrink-0">
+                        <div class="absolute inset-0 bg-white/75 backdrop-blur-[2px] z-0 transition-all duration-300 group-hover:bg-white/65"></div>
+                        <div class="relative z-10 p-6 bg-white/40 border-b border-white/50 text-center shrink-0">
                             <div class="text-xs font-bold uppercase tracking-widest text-google-blue mb-2">${cat}</div>
                             <h3 class="text-xl font-bold text-google-text mb-1">${plan.name}</h3>
-                            <div class="text-2xl font-bold text-google-text">${plan.price}</div>
+                            <div class="text-2xl font-bold text-google-text drop-shadow-sm">${plan.price}</div>
+                            ${extraPriceInfo}
                         </div>
-                        <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0">
-                            <ul class="space-y-4 text-sm text-google-text-light font-medium">${featuresHtml}</ul>
+                        <div class="relative z-10 p-6 flex-grow overflow-y-auto card-scroll min-h-0 bg-white/10">
+                            <ul class="space-y-4 text-sm text-google-text font-semibold drop-shadow-sm">${featuresHtml}</ul>
                         </div>
-                        <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/50 backdrop-blur-sm border-t border-google-border/50">
-                            <a href="https://wa.me/917390928912?text=${waMsg}" target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white/80 border border-google-border text-google-text font-semibold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors">
+                        <div class="relative z-10 p-6 shrink-0 mt-auto bg-white/60 backdrop-blur-md border-t border-white/50">
+                            <a href="https://wa.me/917390928912?text=${waMsg}" target="_blank" class="flex items-center justify-center gap-2 w-full text-center bg-white border border-google-border text-google-text font-bold py-3 rounded-full hover:bg-google-blue hover:text-white hover:border-google-blue transition-colors shadow-sm">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.453 14.123c-.3-.15-1.768-.87-2.04-.97-.272-.1-.472-.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg> Choose Plan
+                            </a>
+                            <a href="https://wa.me/917390928912?text=${waConcessionMsg}" target="_blank" class="flex items-center justify-center gap-1.5 w-full text-center mt-3 text-sm font-bold text-google-text hover:text-[#25D366] transition-colors">
+                                <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M12.01 2.012c-5.495 0-9.974 4.47-9.974 9.96 0 1.764.456 3.486 1.327 5.006L2 22l5.163-1.344c1.464.814 3.123 1.246 4.847 1.246 5.493 0 9.972-4.47 9.972-9.96 0-5.49-4.479-9.93-9.972-9.93zm5.443 12.111c-.3.15-1.768.87-2.04.97-.272.1-.472.15-.67.15-.198.3-.77 1.05-.945 1.25-.174.2-.348.225-.648.075-.3-.15-1.26-.465-2.4-1.485-.885-.795-1.482-1.77-1.656-2.07-.174-.3-.018-.465.132-.615.135-.135.3-.345.45-.51.15-.165.2-.285.3-.465.1-.18.05-.345-.025-.495-.075-.15-.67-1.62-.918-2.22-.24-.585-.486-.51-.67-.51-.174 0-.374-.015-.574-.015-.2 0-.525.075-.8.375-.275.3-1.048 1.02-1.048 2.49s1.074 2.895 1.224 3.09c.15.195 2.1 3.21 5.093 4.5.711.3 1.266.48 1.698.615.714.225 1.365.195 1.878.12.576-.09 1.768-.72 2.018-1.425.25-.705.25-1.305.174-1.425-.075-.12-.275-.195-.575-.345z"/></svg>
+                                Ask for Concession
                             </a>
                         </div>
                     `;
