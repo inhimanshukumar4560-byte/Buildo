@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,6 +184,86 @@
         animation: text-scroll-right 40s linear infinite;
       }
   </style>
+
+  <!-- CSS for AI Lead Qualifier Scope -->
+  <style data-purpose="ai-qualifier-css">
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+      
+      .ai-qualifier-scope {
+          background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+          color: #333;
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+          font-family: 'Montserrat', sans-serif;
+      }
+      .ai-qualifier-scope * { box-sizing: border-box; }
+      .ai-qualifier-scope .ai-container { 
+          width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.95); 
+          padding: 30px 25px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+          backdrop-filter: blur(10px); position: relative; overflow: hidden; min-height: 500px;
+          margin: auto;
+      }
+      .ai-qualifier-scope h1, .ai-qualifier-scope h2, .ai-qualifier-scope h3 { text-align: center; color: #1e272e; margin-bottom: 10px; font-weight: 800; font-family: 'Montserrat', sans-serif;}
+      .ai-qualifier-scope p { text-align: center; font-size: 14px; color: #576574; margin-bottom: 25px; line-height: 1.5; font-family: 'Montserrat', sans-serif;}
+      .ai-qualifier-scope .input-group { margin-bottom: 20px; }
+      .ai-qualifier-scope .input-group label { display: block; font-size: 14px; font-weight: 700; color: #1e272e; margin-bottom: 8px; }
+      .ai-qualifier-scope input[type="text"], .ai-qualifier-scope input[type="number"], .ai-qualifier-scope input[type="email"] { 
+          width: 100%; padding: 15px; border: 2px solid #d2dae2; border-radius: 12px; font-size: 16px; 
+          transition: all 0.3s ease; outline: none; font-weight: 600; font-family: 'Montserrat', sans-serif;
+      }
+      .ai-qualifier-scope input:focus { border-color: #0fb9b1; box-shadow: 0 0 10px rgba(15, 185, 177, 0.2); }
+      .ai-qualifier-scope button.ai-btn { 
+          width: 100%; padding: 15px; background: linear-gradient(135deg, #0fb9b1, #2bcbba); 
+          color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; 
+          cursor: pointer; transition: all 0.3s ease; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
+          box-shadow: 0 5px 15px rgba(15, 185, 177, 0.4); font-family: 'Montserrat', sans-serif;
+      }
+      .ai-qualifier-scope button.ai-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 185, 177, 0.6); }
+      .ai-qualifier-scope button.ai-btn:active { transform: translateY(1px); }
+      .ai-qualifier-scope .btn-secondary { background: #808e9b !important; box-shadow: 0 5px 15px rgba(128, 142, 155, 0.4) !important; }
+      .ai-qualifier-scope .btn-secondary:hover { background: #485460 !important; box-shadow: 0 8px 20px rgba(72, 84, 96, 0.6) !important; }
+      .ai-qualifier-scope .btn-group { display: flex; gap: 15px; margin-top: 25px; }
+      .ai-qualifier-scope .progress-wrapper { width: 100%; background: #d2dae2; border-radius: 10px; height: 8px; margin-bottom: 25px; overflow: hidden; }
+      .ai-qualifier-scope .progress-bar { height: 100%; background: linear-gradient(90deg, #0fb9b1, #f39c12); width: 0%; transition: width 0.4s ease; }
+      .ai-qualifier-scope .question-box { background: #f1f2f6; border-radius: 15px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #0fb9b1; text-align: left; }
+      .ai-qualifier-scope .question-text { font-size: 16px; font-weight: 700; color: #2f3640; margin-bottom: 5px; }
+      .ai-qualifier-scope .hindi-text { font-size: 13px; color: #7f8fa6; display: block; margin-bottom: 15px; font-weight: 500; font-style: italic; }
+      .ai-qualifier-scope .options-container { display: flex; flex-direction: column; gap: 10px; }
+      .ai-qualifier-scope .option-label { 
+          display: flex; align-items: center; padding: 15px; background: white; 
+          border: 2px solid #dfe4ea; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;
+          font-size: 14px; font-weight: 600; color: #2f3640; position: relative; overflow: hidden; margin: 0;
+      }
+      .ai-qualifier-scope .option-label:hover { border-color: #0fb9b1; background: #f8ffff; }
+      .ai-qualifier-scope .option-label input[type="radio"] { display: none; }
+      .ai-qualifier-scope .option-label.selected { background: #ebfcfb; border-color: #0fb9b1; box-shadow: 0 4px 10px rgba(15,185,177,0.1); }
+      .ai-qualifier-scope .option-label.selected::after { content: '✔'; position: absolute; right: 15px; color: #0fb9b1; font-weight: bold; font-size: 18px; }
+      .ai-qualifier-scope .screen { display: none; animation: fadeIn 0.5s ease; }
+      .ai-qualifier-scope .active-screen { display: block; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+      .ai-qualifier-scope .loader-container { text-align: center; padding: 40px 0; }
+      .ai-qualifier-scope .loader { border: 6px solid #f3f3f3; border-top: 6px solid #0fb9b1; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .ai-qualifier-scope .result-card { background: linear-gradient(135deg, #1e272e, #2f3542); border-radius: 20px; padding: 30px 20px; color: white; text-align: center; animation: popIn 0.6s ease forwards; position: relative; }
+      .ai-qualifier-scope .result-card.hot { border: 3px solid #ff4757; } .ai-qualifier-scope .result-card.warm { border: 3px solid #ffa502; } .ai-qualifier-scope .result-card.cold { border: 3px solid #70a1ff; }
+      .ai-qualifier-scope .score-circle { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; margin: 0 auto 15px auto; border: 4px solid; }
+      .ai-qualifier-scope .hot .score-circle { border-color: #ff4757; color: #ff4757; text-shadow: 0 0 10px rgba(255,71,87,0.5); } .ai-qualifier-scope .warm .score-circle { border-color: #ffa502; color: #ffa502; } .ai-qualifier-scope .cold .score-circle { border-color: #70a1ff; color: #70a1ff; }
+      .ai-qualifier-scope .status-title { font-size: 28px; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+      .ai-qualifier-scope .action-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; font-size: 14px; text-align: left; margin-top: 20px; }
+      .ai-qualifier-scope .action-box strong { color: #0fb9b1; }
+      .ai-qualifier-scope .skipped-list { text-align: left; font-size: 12px; margin-top: 15px; max-height: 80px; overflow-y: auto; padding-left: 15px; }
+      .ai-qualifier-scope .dashboard-section { margin-bottom: 30px; text-align: left; }
+      .ai-qualifier-scope .dashboard-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #fff; border: 1px solid #dfe4ea; margin-bottom: 10px; border-radius: 12px; transition: all 0.3s; }
+      .ai-qualifier-scope .dashboard-item:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+      .ai-qualifier-scope .rank-badge { font-size: 24px; margin-right: 15px; } .ai-qualifier-scope .lead-info { flex-grow: 1; color: #333; }
+      .ai-qualifier-scope .lead-score { font-size: 20px; font-weight: 800; }
+      .ai-qualifier-scope .bg-hot { color: #ff4757; } .ai-qualifier-scope .bg-warm { color: #ffa502; } .ai-qualifier-scope .bg-cold { color: #70a1ff; }
+  </style>
+
 </head>
 <body class="bg-google-bg text-google-text font-sans antialiased">
   <!-- BEGIN: Navigation -->
@@ -835,6 +916,7 @@
             <ul class="space-y-2 text-sm text-google-text-light">
               <li><a href="https://wa.me/917390928912" class="hover:text-google-blue transition-colors">WhatsApp</a></li>
               <li><a href="#" class="hover:text-google-blue transition-colors">Get Free Audit</a></li>
+              <li><a href="#" onclick="openEmployeeAuth(event)" class="hover:text-google-blue transition-colors font-semibold">Employee Dashboard</a></li>
             </ul>
           </div>
         </div>
@@ -901,6 +983,148 @@
     </div>
   </div>
   <!-- END: Floating WhatsApp & Modal -->
+
+  <!-- BEGIN: EMPLOYEE AUTH MODAL -->
+  <div id="emp-auth-modal" class="hidden fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 font-sans transition-opacity">
+      <div class="bg-white rounded-2xl shadow-google max-w-sm w-full p-6 relative border border-google-border">
+          <button onclick="closeEmpAuth()" class="absolute top-4 right-4 text-google-text-light hover:text-google-text bg-google-surface rounded-full p-1 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+          <h3 class="text-2xl font-bold text-google-text mb-4">Employee Login</h3>
+          <input type="password" id="emp-password" class="w-full px-4 py-3 border border-google-border rounded-xl focus:ring-2 focus:ring-google-blue outline-none mb-4" placeholder="Enter Password">
+          <button onclick="verifyEmpAuth()" class="w-full bg-google-blue text-white font-bold py-3 rounded-full hover:bg-google-blue-dark transition-colors">Login</button>
+          <p id="emp-auth-error" class="text-red-500 text-sm mt-2 hidden font-medium">Incorrect password.</p>
+      </div>
+  </div>
+  <!-- END: EMPLOYEE AUTH MODAL -->
+
+  <!-- BEGIN: EMPLOYEE REGISTRATION MODAL -->
+  <div id="emp-reg-modal" class="hidden fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 font-sans transition-opacity">
+      <div class="bg-white rounded-2xl shadow-google max-w-md w-full p-6 relative border border-google-border max-h-[90vh] overflow-y-auto">
+          <h3 class="text-2xl font-bold text-google-text mb-2">Complete Profile</h3>
+          <p class="text-sm text-google-text-light mb-4">Register your details to access the AI tools.</p>
+          <div class="space-y-4">
+              <div>
+                  <label class="block text-sm font-medium text-google-text mb-1">Full Name</label>
+                  <input type="text" id="emp-reg-name" class="w-full px-4 py-2 border border-google-border rounded-lg outline-none focus:ring-2 focus:ring-google-blue">
+              </div>
+              <div>
+                  <label class="block text-sm font-medium text-google-text mb-1">Mobile No.</label>
+                  <input type="text" id="emp-reg-mobile" class="w-full px-4 py-2 border border-google-border rounded-lg outline-none focus:ring-2 focus:ring-google-blue">
+              </div>
+              <div>
+                  <label class="block text-sm font-medium text-google-text mb-1">Email</label>
+                  <input type="email" id="emp-reg-email" class="w-full px-4 py-2 border border-google-border rounded-lg outline-none focus:ring-2 focus:ring-google-blue">
+              </div>
+              <div>
+                  <label class="block text-sm font-medium text-google-text mb-1">Address</label>
+                  <textarea id="emp-reg-address" class="w-full px-4 py-2 border border-google-border rounded-lg outline-none focus:ring-2 focus:ring-google-blue h-20 resize-none"></textarea>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium text-google-text mb-1">Profile Image</label>
+                  <input type="file" id="emp-reg-image" accept="image/*" class="w-full text-sm">
+              </div>
+              <button onclick="submitEmpRegistration()" id="emp-reg-btn" class="w-full bg-google-blue text-white font-bold py-3 rounded-full hover:bg-google-blue-dark transition-colors">Save & Continue</button>
+          </div>
+      </div>
+  </div>
+  <!-- END: EMPLOYEE REGISTRATION MODAL -->
+
+  <!-- BEGIN: EMPLOYEE AI DASHBOARD OVERLAY -->
+  <div id="emp-dashboard-container" class="hidden fixed inset-0 z-[300] bg-[#0f2027] overflow-y-auto ai-qualifier-scope">
+      <button onclick="closeEmpDashboard()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors z-[310] backdrop-blur-md">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      
+      <!-- AI LEAD QUALIFIER TOOL -->
+      <div class="ai-container">
+          
+          <!-- Screen 1: Home -->
+          <div id="screen-home" class="screen active-screen">
+              <div style="text-align: center; font-size: 50px; margin-bottom: -10px;">🎯</div>
+              <h2>AI Lead Qualifier</h2>
+              <p>Convert leads into clients with data-driven, personalized action plans. Enter client details to begin.</p>
+              
+              <div class="input-group">
+                  <label>Client Name:</label>
+                  <input type="text" id="clientName" placeholder="e.g. Rohan Sharma" required>
+              </div>
+              <div class="input-group">
+                  <label>Client Mobile Number:</label>
+                  <input type="number" id="clientNumber" placeholder="e.g. 9876543210" required>
+              </div>
+              
+              <button class="ai-btn" onclick="startAssessment()">Analyze Lead 🚀</button>
+              <button class="ai-btn btn-secondary" onclick="showDashboard()">View Dashboard 🏆</button>
+          </div>
+
+          <!-- Screen 2: Questions -->
+          <div id="screen-questions" class="screen">
+              <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+              <h3 id="stepTitle" style="color:#0fb9b1; font-size:18px; text-transform:uppercase;">Step 1</h3>
+              <div id="questionsContainer"></div>
+              <div class="btn-group">
+                  <button class="ai-btn btn-secondary" id="btnPrev" onclick="prevStep()">⬅ Back</button>
+                  <button class="ai-btn" id="btnNext" onclick="nextStep()">Next ➡</button>
+              </div>
+          </div>
+
+          <!-- Screen 3: The "Analyzing" Loader -->
+          <div id="screen-loading" class="screen">
+              <div class="loader-container">
+                  <div class="loader"></div>
+                  <h2>Generating Action Plan...</h2>
+                  <p style="color:#0fb9b1; font-weight:bold;">Crafting Personalized Follow-up ✍️</p>
+                  <p>Analyzing psychological triggers and buying intent...</p>
+              </div>
+          </div>
+
+          <!-- Screen 4: The Result -->
+          <div id="screen-result" class="screen">
+              <div id="resultCard" class="result-card">
+                  <div class="score-circle" id="resultScore">0</div>
+                  <div class="status-title" id="resultStatus">HOT LEAD</div>
+                  
+                  <div class="action-box">
+                      <p><strong>🗓️ Next Action:</strong> Follow up on <strong id="followupDate"></strong></p>
+                      <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
+                      <p><strong>✍️ Personalized Message:</strong></p>
+                      <p id="generatedMessage" style="font-size: 13px; text-align:left; line-height:1.6;"></p>
+                  </div>
+
+                  <div class="action-box" id="skippedContainer" style="display:none;">
+                       <p><strong>⚠️ Information Gaps (Skipped Questions):</strong></p>
+                       <ul id="skippedList" class="skipped-list"></ul>
+                  </div>
+              </div>
+              
+              <button class="ai-btn mt-4" onclick="saveLead()">Save to Dashboard 💾</button>
+              <button class="ai-btn btn-secondary" onclick="resetAiForm()">Qualify New Lead 🔄</button>
+          </div>
+
+          <!-- Screen 5: Dashboard -->
+          <div id="screen-dashboard" class="screen">
+              <h2 style="color:#0fb9b1;">🏆 Sales Dashboard</h2>
+              
+              <div class="dashboard-section">
+                  <h3>🔥 Today's High-Priority Follow-ups</h3>
+                  <div id="todaysFollowupsList"></div>
+              </div>
+
+              <div class="dashboard-section">
+                  <h3>📊 All Leads Leaderboard</h3>
+                  <div id="dashboardList" style="max-height: 250px; overflow-y: auto; padding-right:5px;"></div>
+              </div>
+              
+              <div class="btn-group">
+                  <button class="ai-btn" onclick="resetAiForm()">Back to Home 🏠</button>
+                  <button class="ai-btn btn-secondary" onclick="clearData()" style="background:#ff4757 !important;">Reset All Data 🗑</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!-- END: EMPLOYEE AI DASHBOARD OVERLAY -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/1.10.5/cld-video-player.min.js"></script>
   
@@ -1045,13 +1269,454 @@
         }
       }
     }
+
+    // =========================================================================
+    // BEGIN: EMPLOYEE DASHBOARD & AI QUALIFIER LOGIC
+    // =========================================================================
+
+    const EMP_PASSWORD = "Buildo@1233";
+    const IMGBB_API_KEY = "fd8aac95aef4d58beb74e4df53c545df";
+
+    function openEmployeeAuth(e) {
+        if(e) e.preventDefault();
+        document.getElementById('emp-auth-modal').classList.remove('hidden');
+    }
+
+    function closeEmpAuth() {
+        document.getElementById('emp-auth-modal').classList.add('hidden');
+        document.getElementById('emp-password').value = '';
+        document.getElementById('emp-auth-error').classList.add('hidden');
+    }
+
+    function verifyEmpAuth() {
+        const pwd = document.getElementById('emp-password').value;
+        if(pwd === EMP_PASSWORD) {
+            closeEmpAuth();
+            const empId = localStorage.getItem('buildo_empId');
+            if(empId) {
+                openEmpDashboard();
+            } else {
+                document.getElementById('emp-reg-modal').classList.remove('hidden');
+            }
+        } else {
+            document.getElementById('emp-auth-error').classList.remove('hidden');
+        }
+    }
+
+    async function submitEmpRegistration() {
+        const btn = document.getElementById('emp-reg-btn');
+        const name = document.getElementById('emp-reg-name').value.trim();
+        const mobile = document.getElementById('emp-reg-mobile').value.trim();
+        const email = document.getElementById('emp-reg-email').value.trim();
+        const address = document.getElementById('emp-reg-address').value.trim();
+        const fileInput = document.getElementById('emp-reg-image');
+
+        if(!name || !mobile || !email || !address) {
+            alert("Please fill all details.");
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "Saving...";
+
+        let imageUrl = "";
+        if(fileInput.files.length > 0) {
+            btn.innerText = "Uploading Image...";
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+            try {
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                if(data.success) {
+                    imageUrl = data.data.url;
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        btn.innerText = "Saving Profile...";
+        
+        const empId = "EMP_" + Date.now();
+        
+        try {
+            if(window.firebaseDB && window.firebaseSet && window.firebaseRef) {
+                await window.firebaseSet(window.firebaseRef(window.firebaseDB, 'employees/' + empId), {
+                    name, mobile, email, address, image: imageUrl, joinedAt: new Date().toISOString()
+                });
+                localStorage.setItem('buildo_empId', empId);
+                document.getElementById('emp-reg-modal').classList.add('hidden');
+                openEmpDashboard();
+            } else {
+                alert("Database connection pending. Please wait a moment and try again.");
+            }
+        } catch(e) {
+            console.error(e);
+            alert("Error saving profile. " + e.message);
+        }
+        
+        btn.disabled = false;
+        btn.innerText = "Save & Continue";
+    }
+
+    function openEmpDashboard() {
+        document.getElementById('emp-dashboard-container').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        resetAiForm();
+    }
+
+    function closeEmpDashboard() {
+        document.getElementById('emp-dashboard-container').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // --- AI QUALIFIER TOOL LOGIC ---
+    const allSteps = [
+        {
+            title: "Step 1: Intent & Problem",
+            questions: [
+                { id: "s0_q0", q: "Why are they looking for a solution?", h: "वो सलूशन क्यों ढूंढ रहे हैं?", options: [{t: "Critical pain/loss happening", s: 10}, {t: "Want to improve/grow", s: 7}, {t: "Just browsing", s: 2}] },
+                { id: "s0_q1", q: "How urgently do they need it?", h: "उन्हें इसकी कितनी जल्दी जरुरत है?", options: [{t: "Immediately (0-15 Days)", s: 10}, {t: "1-3 Months", s: 6}, {t: "No strict timeline", s: 2}] },
+                { id: "s0_q2", q: "Did they explicitly state their problem?", h: "क्या उन्होंने अपनी समस्या साफ-साफ बताई?", options: [{t: "Yes, very clearly", s: 10}, {t: "Vague idea", s: 5}, {t: "Don't know the problem", s: 0}] },
+            ]
+        },
+        {
+            title: "Step 2: Purchase Readiness",
+            questions: [
+                { id: "s1_q0", q: "Budget Availability?", h: "क्या उनके पास बजट है?", options: [{t: "Budget Approved & Ready", s: 10}, {t: "Planning Stage", s: 6}, {t: "No Budget", s: 0}] },
+                { id: "s1_q1", q: "Decision Maker Status?", h: "क्या वो खुद फैसला ले सकते हैं?", options: [{t: "Final Decision Maker (CEO/Owner)", s: 10}, {t: "Influencer/Manager", s: 5}, {t: "Junior/No Authority", s: 0}] },
+                { id: "s1_q2", q: "Are they ready to discuss pricing?", h: "क्या वो कीमत डिस्कस करने को तैयार हैं?", options: [{t: "Yes, actively asking", s: 10}, {t: "Wait & Watch", s: 5}, {t: "Ignoring price talk", s: 0}] },
+            ]
+        },
+        {
+            title: "Step 3: Awareness & Engagement",
+            questions: [
+                { id: "s2_q0", q: "Do they know about your brand?", h: "क्या वो आपके ब्रांड को पहले से जानते हैं?", options: [{t: "Yes, regular follower/fan", s: 10}, {t: "Heard the name", s: 5}, {t: "First time interaction", s: 0}] },
+                { id: "s2_q1", q: "How responsive are they on Calls/WhatsApp?", h: "कॉल/मैसेज पर उनका रिस्पांस कैसा है?", options: [{t: "Instant/Fast replies", s: 10}, {t: "Replies late", s: 5}, {t: "Ignores/Ghosts", s: 0}] },
+                { id: "s2_q2", q: "Have they consumed your content?", h: "क्या उन्होंने आपकी वीडियो/वेबसाइट देखी है?", options: [{t: "Yes, multiple times", s: 10}, {t: "Once or twice", s: 5}, {t: "Never", s: 0}] }
+            ]
+        },
+        {
+            title: "Step 4: Competitor & Fit",
+            questions: [
+                { id: "s3_q0", q: "Are they evaluating other vendors?", h: "क्या वो दूसरों से भी रेट ले रहे हैं?", options: [{t: "Only talking to us (Exclusive)", s: 10}, {t: "Evaluating 1-2 others", s: 5}, {t: "Shopping for lowest price", s: 0}] },
+                { id: "s3_q1", q: "Price Negotiation Level?", h: "भाव-ताव कितना कर रहे हैं?", options: [{t: "Focused on Value/Quality", s: 10}, {t: "Standard discount asked", s: 6}, {t: "Unrealistic cheap demands", s: -5}] },
+                { id: "s3_q2", q: "Does their industry match your Ideal Profile?", h: "क्या उनका बिज़नेस आपकी सर्विस के लिए सही है?", options: [{t: "Perfect Match (Bullseye)", s: 10}, {t: "Partial Match", s: 6}, {t: "Irrelevant", s: 0}] },
+            ]
+        },
+        {
+            title: "Step 5: Final Gut Check",
+            questions: [
+                { id: "s4_q0", q: "Trust factor towards you?", h: "आप पर कितना भरोसा दिखा रहे हैं?", options: [{t: "High Trust (Treats like partner)", s: 10}, {t: "Testing the waters", s: 5}, {t: "Low Trust/Doubtful", s: 0}] },
+                { id: "s4_q1", q: "Gut feeling of the Salesperson?", h: "सेल्समैन (आपको) अंदर से क्या लग रहा है?", options: [{t: "Will definitely close! 100%", s: 10}, {t: "50-50 chances", s: 5}, {t: "Waste of time", s: 0}] }
+            ]
+        }
+    ];
+
+    let currentStep = 0;
+    let answers = {};
+    let clientInfo = {};
+    let finalResultData = {};
+    let localAiLeads = []; // Mirrors Firebase data
+
+    const MAX_POSSIBLE_SCORE = allSteps.flatMap(s => s.questions).reduce((sum, q) => sum + Math.max(...q.options.map(o => o.s)), 0);
+
+    function showScreen(id) {
+        document.querySelectorAll('.ai-qualifier-scope .screen').forEach(s => s.classList.remove('active-screen'));
+        document.getElementById(id).classList.add('active-screen');
+    }
+
+    function resetAiForm() {
+        document.getElementById('clientName').value = '';
+        document.getElementById('clientNumber').value = '';
+        currentStep = 0;
+        answers = {};
+        clientInfo = {};
+        finalResultData = {};
+        showScreen('screen-home');
+        document.getElementById('emp-dashboard-container').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startAssessment() {
+        const name = document.getElementById('clientName').value.trim();
+        const number = document.getElementById('clientNumber').value.trim();
+        if (name.length < 2 || number.length < 5) {
+            alert("⚠️ Please enter a valid client name and number!");
+            return;
+        }
+        clientInfo = { name, number };
+        currentStep = 0;
+        answers = {};
+        loadStep();
+        showScreen('screen-questions');
+    }
+
+    function loadStep() {
+        const stepData = allSteps[currentStep];
+        document.getElementById('stepTitle').innerText = stepData.title;
+        
+        let html = "";
+        stepData.questions.forEach((q, qIndex) => {
+            html += `<div class="question-box">
+                        <div class="question-text">${currentStep + 1}.${qIndex + 1} ${q.q}</div>
+                        <span class="hindi-text">${q.h}</span>
+                        <div class="options-container">`;
+            q.options.forEach((opt, oIndex) => {
+                const isSelected = answers[q.id]?.value === opt.s;
+                html += `<label class="option-label ${isSelected ? 'selected' : ''}" onclick="selectOption(this, '${q.id}')">
+                            <input type="radio" name="${q.id}" value="${opt.s}" data-text="${opt.t}" ${isSelected ? 'checked' : ''}> 
+                            <span class="option-text">${opt.t}</span>
+                         </label>`;
+            });
+            html += `</div></div>`;
+        });
+        
+        document.getElementById('questionsContainer').innerHTML = html;
+        document.getElementById('btnPrev').style.display = currentStep === 0 ? "none" : "block";
+        document.getElementById('btnNext').innerText = currentStep === allSteps.length - 1 ? "Generate AI Plan 🧬" : "Next ➡";
+        
+        const progress = ((currentStep) / allSteps.length) * 100;
+        document.getElementById('progressBar').style.width = progress + "%";
+        document.getElementById('emp-dashboard-container').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectOption(element, groupName) {
+        document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+            radio.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+    }
+
+    function nextStep() {
+        allSteps[currentStep].questions.forEach(q => {
+            const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+            if (selected) {
+                answers[q.id] = {
+                    value: parseInt(selected.value),
+                    text: selected.getAttribute('data-text'),
+                    question: q.q
+                };
+            }
+        });
+
+        if (currentStep < allSteps.length - 1) {
+            currentStep++;
+            loadStep();
+        } else {
+            showScreen('screen-loading');
+            setTimeout(calculateAndShowResult, 2000);
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            currentStep--;
+            loadStep();
+        }
+    }
+
+    function calculateAndShowResult() {
+        let rawScore = Object.values(answers).reduce((sum, ans) => sum + ans.value, 0);
+        let normalizedScore = Math.max(1, Math.min(100, Math.round((rawScore / MAX_POSSIBLE_SCORE) * 100)));
+
+        let category, statusText, cardClass;
+        if (normalizedScore >= 75) {
+            category = "HOT"; statusText = "DIAMOND LEAD 🔥"; cardClass = "hot";
+        } else if (normalizedScore >= 40) {
+            category = "WARM"; statusText = "GOLD LEAD 🌤️"; cardClass = "warm";
+        } else {
+            category = "COLD"; statusText = "SILVER LEAD ❄️"; cardClass = "cold";
+        }
+
+        const { message, followupDate } = generateDynamicContent(category, answers);
+        const skipped = findSkippedQuestions();
+
+        const resultCard = document.getElementById('resultCard');
+        resultCard.className = "result-card " + cardClass;
+        document.getElementById('resultScore').innerText = normalizedScore;
+        document.getElementById('resultStatus').innerText = statusText;
+        document.getElementById('followupDate').innerText = followupDate.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        document.getElementById('generatedMessage').innerText = message;
+
+        if (skipped.length > 0) {
+            document.getElementById('skippedContainer').style.display = 'block';
+            document.getElementById('skippedList').innerHTML = skipped.map(q => `<li>${q}</li>`).join('');
+        } else {
+            document.getElementById('skippedContainer').style.display = 'none';
+        }
+
+        finalResultData = {
+            id: Date.now(),
+            name: clientInfo.name,
+            phone: clientInfo.number,
+            score: normalizedScore,
+            category: category,
+            message: message,
+            followUpDate: followupDate.toISOString(), 
+            skipped: skipped
+        };
+
+        showScreen('screen-result');
+        document.getElementById('emp-dashboard-container').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function generateDynamicContent(category, ans) {
+        let message = `Hello ${clientInfo.name},\n\n`;
+        let followupDate = new Date();
+        
+        let base = {
+            HOT: "Following up on our conversation, it's clear there's a strong potential for us to achieve great results together. ",
+            WARM: "I've been thinking about our conversation and wanted to share some thoughts on how we can help you move forward. ",
+            COLD: "Just wanted to touch base and keep you in the loop. When you're ready to explore this further, we're here to help. "
+        };
+        message += base[category];
+        
+        if (ans['s0_q0']?.value === 10) message += "I understand the urgency and the critical challenges you're facing, and I'm confident our solution is designed to address exactly that. ";
+        if (ans['s1_q1']?.value === 10) message += "As you are the key decision-maker, I want to ensure you have all the information needed to make the best choice. ";
+        if (ans['s3_q1']?.value === 10) message += "I appreciate your focus on value and long-term results over just the price point. ";
+        if (ans['s4_q0']?.value === 10) message += "The trust you've shown in our process is a fantastic starting point for a successful partnership. ";
+        
+        let closing = {
+            HOT: "Let's connect soon to finalize the next steps. I've sent over the proposal for your review. How does your calendar look tomorrow?",
+            WARM: "I've attached a case study that I think you'll find very relevant. Let's schedule a brief call next week to discuss it.",
+            COLD: "In the meantime, here's a link to our latest blog post with some industry insights. I'll check in again in a couple of weeks."
+        };
+        message += closing[category];
+
+        if (category === "HOT") followupDate.setHours(followupDate.getHours() + 4); 
+        else if (category === "WARM") followupDate.setDate(followupDate.getDate() + 2); 
+        else followupDate.setDate(followupDate.getDate() + 15); 
+        followupDate.setMinutes(Math.random() > 0.5 ? 30 : 0); 
+
+        return { message, followupDate };
+    }
+
+    function findSkippedQuestions() {
+        const allQ_IDs = allSteps.flatMap(s => s.questions.map(q => q.id));
+        const answeredQ_IDs = Object.keys(answers);
+        return allQ_IDs
+            .filter(id => !answeredQ_IDs.includes(id))
+            .map(id => {
+                for (const step of allSteps) {
+                    const found = step.questions.find(q => q.id === id);
+                    if (found) return found.q;
+                }
+            });
+    }
+
+    // FIREBASE SYNCED AI DATA LOGIC
+    async function saveLead() {
+        const empId = localStorage.getItem('buildo_empId');
+        if(!empId) return;
+
+        if(window.firebaseDB && window.firebaseSet && window.firebaseRef) {
+            const existingIndex = localAiLeads.findIndex(l => l.phone === finalResultData.phone);
+            if (existingIndex > -1) {
+                localAiLeads[existingIndex] = finalResultData;
+            } else {
+                localAiLeads.push(finalResultData);
+            }
+            
+            try {
+                await window.firebaseSet(window.firebaseRef(window.firebaseDB, `employee_leads/${empId}`), localAiLeads);
+                showDashboard();
+            } catch(e) {
+                console.error("Error saving lead", e);
+                alert("Failed to sync with database.");
+            }
+        } else {
+            alert("Database not ready.");
+        }
+    }
+
+    async function loadEmployeeLeadsFromFirebase() {
+        const empId = localStorage.getItem('buildo_empId');
+        if(!empId || !window.firebaseDB || !window.firebaseGet || !window.firebaseRef) return [];
+        try {
+            const snapshot = await window.firebaseGet(window.firebaseRef(window.firebaseDB, `employee_leads/${empId}`));
+            if(snapshot.exists()) {
+                localAiLeads = snapshot.val();
+                return localAiLeads;
+            }
+            return [];
+        } catch(e) {
+            console.error(e);
+            return [];
+        }
+    }
+
+    async function showDashboard() {
+        await loadEmployeeLeadsFromFirebase();
+        
+        let leads = [...localAiLeads]; 
+        const today = new Date();
+        today.setHours(23, 59, 59, 999);
+
+        const todaysLeads = leads
+            .filter(lead => new Date(lead.followUpDate) <= today)
+            .sort((a, b) => b.score - a.score);
+
+        let todaysHtml = "";
+        if (todaysLeads.length === 0) {
+            todaysHtml = "<p>No follow-ups scheduled for today. Great job!</p>";
+        } else {
+            todaysLeads.forEach(lead => {
+                todaysHtml += renderLeadItem(lead, new Date(lead.followUpDate).toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}));
+            });
+        }
+        document.getElementById('todaysFollowupsList').innerHTML = todaysHtml;
+
+        leads.sort((a, b) => b.score - a.score);
+        let allLeadsHtml = "";
+        if (leads.length === 0) {
+            allLeadsHtml = "<p>Your leaderboard is empty. Start qualifying leads!</p>";
+        } else {
+            leads.forEach((lead, index) => {
+                 const rankIcon = index === 0 ? "🥇" : (index === 1 ? "🥈" : (index === 2 ? "🥉" : "🔹"));
+                 allLeadsHtml += renderLeadItem(lead, rankIcon, true);
+            });
+        }
+        document.getElementById('dashboardList').innerHTML = allLeadsHtml;
+        showScreen('screen-dashboard');
+        document.getElementById('emp-dashboard-container').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function renderLeadItem(lead, badge, showDate = false) {
+        let badgeClass = lead.category === 'HOT' ? 'bg-hot' : (lead.category === 'WARM' ? 'bg-warm' : 'bg-cold');
+        let dateInfo = showDate ? `<span style="font-size:12px; color:#a4b0be;">Follow-up: ${new Date(lead.followUpDate).toLocaleDateString('en-GB')}</span>` : '';
+         return `<div class="dashboard-item">
+                    <div class="rank-badge">${badge}</div>
+                    <div class="lead-info">
+                        <strong>${lead.name}</strong> (${lead.phone})<br>
+                        ${dateInfo}
+                    </div>
+                    <div class="lead-score ${badgeClass}">${lead.score} <span style="font-size:12px;">Pts</span></div>
+                 </div>`;
+    }
+
+    async function clearData() {
+        if (confirm("⚠️ Are you sure you want to permanently delete all lead data? This cannot be undone.")) {
+            const empId = localStorage.getItem('buildo_empId');
+            if(empId && window.firebaseDB && window.firebaseSet && window.firebaseRef) {
+                await window.firebaseSet(window.firebaseRef(window.firebaseDB, `employee_leads/${empId}`), null);
+                localAiLeads = [];
+                showDashboard();
+            }
+        }
+    }
+    // =========================================================================
+    // END: EMPLOYEE DASHBOARD & AI QUALIFIER LOGIC
+    // =========================================================================
   </script>
 
   <!-- FIREBASE DATA FETCH (USER PANEL) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+    import { getDatabase, ref, onValue, push, set, get } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyB4jDUkGOAtZDzWfQ-KKTPGlLu05NdMQMU",
@@ -1067,6 +1732,14 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getDatabase(app);
+
+    // NEW: Expose Firebase DB methods to window for the Employee logic script
+    window.firebaseDB = db;
+    window.firebaseRef = ref;
+    window.firebaseGet = get;
+    window.firebaseSet = set;
+    window.firebasePush = push;
+    window.firebaseOnValue = onValue;
 
     // FETCH BLOG LINK
     const blogRef = ref(db, 'settings/blog');
