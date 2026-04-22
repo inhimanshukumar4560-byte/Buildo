@@ -1612,6 +1612,9 @@
         const empId = localStorage.getItem('buildo_empId');
         if(!empId) return;
 
+        // **FIX:** Load the most recent data from Firebase before modifying it.
+        await loadEmployeeLeadsFromFirebase();
+
         if(window.firebaseDB && window.firebaseSet && window.firebaseRef) {
             const existingIndex = localAiLeads.findIndex(l => l.phone === finalResultData.phone);
             if (existingIndex > -1) {
@@ -1640,6 +1643,9 @@
             if(snapshot.exists()) {
                 localAiLeads = snapshot.val();
                 return localAiLeads;
+            } else {
+                // If no data exists, ensure localAiLeads is a clean array
+                localAiLeads = []; 
             }
             return [];
         } catch(e) {
