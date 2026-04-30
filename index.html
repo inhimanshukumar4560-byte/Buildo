@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,30 +40,6 @@
             -webkit-text-fill-color: transparent;
         }
         
-        /* Glassmorphism Navbar */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(229, 231, 235, 0.7);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Product Card Apple-Style Hover Zoom Effect */
-        .product-card {
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .product-card img {
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .product-card:hover img {
-            transform: scale(1.15);
-        }
-        .product-card:hover {
-            box-shadow: 0 30px 60px -15px rgba(37, 99, 235, 0.15);
-            transform: translateY(-10px);
-            border-color: rgba(37, 99, 235, 0.3);
-        }
-        
         /* 3D Studio Background for Real Images */
         .studio-bg {
             background: radial-gradient(circle at center, #ffffff 0%, #e2e8f0 100%);
@@ -73,9 +48,9 @@
             justify-content: center;
         }
 
-        /* Hero Dark Overlay */
+        /* Adjusted Hero Dark Overlay for better image visibility */
         .hero-overlay {
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 100%);
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
         }
         
         /* Floating WhatsApp Button Animation */
@@ -85,28 +60,6 @@
         @keyframes bounce-slow {
             0%, 100% { transform: translateY(0); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); }
             50% { transform: translateY(-12px); box-shadow: 0 20px 35px rgba(37, 211, 102, 0.8); }
-        }
-
-        /* Image Showcase Background for VIP Section */
-        .showcase-bg {
-            background: radial-gradient(circle at center, #eff6ff 0%, #ffffff 100%);
-            position: relative;
-            z-index: 1;
-        }
-        .showcase-bg::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, rgba(255,255,255,0) 70%);
-            z-index: -1;
-            animation: pulse-glow 6s infinite alternate;
-        }
-        @keyframes pulse-glow {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.05); opacity: 1; }
         }
 
         /* Full Screen PDF Modals */
@@ -127,38 +80,89 @@
         #mobileMenuSidebar {
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
+        /* Infinite Marquee Animation for Clients */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            background: #ffffff;
+            padding: 20px 0;
+            display: flex;
+        }
+        .marquee-container::before, .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, white 0%, transparent 100%);
+        }
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, white 0%, transparent 100%);
+        }
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* FAQ Animation */
+        .faq-answer {
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Glassmorphism Navbar -->
-    <nav class="fixed w-full z-50 glass-nav py-3">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-14">
-                <!-- Brand Logo Image -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="https://i.ibb.co/mFtLyX0p/IMG-20260430-182240.jpg" alt="Benchtop Innovations Logo" class="h-10 md:h-12 w-auto object-contain">
+    <!-- Dynamic Video Background Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 border-b border-blue-900/30 shadow-2xl" style="height: 90px;">
+        
+        <!-- Full Navbar Video Background -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden z-0 bg-[#0f172a]">
+            <!-- Centered Video (Shifted slightly down using -translate-y-[40%]) -->
+            <video src="https://res.cloudinary.com/dtvrhjtt4/video/upload/v1777560688/km_20260430_1080p_50f_20260430_201841_grix9s.3gp" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%] min-w-full min-h-full w-auto h-auto object-cover object-center opacity-90" autoplay loop muted playsinline></video>
+            
+            <!-- Strategic Overlay: Dark on left & right for reading links, transparent in middle so the logo pops -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-transparent to-[#0f172a]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full relative z-10">
+            <div class="flex justify-between items-center h-full">
+                
+                <!-- Blank Logo Area -->
+                <div class="flex-shrink-0 flex flex-col justify-center cursor-pointer w-40 h-full" onclick="window.scrollTo(0,0)">
                 </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden xl:flex space-x-6 items-center">
-                    <a href="#home" class="text-gray-800 hover:text-blue-600 font-bold text-sm uppercase tracking-wide transition-colors">Home</a>
-                    <a href="#featured" class="text-gray-800 hover:text-blue-600 font-bold text-sm uppercase tracking-wide transition-colors">Featured</a>
-                    <a href="#products" class="text-gray-800 hover:text-blue-600 font-bold text-sm uppercase tracking-wide transition-colors">Products</a>
+                    <a href="#home" class="text-gray-100 hover:text-white font-bold text-sm uppercase tracking-wide transition-colors drop-shadow-md">Home</a>
+                    <a href="#featured" class="text-gray-100 hover:text-white font-bold text-sm uppercase tracking-wide transition-colors drop-shadow-md">Static Box</a>
+                    <a href="#dynamic-featured" class="text-gray-100 hover:text-white font-bold text-sm uppercase tracking-wide transition-colors drop-shadow-md">Dynamic Box</a>
+                    <a href="#solutions" class="text-gray-100 hover:text-white font-bold text-sm uppercase tracking-wide transition-colors drop-shadow-md">Solutions</a>
+                    <a href="#about-mega" class="text-gray-100 hover:text-white font-bold text-sm uppercase tracking-wide transition-colors drop-shadow-md">About Us</a>
                     
-                    <!-- NEW VIP BUTTONS FOR DESKTOP -->
-                    <button onclick="openModal('servicesModal')" class="text-blue-600 hover:text-blue-800 font-black text-sm uppercase tracking-wide transition-colors flex items-center bg-blue-50 px-3 py-1.5 rounded-md border border-blue-100">
+                    <button onclick="openModal('servicesModal')" class="text-blue-300 hover:text-white font-black text-sm uppercase tracking-wide transition-colors flex items-center bg-slate-900/80 hover:bg-slate-800/90 px-4 py-2 rounded-lg border border-blue-500/30 backdrop-blur-sm shadow-lg">
                         <i class="fas fa-file-pdf mr-2"></i> Our Services
                     </button>
-                    <button onclick="openModal('whyUsModal')" class="text-blue-600 hover:text-blue-800 font-black text-sm uppercase tracking-wide transition-colors flex items-center bg-blue-50 px-3 py-1.5 rounded-md border border-blue-100">
-                        <i class="fas fa-star mr-2"></i> Why Choose Us
-                    </button>
 
-                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-blue-500/40 transition-all transform hover:scale-105 border border-blue-400">Get a Quote</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white px-7 py-2.5 rounded-full font-bold shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all transform hover:scale-105 border border-blue-400/50">Get a Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button (3 Lines) -->
-                <button onclick="toggleMobileMenu()" class="xl:hidden flex items-center text-blue-900 text-3xl focus:outline-none hover:text-blue-600 transition-colors">
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="xl:hidden flex items-center text-white text-3xl focus:outline-none hover:text-blue-400 transition-colors drop-shadow-lg">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -166,268 +170,644 @@
     </nav>
 
     <!-- MOBILE SIDEBAR MENU -->
-    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/60 z-[60] hidden transition-opacity opacity-0" onclick="toggleMobileMenu()"></div>
-    <div id="mobileMenuSidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[70] transform translate-x-full flex flex-col">
-        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-            <img src="https://i.ibb.co/mFtLyX0p/IMG-20260430-182240.jpg" alt="Benchtop Innovations Logo" class="h-8 w-auto object-contain">
-            <button onclick="toggleMobileMenu()" class="text-red-500 text-2xl hover:text-red-700 focus:outline-none">
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0" onclick="toggleMobileMenu()"></div>
+    <div id="mobileMenuSidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[70] transform translate-x-full flex flex-col border-l border-blue-100">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-50">
+            <div class="flex flex-col justify-center"></div>
+            <button onclick="toggleMobileMenu()" class="text-blue-600 text-2xl hover:text-blue-800 focus:outline-none bg-blue-50 w-10 h-10 rounded-full flex items-center justify-center ml-auto">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
-            <a href="#home" onclick="toggleMobileMenu()" class="text-gray-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-home w-8 text-blue-500"></i> Home</a>
-            <a href="#featured" onclick="toggleMobileMenu()" class="text-gray-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-star w-8 text-blue-500"></i> Featured</a>
-            <a href="#products" onclick="toggleMobileMenu()" class="text-gray-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-box w-8 text-blue-500"></i> Products</a>
-            <a href="#infrastructure" onclick="toggleMobileMenu()" class="text-gray-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-industry w-8 text-blue-500"></i> Infrastructure</a>
+            <a href="#home" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-home w-8 text-blue-500"></i> Home</a>
+            <a href="#featured" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-star w-8 text-blue-500"></i> Static Box</a>
+            <a href="#dynamic-featured" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-box w-8 text-blue-500"></i> Dynamic Box</a>
+            <a href="#solutions" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-flask w-8 text-blue-500"></i> Solutions</a>
+            <a href="#about-mega" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-building w-8 text-blue-500"></i> About Us</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="text-slate-800 font-bold text-lg uppercase tracking-wide flex items-center"><i class="fas fa-question-circle w-8 text-blue-500"></i> FAQ</a>
             
             <hr class="border-gray-200">
             
-            <!-- PDF Page Links in Mobile Menu -->
             <button onclick="openModal('servicesModal'); toggleMobileMenu();" class="text-left text-blue-700 font-black text-lg uppercase tracking-wide flex items-center bg-blue-50 p-3 rounded-lg border border-blue-100">
                 <i class="fas fa-file-pdf w-8 text-blue-600"></i> Our Services
             </button>
-            <button onclick="openModal('whyUsModal'); toggleMobileMenu();" class="text-left text-blue-700 font-black text-lg uppercase tracking-wide flex items-center bg-blue-50 p-3 rounded-lg border border-blue-100">
-                <i class="fas fa-award w-8 text-blue-600"></i> Why Choose Us
-            </button>
 
-            <a href="tel:+917838287460" class="mt-4 bg-green-500 text-white font-bold py-3 px-4 rounded-lg flex justify-center items-center shadow-lg">
+            <a href="tel:+917838287460" class="mt-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 px-4 rounded-lg flex justify-center items-center shadow-lg shadow-blue-500/30">
                 <i class="fas fa-phone-alt mr-2"></i> Call Now
             </a>
         </div>
     </div>
 
-    <!-- Cinematic Hero Section (Background Image Updated) -->
-    <section id="home" class="relative h-screen flex items-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/8gMMcsKZ/file-000000007f507207a5758d9ebd505ce3.png');">
+    <!-- Cinematic Hero Section -->
+    <section id="home" class="relative h-screen flex items-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/Y7GGM88H/ae78f2d0-9cb1-43d3-a082-6b33416aee85.png');">
         <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full mt-16">
             <div class="max-w-3xl" data-aos="fade-up" data-aos-duration="1200">
-                <div class="inline-block bg-blue-600/20 border border-blue-400/30 backdrop-blur-md text-blue-300 font-bold px-6 py-2 rounded-full mb-6 uppercase tracking-widest text-xs md:text-sm shadow-2xl">
-                    <i class="fas fa-certificate mr-2 text-blue-400"></i> laboratory Furniture, SS Equipment's & Clean Room Partitions
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
-                    Innovating The <br><span class="text-gradient">Future Of Labs</span>
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
+                    Innovative Modular Lab Solutions for Modern Industries
                 </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-light leading-relaxed">
-                    Benchtop Innovations delivers world-class precision laboratory equipment, laboratory Furniture, SS Equipment's & Clean Room Partitions tailored for the highest industry standards.
+                <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-medium leading-relaxed drop-shadow-md">
+                    Design. Manufacture. Install. Transform your workspace with precision-engineered solutions from Benchtop Innovations.
                 </p>
                 <div class="flex flex-wrap gap-5">
                     <button onclick="openModal('servicesModal')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_25px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_rgba(37,99,235,0.8)] transition-all duration-300 text-lg flex items-center border border-blue-400">
                         <i class="fas fa-file-alt mr-3"></i> View Brochure
                     </button>
-                    <a href="tel:+917838287460" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-full transition-all duration-300 text-lg flex items-center shadow-lg">
-                        <i class="fas fa-phone-alt mr-3"></i> +91 78382 87460
+                    <!-- Pre-filled WhatsApp Link -->
+                    <a href="https://wa.me/917838287460?text=Hello%20Benchtop%20Innovations!%20I%20want%20to%20get%20a%20quote.%0A%0A*Name:*%20%0A*Phone%20No:*%20%0A*Address:*%20%0A*Requirement/Info:*%20" target="_blank" class="bg-slate-900/50 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-slate-900 font-bold py-4 px-8 rounded-full transition-all duration-300 text-lg flex items-center shadow-lg">
+                        <i class="fab fa-whatsapp text-2xl mr-3 text-green-400"></i> WhatsApp Us
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Floating Stats Section -->
-    <section class="relative z-20 -mt-20 mx-4 md:mx-auto max-w-6xl" data-aos="fade-up" data-aos-delay="200">
-        <div class="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-t-[6px] border-blue-600 p-8 md:p-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-200 text-center">
-                <div class="px-4 hover:scale-105 transition-transform duration-300 group">
-                    <i class="fas fa-award text-4xl text-blue-600 mb-4 drop-shadow-md group-hover:text-blue-800 transition-colors"></i>
-                    <h3 class="text-4xl font-black text-gray-900 mb-1">Premium</h3>
-                    <p class="text-gray-500 font-bold text-xs uppercase tracking-widest">Quality Guaranteed</p>
-                </div>
-                <div class="px-4 hover:scale-105 transition-transform duration-300 group">
-                    <i class="fas fa-globe-asia text-4xl text-blue-600 mb-4 drop-shadow-md group-hover:text-blue-800 transition-colors"></i>
-                    <h3 class="text-4xl font-black text-gray-900 mb-1">Pan India</h3>
-                    <p class="text-gray-500 font-bold text-xs uppercase tracking-widest">Supply & Support</p>
-                </div>
-                <div class="px-4 hover:scale-105 transition-transform duration-300 group">
-                    <i class="fas fa-certificate text-4xl text-blue-600 mb-4 drop-shadow-md group-hover:text-blue-800 transition-colors"></i>
-                    <h3 class="text-4xl font-black text-gray-900 mb-1">ISO</h3>
-                    <p class="text-gray-500 font-bold text-xs uppercase tracking-widest">Certified Products</p>
-                </div>
-                <div class="px-4 hover:scale-105 transition-transform duration-300 group">
-                    <i class="fas fa-users-cog text-4xl text-blue-600 mb-4 drop-shadow-md group-hover:text-blue-800 transition-colors"></i>
-                    <h3 class="text-4xl font-black text-gray-900 mb-1">100%</h3>
-                    <p class="text-gray-500 font-bold text-xs uppercase tracking-widest">Client Satisfaction</p>
-                </div>
-            </div>
+    <!-- VIP Featured Section (Static Pass Box) -->
+    <section id="featured" class="py-24 bg-gray-50 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+            <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
         </div>
-    </section>
 
-    <!-- VIP Featured Section (Signature Product) -->
-    <section id="featured" class="py-28 bg-white relative overflow-hidden border-b border-gray-100">
-        <!-- Background decorative element -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-blue-50 opacity-70 blur-3xl"></div>
-        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <!-- Text Content -->
-                <div class="lg:w-1/2" data-aos="fade-right">
-                    <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-4 block flex items-center bg-blue-50 w-max px-4 py-2 rounded-full border border-blue-100">
-                        <i class="fas fa-star text-yellow-500 mr-2"></i> Signature Product
-                    </span>
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">Next-Generation <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Benchtop Equipment</span></h2>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed font-medium">
-                        Experience unparalleled precision and absolute safety with our flagship laboratory and industrial equipment. Meticulously designed by Benchtop Innovations to meet modern technological demands and stringent safety standards.
-                    </p>
-                    
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center text-gray-800 font-bold text-lg bg-white shadow-sm p-4 rounded-xl border border-gray-100 hover:border-blue-300 transition-colors">
-                            <div class="bg-green-100 p-2 rounded-full mr-4"><i class="fas fa-check text-green-600 text-xl"></i></div> Advanced Airflow & Safety Technology
-                        </li>
-                        <li class="flex items-center text-gray-800 font-bold text-lg bg-white shadow-sm p-4 rounded-xl border border-gray-100 hover:border-blue-300 transition-colors">
-                            <div class="bg-green-100 p-2 rounded-full mr-4"><i class="fas fa-check text-green-600 text-xl"></i></div> ISO Certified High-Grade Manufacturing
-                        </li>
-                        <li class="flex items-center text-gray-800 font-bold text-lg bg-white shadow-sm p-4 rounded-xl border border-gray-100 hover:border-blue-300 transition-colors">
-                            <div class="bg-green-100 p-2 rounded-full mr-4"><i class="fas fa-check text-green-600 text-xl"></i></div> Ultimate Durability & Smart Controls
-                        </li>
-                    </ul>
-                    
-                    <a href="https://wa.me/917838287460" target="_blank" class="inline-flex items-center justify-center bg-gray-900 hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition-all duration-300 text-lg transform hover:-translate-y-1">
-                        Inquire Now <i class="fas fa-paper-plane ml-3"></i>
-                    </a>
-                </div>
-                
-                <!-- VIP Image Display Area -->
-                <div class="lg:w-1/2 w-full" data-aos="fade-left">
-                    <div class="relative showcase-bg p-8 md:p-12 rounded-[2rem] shadow-[0_20px_60px_rgba(37,99,235,0.15)] border border-white group overflow-hidden">
-                        <!-- Badge -->
-                        <div class="absolute top-6 right-6 bg-gradient-to-br from-red-500 to-red-700 text-white w-24 h-24 flex flex-col items-center justify-center rounded-full font-black shadow-2xl z-20 border-4 border-white transform group-hover:rotate-12 transition-transform duration-500">
-                            <span class="text-2xl leading-none">#1</span>
-                            <span class="text-[10px] uppercase tracking-wider mt-1">Best Seller</span>
-                        </div>
-                        
-                        <!-- First Image Provided -->
-                        <img src="https://i.ibb.co/KpnHgSmf/file-00000000e0a872078387aa87af11d960.png" alt="Benchtop Innovations Equipment" class="w-full h-auto object-contain relative z-10 transform group-hover:scale-110 transition duration-700 drop-shadow-[0_25px_25px_rgba(0,0,0,0.3)]">
-                        
-                        <!-- Floating Glass Card Info -->
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-xl border border-gray-100 p-5 rounded-2xl shadow-xl z-20 flex justify-between items-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                            <div>
-                                <h4 class="font-black text-gray-900 text-lg">Pro-Series Workstation</h4>
-                                <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mt-1">Benchtop Innovations</p>
-                            </div>
-                            <div class="bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg">
-                                <i class="fas fa-shield-alt text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- General Products Section -->
-    <section id="products" class="py-24 bg-[#f1f5f9]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Our Premium Equipment</span>
-                <h2 class="text-4xl md:text-5xl font-black text-gray-900 drop-shadow-sm">Explore Our Range</h2>
+            <div class="text-center mb-10" data-aos="fade-down">
+                <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Premium Equipment Spotlight</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 drop-shadow-sm">Featured Innovation</h2>
                 <div class="w-24 h-2 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-6 rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                
-                <!-- Product Card 1 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden product-card border border-gray-100 relative group flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute top-5 left-5 bg-blue-600 text-white text-xs font-black px-4 py-1.5 rounded-full z-10 uppercase tracking-widest shadow-lg">New Arrival</div>
-                    <!-- Studio Background for product PNG -->
-                    <div class="studio-bg relative h-72 w-full p-8 overflow-hidden border-b border-gray-100">
-                        <img src="https://i.ibb.co/fYVCb6RS/file-00000000b60471fa8366a920b90bcad9.png" alt="Advanced Lab Workstation" class="w-full h-full object-contain drop-shadow-2xl relative z-10">
-                        <!-- Decorative background circle -->
-                        <div class="absolute w-40 h-40 bg-blue-100 rounded-full blur-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
-                    </div>
-                    <div class="p-8 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h4 class="text-2xl font-black text-gray-900 mb-3">Advanced Workstations</h4>
-                            <p class="text-gray-600 mb-6 leading-relaxed font-medium">State-of-the-art laboratory safety workstations designed to isolate hazardous materials and ensure supreme operator protection.</p>
-                        </div>
-                        <a href="https://wa.me/917838287460" class="inline-flex items-center text-blue-600 font-black hover:text-blue-800 bg-blue-50 w-max px-5 py-2.5 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                            Request Quote <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                        </a>
+            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden flex flex-col lg:flex-row w-full group transition-all duration-500 hover:shadow-[0_30px_60px_rgba(37,99,235,0.15)]">
+                <div class="w-full lg:w-5/12 p-6 lg:p-10 flex justify-center items-center bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] relative overflow-hidden" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="relative w-full max-w-[350px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-white z-10">
+                        <img src="https://i.ibb.co/tTTtBmR3/IMG-20260430-204948.jpg" alt="Static Pass Box" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="bg-white rounded-[2rem] overflow-hidden product-card border border-gray-100 relative group flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                    <!-- Studio Background for product PNG -->
-                    <div class="studio-bg relative h-72 w-full p-8 overflow-hidden border-b border-gray-100">
-                        <img src="https://i.ibb.co/sYh6GsT/file-00000000b88871faac4637416086f477.png" alt="Industrial Fume Hood" class="w-full h-full object-contain drop-shadow-2xl relative z-10">
-                        <div class="absolute w-40 h-40 bg-blue-100 rounded-full blur-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
-                    </div>
-                    <div class="p-8 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h4 class="text-2xl font-black text-gray-900 mb-3">Premium Fume Hoods</h4>
-                            <p class="text-gray-600 mb-6 leading-relaxed font-medium">Heavy-duty industrial fume hoods built to withstand extreme chemical environments while maintaining perfect airflow dynamics.</p>
+                <div class="w-full lg:w-7/12 p-8 lg:p-12 flex flex-col justify-center bg-white relative" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full opacity-50 z-0"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">STATIC <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">PASS BOX</span></h3>
+                        <p class="text-gray-600 text-base mb-4 leading-relaxed font-medium">
+                            <span class="font-bold text-blue-600">Benchtop Innovations</span> brings you a range of Static Pass Box Units that offer proven protection for samples and processes. The interlocking door mechanism is the prime feature of a pass box—when the door on one side is open, the door on the other side remains closed.
+                        </p>
+                        <p class="text-gray-600 text-base mb-6 leading-relaxed font-medium">
+                            A pass box is designed in two different types: static and dynamic. It is the user-specific requirement that decides the right design configuration.
+                        </p>
+                        <div class="bg-blue-50/50 border-l-4 border-blue-600 p-5 rounded-r-xl mb-6 shadow-sm">
+                            <h4 class="font-black text-gray-900 text-sm uppercase tracking-widest mb-2 flex items-center">
+                                <i class="fas fa-info-circle text-blue-600 mr-2 text-lg"></i> STATIC PASS BOX:
+                            </h4>
+                            <p class="text-gray-700 text-sm leading-relaxed font-medium">
+                                A static pass box is fitted between two cleanroom areas and has no air supply or extract system. It is also known as a passive pass box and is equipped with a UV light.
+                            </p>
                         </div>
-                        <a href="https://wa.me/917838287460" class="inline-flex items-center text-blue-600 font-black hover:text-blue-800 bg-blue-50 w-max px-5 py-2.5 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                            Request Quote <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        <div class="mb-8">
+                            <h4 class="font-black text-gray-900 text-sm uppercase tracking-widest mb-4 flex items-center border-b border-gray-100 pb-2 inline-block">
+                                <i class="fas fa-cogs text-blue-500 mr-2"></i> Construction
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Standard model inner and outer made of 304 stainless steel (SS) with mirror finish (GMP model).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">LED tube light, UV light with indicator.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Electromagnetic interlocking system.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-plus text-blue-600 text-xs"></i></div>
+                                    <span class="text-gray-700 font-bold text-sm leading-relaxed text-blue-900">Optional: <span class="font-medium text-gray-700">Door buzzer, UV light hour meter.</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/917838287460?text=Hello%20Benchtop%20Innovations!%20I%20want%20to%20get%20a%20quote.%0A%0A*Name:*%20%0A*Phone%20No:*%20%0A*Address:*%20%0A*Requirement/Info:*%20" target="_blank" class="inline-flex items-center justify-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-xl shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.4)] transition-all duration-300 text-sm uppercase tracking-widest transform hover:-translate-y-1">
+                            Get A Quote <i class="fas fa-arrow-right ml-3"></i>
                         </a>
                     </div>
                 </div>
-
-                <!-- Product Card 3 (Cleanroom) -->
-                <div class="bg-white rounded-[2rem] overflow-hidden product-card border border-gray-100 relative group flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                    <div class="absolute top-5 left-5 bg-gray-900 text-white text-xs font-black px-4 py-1.5 rounded-full z-10 uppercase tracking-widest shadow-lg">Turnkey Setup</div>
-                    
-                    <div class="studio-bg relative h-72 w-full p-8 overflow-hidden border-b border-gray-100">
-                        <img src="https://i.ibb.co/8nPmPN7s/file-00000000fab871fab27ec0aff7bb58b7.png" alt="Clean Room Architecture" class="w-full h-full object-contain drop-shadow-2xl relative z-10">
-                        <div class="absolute w-40 h-40 bg-gray-200 rounded-full blur-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
-                    </div>
-                    
-                    <div class="p-8 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h4 class="text-2xl font-black text-gray-900 mb-3">Cleanroom Solutions</h4>
-                            <p class="text-gray-600 mb-6 leading-relaxed font-medium">End-to-end cleanroom architecture and construction adhering to strict GMP guidelines for pharmaceutical and research facilities.</p>
-                        </div>
-                        <a href="https://wa.me/917838287460" class="inline-flex items-center text-blue-600 font-black hover:text-blue-800 bg-blue-50 w-max px-5 py-2.5 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                            Request Quote <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </section>
 
-    <!-- Infrastructure & 9:16 VIP Poster Section -->
-    <section id="infrastructure" class="py-28 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-16 items-center justify-between">
-                
-                <!-- 9:16 Aspect Ratio VIP Card -->
-                <div class="lg:w-5/12 relative flex justify-center w-full" data-aos="fade-right">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[3rem] transform -rotate-3 scale-105 opacity-60 shadow-2xl"></div>
-                    <div class="relative w-full max-w-sm aspect-[9/16] rounded-[2.5rem] overflow-hidden border-[8px] border-white shadow-[0_30px_60px_rgba(0,0,0,0.3)] z-10 group bg-gray-900">
-                        <img src="https://i.ibb.co/8gMMcsKZ/file-000000007f507207a5758d9ebd505ce3.png" alt="Premium Industrial Setup" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <span class="bg-blue-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg mb-3 inline-block">Premium Build</span>
-                            <h4 class="text-white text-2xl font-black leading-tight drop-shadow-md">Industrial Excellence <br>Engineered.</h4>
+    <!-- DYNAMIC PASS BOX SECTION -->
+    <section id="dynamic-featured" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-20 right-[-5%] w-[600px] h-[600px] bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+            <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-10" data-aos="fade-down">
+                <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">High-End Engineering</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 drop-shadow-sm">Dynamic Protection</h2>
+                <div class="w-24 h-2 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-blue-50 overflow-hidden flex flex-col lg:flex-row w-full group transition-all duration-500 hover:shadow-[0_30px_60px_rgba(37,99,235,0.15)]">
+                <div class="w-full lg:w-5/12 p-6 lg:p-10 flex justify-center items-center bg-gradient-to-br from-slate-50 to-blue-50/30 relative overflow-hidden" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="relative w-full max-w-[400px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-white z-10 bg-white flex items-center justify-center">
+                        <img src="https://i.ibb.co/PGNmQDHZ/db2352e9-3002-4ee1-ba77-7ef815c6533a-1.jpg" alt="Dynamic Pass Box" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700 ease-in-out p-4">
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-7/12 p-8 lg:p-12 flex flex-col justify-center bg-white relative" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-50 rounded-bl-full opacity-50 z-0"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">DYNAMIC <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">PASS BOX (DPB)</span></h3>
+                        <p class="text-gray-600 text-base mb-8 leading-relaxed font-medium">
+                            A dynamic pass box is installed between classified and non-classified areas. Materials are transferred through vertically HEPA-filtered air to maintain maximum environmental integrity.
+                        </p>
+                        <div class="mb-8">
+                            <h4 class="font-black text-gray-900 text-sm uppercase tracking-widest mb-5 flex items-center border-b-2 border-blue-100 pb-2 inline-block">
+                                <i class="fas fa-layer-group text-blue-600 mr-2"></i> Construction Specifications
+                            </h4>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Standard model inner and outer made of 304 stainless steel (SS) with mirror finish (GMP model).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">LED tube light, UV light with indicator.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Electromagnetic interlocking system.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">HEPA filter (aluminum) with 99.999% efficiency down to 0.001 micron (EU-14 rating) with pre-filter.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Pre-filter made of stainless steel with 95% efficiency down to 5 microns.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Back-curved heavy-duty blower.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Hour meter / Magnehelic pressure gauge (digital/analog).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-50 p-1.5 rounded-full mr-3 mt-0.5"><i class="fas fa-check text-blue-600 text-[10px]"></i></div>
+                                    <span class="text-gray-700 font-medium text-sm leading-relaxed">Noise level less than 70 dB.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50/80 border-l-4 border-blue-600 p-5 rounded-r-xl mb-8 flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+                            <div>
+                                <span class="text-blue-900 font-bold text-sm block mb-1">Optional:</span>
+                                <span class="text-gray-700 text-sm font-medium">Door buzzer, UV light hour meter, indicator lamp.</span>
+                            </div>
+                            <div class="bg-white px-4 py-2 rounded-lg border border-blue-200 shadow-sm whitespace-nowrap flex items-center">
+                                <i class="fas fa-certificate text-blue-600 mr-2"></i> 
+                                <span class="text-slate-900 font-black text-xs uppercase tracking-wide">Cleanliness: Class 100, CE & ISO certified</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/917838287460?text=Hello%20Benchtop%20Innovations!%20I%20want%20to%20get%20a%20quote.%0A%0A*Name:*%20%0A*Phone%20No:*%20%0A*Address:*%20%0A*Requirement/Info:*%20" target="_blank" class="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-xl shadow-[0_10px_20px_rgba(37,99,235,0.2)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.4)] transition-all duration-300 text-sm uppercase tracking-widest transform hover:-translate-y-1 w-max">
+                            Request Quote <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR SOLUTIONS SECTION (NEW 16:9 CARDS GRID) -->
+    <section id="solutions" class="py-24 bg-[#f8fafc] relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">OUR SOLUTIONS</span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 drop-shadow-sm max-w-4xl mx-auto">Smart innovations designed for your unique requirements</h2>
+                <div class="w-24 h-2 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Card 1 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/pj5N3XMj/Whisk-6842add41256781903a48a590bd592c5dr.png" alt="Standard Laboratory Benches" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">Standard Laboratory Benches</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Heavy-duty, fixed laboratory benches built for maximum stability and durability. Ideal for demanding environments where strength and reliability are essential.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-32">
+                        <img src="https://i.ibb.co/5xLkYh40/Whisk-4bb604ee893299184e74a48368aa3405dr.png" alt="Modular Laboratory Furniture" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">🔸 Modular Laboratory Furniture</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Upgrade your lab with flexible, modular furniture systems designed for safety, efficiency, and long-term use. Our solutions include workstations, lab tables, fume hoods, and storage units that can be easily reconfigured as your requirements grow.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/XZ7XtDkC/Whisk-152b5d613f393879ec543f2140a97d47dr.png" alt="Fume Hood Systems" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">Fume Hood Systems</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">High-performance fume hoods designed to ensure operator safety and contamination control. Engineered for efficient airflow and safe chemical handling.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/G4y2h1p5/4e703001-7dfe-44b7-ad63-9f310f02d841.png" alt="Storage & Organization Solutions" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">Storage & Organization Solutions</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Optimize your space with durable and practical storage systems. Designed for easy access, safety, and efficient lab management.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/jPQWZQ3M/Whisk-9203c1deaa53ced937244ff093eec2ebdr.png" alt="Educational Lab Solutions" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">Educational Lab Solutions</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Functional and durable lab setups tailored for schools, colleges, and training institutes. Designed to enhance learning with safe and user-friendly environments.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/rGNYFhY4/Whisk-5152cbba88de40cbe5742140e17533fedr.png" alt="Office & Workspace Furniture" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">Office & Workspace Furniture</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Modern office furniture solutions that combine comfort, durability, and professional aesthetics to improve productivity.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/4n9wQmw5/b711e1a9-4d99-44a4-8de5-e913eadb05ac.png" alt="Cleanroom Equipment" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">🔸 Cleanroom Equipment</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Advanced cleanroom systems designed for industries requiring strict contamination control. Built to meet international standards with precision-engineered components.</p>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="relative w-full aspect-video bg-white rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] transition-all duration-500 border border-blue-50 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-slate-50 flex items-center justify-center p-6 pb-28">
+                        <img src="https://i.ibb.co/d3R9ddM/Whisk-a0c2e3228ef3ebc8e2840ca53884b1f9dr.png" alt="Custom & Specialized Solutions" class="w-full h-full object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-100 p-5 rounded-2xl shadow-lg transform transition-transform duration-300">
+                        <h4 class="text-lg font-black text-slate-900 mb-2">🔸 Custom & Specialized Solutions</h4>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">From trolleys to specialized lab setups, we design and manufacture customized solutions tailored to your exact requirements.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- NEW MEGA "ABOUT US" SECTION (10-Color Premium Corporate)  -->
+    <!-- ========================================================= -->
+    
+    <div id="about-mega" class="bg-white">
+        <!-- 1. Meet Us & Contact Form Area -->
+        <section class="relative py-28 bg-slate-900 bg-cover bg-center overflow-hidden" style="background-image: url('https://i.ibb.co/TBYMSD5g/aef36a-25f61e18b1a64d99945f05d0b513cd15-mv2.jpg');">
+            <!-- Glassmorphism Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-900/80 to-blue-900/50 backdrop-blur-[2px]"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    
+                    <!-- Left: About Text -->
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <span class="text-teal-400 font-black tracking-widest uppercase text-sm mb-4 block drop-shadow-md">Meet Benchtop Innovations</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight drop-shadow-lg">Precision. Innovation. <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">Reliability.</span></h2>
+                        <p class="text-slate-300 text-lg mb-8 leading-relaxed font-medium">
+                            With an established legacy of excellence, we are a trusted manufacturer of premium modular laboratory furniture. We deliver high-quality, cost-effective solutions tailored specifically for modern industries across India and beyond.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                                <i class="fas fa-flask text-teal-400 text-3xl mb-3 block"></i>
+                                <h4 class="text-white font-bold mb-1">Our Products</h4>
+                                <p class="text-slate-400 text-sm">Workstations, Fume Hoods & Institutional Storage.</p>
+                            </div>
+                            <div class="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                                <i class="fas fa-hospital text-orange-400 text-3xl mb-3 block"></i>
+                                <h4 class="text-white font-bold mb-1">Industries Served</h4>
+                                <p class="text-slate-400 text-sm">Pharma, Hospitals, Education & Deep Research.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Glassmorphism Contact Form -->
+                    <div class="lg:w-1/2 w-full max-w-lg mx-auto" data-aos="fade-left">
+                        <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                            <!-- Decor -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500 rounded-full mix-blend-screen filter blur-[50px] opacity-30"></div>
+                            <div class="absolute bottom-0 left-0 w-32 h-32 bg-orange-500 rounded-full mix-blend-screen filter blur-[50px] opacity-20"></div>
+                            
+                            <h3 class="text-2xl font-black text-white mb-6 relative z-10">Request a Direct Quote</h3>
+                            
+                            <!-- WhatsApp Trigger Form -->
+                            <form onsubmit="sendWhatsAppForm(event)" class="space-y-4 relative z-10">
+                                <div>
+                                    <input type="text" id="waName" placeholder="Full Name *" required class="w-full bg-slate-800/60 focus:bg-white text-white focus:text-slate-900 px-4 py-3 rounded-xl outline-none border border-white/20 focus:border-teal-500 transition-all placeholder-slate-400">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <input type="tel" id="waPhone" placeholder="Phone: 000 000 0000 *" required class="w-full bg-slate-800/60 focus:bg-white text-white focus:text-slate-900 px-4 py-3 rounded-xl outline-none border border-white/20 focus:border-teal-500 transition-all placeholder-slate-400">
+                                    <input type="text" id="waCompany" placeholder="Company Name" class="w-full bg-slate-800/60 focus:bg-white text-white focus:text-slate-900 px-4 py-3 rounded-xl outline-none border border-white/20 focus:border-teal-500 transition-all placeholder-slate-400">
+                                </div>
+                                <div>
+                                    <input type="email" id="waEmail" placeholder="Email: name@domain.com" class="w-full bg-slate-800/60 focus:bg-white text-white focus:text-slate-900 px-4 py-3 rounded-xl outline-none border border-white/20 focus:border-teal-500 transition-all placeholder-slate-400">
+                                </div>
+                                <div>
+                                    <textarea id="waMessage" placeholder="Let us know which product/service you're interested in..." rows="3" required class="w-full bg-slate-800/60 focus:bg-white text-white focus:text-slate-900 px-4 py-3 rounded-xl outline-none border border-white/20 focus:border-teal-500 transition-all placeholder-slate-400"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white font-black py-4 rounded-xl shadow-[0_10px_20px_rgba(20,184,166,0.3)] hover:shadow-[0_10px_25px_rgba(20,184,166,0.5)] transition-all transform hover:-translate-y-1 mt-2">
+                                    Submit via WhatsApp <i class="fab fa-whatsapp ml-2"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 2. Why Choose Us (Premium Features) -->
+        <section class="py-24 bg-[#f8fafc]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-orange-500 font-black tracking-widest uppercase text-sm mb-3 block">Why Choose Benchtop Innovations</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900">Engineering Excellence</h2>
+                </div>
                 
-                <!-- Right Side Text Area -->
-                <div class="lg:w-1/2" data-aos="fade-left">
-                    <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Manufacturing Excellence</span>
-                    <h3 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">World-Class Global Infrastructure</h3>
-                    <p class="text-gray-600 text-lg mb-10 leading-relaxed font-medium">At Benchtop Innovations, we integrate cutting-edge fabrication technology, rigorous quality testing protocols, and expert engineering to manufacture products that you can trust blindly. Quality isn't just an act, it's our culture.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(20,184,166,0.15)] transition-all duration-500 border-b-4 border-teal-500 group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-500 text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-microchip"></i></div>
+                        <h4 class="text-xl font-black text-slate-900 mb-3">Cutting-edge CNC Technology</h4>
+                        <p class="text-slate-600 font-medium leading-relaxed">Precision engineered to micro-millimeter accuracy using advanced robotics and fabrication.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(249,115,22,0.15)] transition-all duration-500 border-b-4 border-orange-500 group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500 text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-tools"></i></div>
+                        <h4 class="text-xl font-black text-slate-900 mb-3">Expert Installation Team</h4>
+                        <p class="text-slate-600 font-medium leading-relaxed">Pan-India delivery combined with flawless on-site execution by trained specialists.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] transition-all duration-500 border-b-4 border-blue-500 group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-lightbulb"></i></div>
+                        <h4 class="text-xl font-black text-slate-900 mb-3">In-house R&D Innovation</h4>
+                        <p class="text-slate-600 font-medium leading-relaxed">Dedicated research team pushing the boundaries of modern cleanroom science.</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.15)] transition-all duration-500 border-b-4 border-slate-900 group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-900 text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-building"></i></div>
+                        <h4 class="text-xl font-black text-slate-900 mb-3">4000+ Projects Completed</h4>
+                        <p class="text-slate-600 font-medium leading-relaxed">A proven track record of outfitting the most sophisticated laboratories nationwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Our Process -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Seamless Execution</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900">Our Workflow Process</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <!-- Connecting Line (Desktop) -->
+                    <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-slate-100 z-0"></div>
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 bg-white border-2 border-gray-100 p-4 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 shadow-lg group-hover:shadow-blue-500/30 transform group-hover:-translate-y-1">
-                                <i class="fas fa-cogs text-2xl"></i>
+                    <div class="relative z-10 text-center group" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="w-24 h-24 mx-auto bg-white border-4 border-blue-100 rounded-full flex items-center justify-center text-blue-600 text-3xl shadow-xl group-hover:border-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">1</div>
+                        <h4 class="text-xl font-black text-slate-900 mt-6 mb-2">Design</h4>
+                        <p class="text-slate-500 font-medium text-sm px-4">Customized 3D blueprinting & ergonomic spatial planning.</p>
+                    </div>
+                    <div class="relative z-10 text-center group" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="w-24 h-24 mx-auto bg-white border-4 border-teal-100 rounded-full flex items-center justify-center text-teal-500 text-3xl shadow-xl group-hover:border-teal-500 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300">2</div>
+                        <h4 class="text-xl font-black text-slate-900 mt-6 mb-2">Manufacture</h4>
+                        <p class="text-slate-500 font-medium text-sm px-4">In-house precise fabrication with strict quality checks.</p>
+                    </div>
+                    <div class="relative z-10 text-center group" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="w-24 h-24 mx-auto bg-white border-4 border-orange-100 rounded-full flex items-center justify-center text-orange-500 text-3xl shadow-xl group-hover:border-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">3</div>
+                        <h4 class="text-xl font-black text-slate-900 mt-6 mb-2">Installation</h4>
+                        <p class="text-slate-500 font-medium text-sm px-4">Rapid deployment & professional assembly at your facility.</p>
+                    </div>
+                    <div class="relative z-10 text-center group" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="w-24 h-24 mx-auto bg-white border-4 border-slate-200 rounded-full flex items-center justify-center text-slate-700 text-3xl shadow-xl group-hover:border-slate-800 group-hover:bg-slate-800 group-hover:text-white transition-all duration-300">4</div>
+                        <h4 class="text-xl font-black text-slate-900 mt-6 mb-2">Support</h4>
+                        <p class="text-slate-500 font-medium text-sm px-4">Long-term maintenance, AMCs, and technical assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Our Story & Certificates -->
+        <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+            <!-- Background Map Overlay -->
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Left: Timeline Story -->
+                    <div data-aos="fade-right">
+                        <span class="text-orange-500 font-black tracking-widest uppercase text-sm mb-3 block">Our Evolution</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mb-10">Driven by a Vision for Perfection</h2>
+                        
+                        <div class="border-l-2 border-slate-700 pl-8 space-y-10 relative">
+                            <div class="relative">
+                                <div class="absolute -left-[41px] bg-blue-500 w-5 h-5 rounded-full border-4 border-slate-900"></div>
+                                <h4 class="text-xl font-black text-white mb-2">The Foundation</h4>
+                                <p class="text-slate-400 font-medium leading-relaxed">Inspired by an IIT-level innovation mindset, our founders set out to revolutionize modular lab infrastructure in India.</p>
                             </div>
-                            <div class="ml-6">
-                                <h4 class="text-xl font-black text-gray-900 mb-2">Precision Engineering</h4>
-                                <p class="text-gray-600 leading-relaxed">Using advanced CNC machinery and robotics to ensure micro-millimeter perfection in every single component.</p>
+                            <div class="relative">
+                                <div class="absolute -left-[41px] bg-teal-500 w-5 h-5 rounded-full border-4 border-slate-900"></div>
+                                <h4 class="text-xl font-black text-white mb-2">Factory Expansion</h4>
+                                <p class="text-slate-400 font-medium leading-relaxed">Scaled manufacturing capabilities with state-of-the-art machinery, allowing massive bespoke orders.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[41px] bg-orange-500 w-5 h-5 rounded-full border-4 border-slate-900"></div>
+                                <h4 class="text-xl font-black text-white mb-2">400+ Complete Labs Built</h4>
+                                <p class="text-slate-400 font-medium leading-relaxed">Achieved a milestone of delivering end-to-end turnkey solutions to top universities and pharmaceutical giants globally.</p>
                             </div>
                         </div>
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 bg-white border-2 border-gray-100 p-4 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 shadow-lg group-hover:shadow-blue-500/30 transform group-hover:-translate-y-1">
-                                <i class="fas fa-shield-check text-2xl"></i>
-                            </div>
-                            <div class="ml-6">
-                                <h4 class="text-xl font-black text-gray-900 mb-2">Strict Quality Control</h4>
-                                <p class="text-gray-600 leading-relaxed">Multi-stage testing parameters before dispatching any equipment to guarantee absolute safety and longevity.</p>
+                    </div>
+
+                    <!-- Right: Trust & Certificates -->
+                    <div data-aos="fade-left">
+                        <div class="bg-slate-800/50 backdrop-blur-md border border-slate-700 p-10 rounded-3xl">
+                            <h3 class="text-2xl font-black text-white mb-8 border-b border-slate-700 pb-4">Certified Quality Assurance</h3>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="flex items-center space-x-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700 hover:border-blue-500 transition-colors">
+                                    <i class="fas fa-award text-blue-500 text-3xl"></i>
+                                    <div>
+                                        <h4 class="text-white font-black text-lg">ISO 9001</h4>
+                                        <p class="text-slate-400 text-xs font-bold uppercase">Certified Standard</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700 hover:border-teal-500 transition-colors">
+                                    <i class="fas fa-check-double text-teal-500 text-3xl"></i>
+                                    <div>
+                                        <h4 class="text-white font-black text-lg">CE Mark</h4>
+                                        <p class="text-slate-400 text-xs font-bold uppercase">European Quality</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700 hover:border-orange-500 transition-colors">
+                                    <i class="fas fa-shield-alt text-orange-500 text-3xl"></i>
+                                    <div>
+                                        <h4 class="text-white font-black text-lg">GMP</h4>
+                                        <p class="text-slate-400 text-xs font-bold uppercase">Compliant</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 bg-slate-900/50 p-4 rounded-xl border border-slate-700 hover:border-green-500 transition-colors">
+                                    <i class="fas fa-industry text-green-500 text-3xl"></i>
+                                    <div>
+                                        <h4 class="text-white font-black text-lg">Make in India</h4>
+                                        <p class="text-slate-400 text-xs font-bold uppercase">Proudly Built</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Our Reach -->
+        <section class="py-24 bg-teal-50 relative overflow-hidden">
+            <!-- Map style graphic background -->
+            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%2314b8a6%22 fill-opacity=%221%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 text-center relative z-10" data-aos="zoom-in">
+                <span class="text-teal-600 font-black tracking-widest uppercase text-sm mb-3 block">Global Footprint</span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-8">Pan-India Presence & International Exports</h2>
+                <p class="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-10">
+                    From the largest pharmaceutical zones in India to prestigious research institutions abroad, our lab equipment drives innovation globally. Supplying superior setups for FMCG, Hospitals, Schools, and Heavy Labs everywhere.
+                </p>
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <span class="bg-white text-slate-800 px-6 py-3 rounded-full font-bold shadow-sm border border-teal-100">🇮🇳 PAN-INDIA</span>
+                    <span class="bg-white text-slate-800 px-6 py-3 rounded-full font-bold shadow-sm border border-teal-100">🌍 GLOBAL EXPORTS</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- NEW: OUR CLIENTS MARQUEE SECTION (FULLY COLORFUL NOW) -->
+    <section class="py-16 bg-white border-t border-gray-100 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
+            <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Trusted By The Best</span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900">Our Esteemed Clients</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+        
+        <div class="marquee-container">
+            <div class="marquee-content flex items-center gap-16 px-8">
+                <!-- Original Set of 10 Logos - REMOVED GRAYSCALE -->
+                <img src="https://i.ibb.co/rr3Qp6d/Untitled-design-15.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/ccZqzLjk/Untitled-design-3.png" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/qYwXGHh7/Untitled-design-11.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/99CchyWT/Untitled-design-2.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/Z60YwVbJ/Untitled-design-1.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/bRY1Nv9x/Untitled-design.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/kgTwCL7P/Untitled-design-19.png" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/KjK4pBtJ/DAV-School-9.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/k62gPGt1/DAV-School-11.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/zTq4hcw7/DAV-School-12.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+
+                <!-- Duplicated Set for Infinite Loop -->
+                <img src="https://i.ibb.co/rr3Qp6d/Untitled-design-15.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/ccZqzLjk/Untitled-design-3.png" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/qYwXGHh7/Untitled-design-11.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/99CchyWT/Untitled-design-2.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/Z60YwVbJ/Untitled-design-1.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/bRY1Nv9x/Untitled-design.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/kgTwCL7P/Untitled-design-19.png" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/KjK4pBtJ/DAV-School-9.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/k62gPGt1/DAV-School-11.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+                <img src="https://i.ibb.co/zTq4hcw7/DAV-School-12.jpg" alt="Client" class="h-20 w-auto object-contain transition-all duration-300 hover:scale-110 drop-shadow-sm">
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS SECTION -->
+    <section id="faq" class="py-24 bg-[#f8fafc] border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <span class="text-blue-600 font-black tracking-widest uppercase text-sm mb-3 block">Got Questions?</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900">Frequently Asked Questions</h2>
+                <div class="w-24 h-2 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none group">
+                        <span class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">What materials are used in your laboratory furniture?</span>
+                        <i class="fas fa-plus text-blue-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 bg-slate-50 px-6 opacity-0">
+                        <p class="py-5 text-gray-600 font-medium leading-relaxed border-t border-gray-100">We use high-grade 304/316 Stainless Steel, CRCA powder-coated sheets, and chemical-resistant phenolic resin tabletops to ensure maximum durability, safety, and full compliance with GMP standards.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="150">
+                    <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none group">
+                        <span class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">Do you provide custom dimensions for lab workstations?</span>
+                        <i class="fas fa-plus text-blue-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 bg-slate-50 px-6 opacity-0">
+                        <p class="py-5 text-gray-600 font-medium leading-relaxed border-t border-gray-100">Yes, absolutely! We specialize in modular and completely custom-built laboratory infrastructure. Our dedicated in-house engineering team works closely with you to tailor solutions specifically to your space requirements and workflow.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none group">
+                        <span class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">Are your cleanroom equipment ISO and CE certified?</span>
+                        <i class="fas fa-plus text-blue-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 bg-slate-50 px-6 opacity-0">
+                        <p class="py-5 text-gray-600 font-medium leading-relaxed border-t border-gray-100">Yes, all our precision cleanroom setups, including Dynamic and Static Pass Boxes, meet rigid Class 100 cleanliness standards and come with complete CE and ISO certifications.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="250">
+                    <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none group">
+                        <span class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">Do you offer pan-India shipping and installation?</span>
+                        <i class="fas fa-plus text-blue-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 bg-slate-50 px-6 opacity-0">
+                        <p class="py-5 text-gray-600 font-medium leading-relaxed border-t border-gray-100">Yes, we seamlessly deliver and install our premium lab and industrial solutions across all of India. Our dedicated team of expert technicians handles the complete on-site installation to ensure everything functions perfectly.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none group">
+                        <span class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">What is the standard warranty on your products?</span>
+                        <i class="fas fa-plus text-blue-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 bg-slate-50 px-6 opacity-0">
+                        <p class="py-5 text-gray-600 font-medium leading-relaxed border-t border-gray-100">We proudly offer a standard 1-year comprehensive warranty covering any manufacturing defects. We also provide optional extended AMC (Annual Maintenance Contract) packages for long-term peace of mind.</p>
                     </div>
                 </div>
             </div>
@@ -435,24 +815,22 @@
     </section>
 
     <!-- Call to Action Banner -->
-    <section class="bg-gradient-to-br from-blue-900 via-gray-900 to-[#020617] py-24 relative overflow-hidden">
+    <section class="bg-gradient-to-br from-blue-900 via-slate-900 to-[#020617] py-24 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
         <div class="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="zoom-in">
-            <h2 class="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-2xl">Equip Your Lab With The Best</h2>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-2xl">Optimize your workspace. Reimagine your operations.</h2>
             <p class="text-blue-100 text-lg md:text-xl mb-12 font-light max-w-3xl mx-auto leading-relaxed">
                 Connect directly with our technical experts to discuss customized specifications and secure the finest quotation tailored to your exact requirements.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <!-- Direct Call Button -->
-                <a href="tel:+917838287460" class="bg-white text-gray-900 font-black py-5 px-10 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-lg w-full sm:w-auto flex items-center justify-center">
+                <a href="tel:+917838287460" class="bg-white text-slate-900 font-black py-5 px-10 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:bg-gray-100 hover:scale-105 transition-all duration-300 text-lg w-full sm:w-auto flex items-center justify-center">
                     <i class="fas fa-phone-volume text-blue-600 mr-3 text-xl"></i> +91 78382 87460
                 </a>
-                <!-- WhatsApp Button -->
-                <a href="https://wa.me/917838287460" target="_blank" class="bg-[#25D366] text-white font-black py-5 px-10 rounded-full shadow-[0_0_30px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] hover:scale-105 transition-all duration-300 text-lg flex items-center justify-center w-full sm:w-auto border border-[#25D366]">
-                    <i class="fab fa-whatsapp text-2xl mr-3"></i> Chat on WhatsApp
+                <a href="https://wa.me/917838287460?text=Hello%20Benchtop%20Innovations!%20I%20want%20to%20get%20a%20quote.%0A%0A*Name:*%20%0A*Phone%20No:*%20%0A*Address:*%20%0A*Requirement/Info:*%20" target="_blank" class="bg-[#25D366] text-white font-black py-5 px-10 rounded-full shadow-[0_0_30px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] hover:scale-105 transition-all duration-300 text-lg flex items-center justify-center w-full sm:w-auto border border-[#25D366]">
+                    <i class="fab fa-whatsapp text-2xl mr-3"></i> Contact Our Experts
                 </a>
             </div>
         </div>
@@ -463,187 +841,154 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="lg:col-span-1">
-                    <a href="#home" class="mb-6 block inline-block bg-white p-2 rounded-lg transition-transform hover:scale-105">
-                        <img src="https://i.ibb.co/mFtLyX0p/IMG-20260430-182240.jpg" alt="Benchtop Innovations Logo" class="h-10 w-auto object-contain">
-                    </a>
                     <p class="text-gray-400 mb-8 leading-relaxed text-sm font-medium">
                         Setting the global benchmark in manufacturing supreme quality laboratory equipment, laboratory Furniture, SS Equipment's & Clean Room Partitions.
                     </p>
                     <div class="flex space-x-3">
-                        <a href="#" class="bg-gray-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all transform hover:-translate-y-1"><i class="fab fa-linkedin-in w-5 text-center text-lg"></i></a>
-                        <a href="#" class="bg-gray-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-400 transition-all transform hover:-translate-y-1"><i class="fab fa-twitter w-5 text-center text-lg"></i></a>
-                        <a href="#" class="bg-gray-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-800 transition-all transform hover:-translate-y-1"><i class="fab fa-facebook-f w-5 text-center text-lg"></i></a>
+                        <a href="#" class="bg-slate-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-600 transition-all transform hover:-translate-y-1"><i class="fab fa-linkedin-in w-5 text-center text-lg"></i></a>
+                        <a href="#" class="bg-slate-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-400 transition-all transform hover:-translate-y-1"><i class="fab fa-twitter w-5 text-center text-lg"></i></a>
+                        <a href="#" class="bg-slate-800 p-3.5 rounded-xl text-gray-300 hover:text-white hover:bg-blue-800 transition-all transform hover:-translate-y-1"><i class="fab fa-facebook-f w-5 text-center text-lg"></i></a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-gray-800 pb-3 inline-block">Quick Links</h4>
+                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-slate-800 pb-3 inline-block">Quick Links</h4>
                     <ul class="space-y-4">
                         <li><a href="#home" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Home Profile</a></li>
-                        <li><a href="javascript:void(0)" onclick="openModal('servicesModal')" class="text-blue-400 hover:text-white hover:pl-2 transition-all flex items-center font-bold"><i class="fas fa-file-pdf text-[10px] mr-3 text-red-500"></i> Our Services PDF</a></li>
-                        <li><a href="javascript:void(0)" onclick="openModal('whyUsModal')" class="text-blue-400 hover:text-white hover:pl-2 transition-all flex items-center font-bold"><i class="fas fa-star text-[10px] mr-3 text-yellow-500"></i> Why Choose Us</a></li>
-                        <li><a href="#infrastructure" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Infrastructure</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('servicesModal')" class="text-blue-400 hover:text-white hover:pl-2 transition-all flex items-center font-bold"><i class="fas fa-file-pdf text-[10px] mr-3 text-blue-500"></i> Our Services PDF</a></li>
+                        <li><a href="#about-mega" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> About Us</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> View FAQ</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-gray-800 pb-3 inline-block">Our Products</h4>
+                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-slate-800 pb-3 inline-block">Our Products</h4>
                     <ul class="space-y-4">
-                        <li><a href="#featured" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Benchtop Equipment</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Advanced Fume Hoods</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Cleanroom Setups</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Lab Workstations</a></li>
+                        <li><a href="#featured" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Static Pass Box</a></li>
+                        <li><a href="#dynamic-featured" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> Dynamic Pass Box</a></li>
+                        <li><a href="#solutions" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> All Lab Solutions</a></li>
+                        <li><a href="#about-mega" class="text-gray-400 hover:text-white hover:pl-2 transition-all flex items-center font-medium"><i class="fas fa-chevron-right text-[10px] mr-3 text-blue-500"></i> About Us</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-gray-800 pb-3 inline-block">Contact Us</h4>
+                    <h4 class="text-lg font-black mb-8 text-white tracking-widest uppercase border-b-2 border-slate-800 pb-3 inline-block">Contact Us</h4>
                     <ul class="space-y-6">
                         <li class="flex items-start">
-                            <div class="bg-gray-800 p-2.5 rounded-lg text-blue-500 mr-4 shadow-inner"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg text-blue-500 mr-4 shadow-inner"><i class="fas fa-map-marker-alt"></i></div>
                             <span class="text-gray-400 leading-relaxed text-sm font-medium mt-1">Industrial Manufacturing Zone, New Delhi NCR, India</span>
                         </li>
                         <li class="flex items-center">
-                            <div class="bg-gray-800 p-2.5 rounded-lg text-[#25D366] mr-4 shadow-inner"><i class="fas fa-phone-alt"></i></div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg text-[#25D366] mr-4 shadow-inner"><i class="fas fa-phone-alt"></i></div>
                             <a href="tel:+917838287460" class="text-white font-black text-xl hover:text-blue-400 transition-colors">+91 78382 87460</a>
                         </li>
                         <li class="flex items-center">
-                            <div class="bg-gray-800 p-2.5 rounded-lg text-blue-500 mr-4 shadow-inner"><i class="fas fa-envelope"></i></div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg text-blue-500 mr-4 shadow-inner"><i class="fas fa-envelope"></i></div>
                             <a href="mailto:sales@benchtopinnovations.com" class="text-gray-400 text-sm font-medium hover:text-white transition-colors">sales@benchtopinnovations.com</a>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
                 <p>&copy; 2024 <span class="text-white font-black tracking-widest text-base ml-1">NARENDER GUPTA</span> <span class="mx-2">|</span> Benchtop Innovations. All Rights Reserved.</p>
-                <p class="mt-4 md:mt-0 font-bold uppercase tracking-widest text-xs text-gray-600 border border-gray-800 px-4 py-2 rounded-full">Engineered for Excellence & Precision</p>
+                <p class="mt-4 md:mt-0 font-bold uppercase tracking-widest text-xs text-gray-600 border border-slate-800 px-4 py-2 rounded-full">Engineered for Excellence & Precision</p>
             </div>
         </div>
     </footer>
 
     <!-- Fixed Floating WhatsApp Button -->
-    <a href="https://wa.me/917838287460" target="_blank" title="Chat with us on WhatsApp" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.5)] hover:bg-[#1ebd57] transition-all duration-300 z-50 float-wa flex items-center justify-center border-2 border-white group">
+    <a href="https://wa.me/917838287460?text=Hello%20Benchtop%20Innovations!%20I%20want%20to%20get%20a%20quote.%0A%0A*Name:*%20%0A*Phone%20No:*%20%0A*Address:*%20%0A*Requirement/Info:*%20" target="_blank" title="Chat with us on WhatsApp" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.5)] hover:bg-[#1ebd57] transition-all duration-300 z-50 float-wa flex items-center justify-center border-2 border-white group">
         <i class="fab fa-whatsapp text-4xl group-hover:scale-110 transition-transform"></i>
     </a>
 
-    <!-- ========================================== -->
-    <!-- NEW: FULL SCREEN PDF STYLE OVERLAYS        -->
-    <!-- ========================================== -->
-
-    <!-- 1. OUR SERVICES PDF PAGE -->
-    <div id="servicesModal" class="pdf-modal hidden-modal fixed inset-0 bg-[#1e293b] z-[100] overflow-y-auto">
-        <!-- Sticky Header with Back Button -->
+    <!-- OUR SERVICES PDF PAGE -->
+    <div id="servicesModal" class="pdf-modal hidden-modal fixed inset-0 bg-[#0f172a] z-[100] overflow-y-auto">
         <div class="sticky top-0 w-full bg-white shadow-xl px-6 py-4 flex justify-between items-center z-[110] border-b-4 border-blue-600">
-            <h2 class="text-xl md:text-2xl font-black text-gray-900 logo-font uppercase flex items-center"><i class="fas fa-file-pdf text-red-500 mr-3 text-3xl"></i> Our Services <span class="hidden md:inline text-gray-400 ml-2 text-sm">(Brochure)</span></h2>
-            <button onclick="closeModal('servicesModal')" class="bg-gray-900 hover:bg-red-600 text-white px-5 py-2.5 rounded-lg font-black transition-all shadow-lg flex items-center transform hover:-translate-x-1">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 logo-font uppercase flex items-center"><i class="fas fa-file-pdf text-blue-600 mr-3 text-3xl"></i> Our Services <span class="hidden md:inline text-gray-400 ml-2 text-sm">(Brochure)</span></h2>
+            <button onclick="closeModal('servicesModal')" class="bg-slate-900 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-black transition-all shadow-lg flex items-center transform hover:-translate-x-1">
                 <i class="fas fa-arrow-left mr-2"></i> Back To Home
             </button>
         </div>
         
-        <!-- 16:9 PDF Style Cards Container -->
-        <div class="max-w-5xl mx-auto px-4 py-12 flex flex-col gap-10">
-            <!-- PDF Viewer Instructions -->
-            <div class="text-center text-gray-400 font-bold tracking-widest text-sm uppercase mb-4"><i class="fas fa-mouse text-lg mr-2"></i> Scroll down to read</div>
-            
-            <!-- Loop of Images wrapped in 16:9 Card ratio -->
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/vxxrCQ4Z/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-2.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/d4mz8cV5/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-3.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/G4PwknQ6/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-4.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/p7RCJFn/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-5.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/GbrwXw2/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-6.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/BVrpPmy7/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-7.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/23Zm9RG1/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-8.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/bR3qTFKt/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-9.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/nNF7QVDW/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-10.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/WWKTcvGD/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-11.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/S45CbS8Z/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-12.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/5hCQd4Xj/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-13.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            
-            <div class="text-center text-gray-400 font-bold tracking-widest text-xl uppercase mt-8 border-t border-gray-700 pt-8">End of Document</div>
-        </div>
-    </div>
-
-    <!-- 2. WHY CHOOSE US PDF PAGE -->
-    <div id="whyUsModal" class="pdf-modal hidden-modal fixed inset-0 bg-[#1e293b] z-[100] overflow-y-auto">
-        <!-- Sticky Header with Back Button -->
-        <div class="sticky top-0 w-full bg-white shadow-xl px-6 py-4 flex justify-between items-center z-[110] border-b-4 border-yellow-500">
-            <h2 class="text-xl md:text-2xl font-black text-gray-900 logo-font uppercase flex items-center"><i class="fas fa-star text-yellow-500 mr-3 text-3xl"></i> Why Choose Us <span class="hidden md:inline text-gray-400 ml-2 text-sm">(Ecosystem)</span></h2>
-            <button onclick="closeModal('whyUsModal')" class="bg-gray-900 hover:bg-red-600 text-white px-5 py-2.5 rounded-lg font-black transition-all shadow-lg flex items-center transform hover:-translate-x-1">
-                <i class="fas fa-arrow-left mr-2"></i> Back To Home
-            </button>
-        </div>
-        
-        <!-- 16:9 PDF Style Cards Container -->
         <div class="max-w-5xl mx-auto px-4 py-12 flex flex-col gap-10">
             <div class="text-center text-gray-400 font-bold tracking-widest text-sm uppercase mb-4"><i class="fas fa-mouse text-lg mr-2"></i> Scroll down to read</div>
             
-            <!-- Loop of Images wrapped in 16:9 Card ratio -->
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/QFmC7GGy/Benchtop-Innovation-Ecosystem-cropped-1.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/tMG8nYKW/Benchtop-Innovation-Ecosystem-cropped-2.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/TBHTFcGS/Benchtop-Innovation-Ecosystem-cropped-3.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/v6PHZ9M7/Benchtop-Innovation-Ecosystem-cropped-4.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/0p9xcsRc/Benchtop-Innovation-Ecosystem-cropped-5.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/PvsV8ncB/Benchtop-Innovation-Ecosystem-cropped-6.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/fY0N1F5c/Benchtop-Innovation-Ecosystem-cropped-7.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/v6KhYqrN/Benchtop-Innovation-Ecosystem-cropped-8.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/HwVdPkJ/Benchtop-Innovation-Ecosystem-cropped-9.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/vxy2kmyX/Benchtop-Innovation-Ecosystem-cropped-10.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/kYK3NMJ/Benchtop-Innovation-Ecosystem-cropped-11.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/DP85MXGz/Benchtop-Innovation-Ecosystem-cropped-12.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/8DPTJTgv/Benchtop-Innovation-Ecosystem-cropped-13.jpg" class="w-full h-full object-contain rounded-xl"></div>
-            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-gray-700 p-1"><img src="https://i.ibb.co/1YFN91zv/Benchtop-Innovation-Ecosystem-cropped-14.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/vxxrCQ4Z/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-2.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/d4mz8cV5/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-3.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/G4PwknQ6/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-4.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/p7RCJFn/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-5.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/GbrwXw2/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-6.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/BVrpPmy7/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-7.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/23Zm9RG1/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-8.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/bR3qTFKt/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-9.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/nNF7QVDW/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-10.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/WWKTcvGD/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-11.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/S45CbS8Z/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-12.jpg" class="w-full h-full object-contain rounded-xl"></div>
+            <div class="w-full aspect-video bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border-2 border-slate-700 p-1"><img src="https://i.ibb.co/5hCQd4Xj/Benchtop-Innovations-Brochure-updated-2026-HD-1-cropped-13.jpg" class="w-full h-full object-contain rounded-xl"></div>
             
-            <div class="text-center text-gray-400 font-bold tracking-widest text-xl uppercase mt-8 border-t border-gray-700 pt-8">End of Document</div>
+            <div class="text-center text-gray-400 font-bold tracking-widest text-xl uppercase mt-8 border-t border-slate-700 pt-8">End of Document</div>
         </div>
     </div>
 
-
-    <!-- ========================================== -->
-    <!-- JAVASCRIPT LOGIC                           -->
-    <!-- ========================================== -->
-
-    <!-- AOS Animation Library JS -->
+    <!-- JAVASCRIPT LOGIC -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Scroll Animations
-        AOS.init({
-            duration: 1000, 
-            offset: 80,    
-            once: true,    
-            easing: 'ease-out-cubic',
-        });
+        AOS.init({ duration: 1000, offset: 80, once: true, easing: 'ease-out-cubic' });
 
-        // Toggle Mobile Menu Logic
         let isMobileMenuOpen = false;
         function toggleMobileMenu() {
             const sidebar = document.getElementById('mobileMenuSidebar');
             const overlay = document.getElementById('mobileMenuOverlay');
             
             if(!isMobileMenuOpen) {
-                // Open menu
                 sidebar.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
             } else {
-                // Close menu
                 sidebar.classList.add('translate-x-full');
                 overlay.classList.add('opacity-0');
-                setTimeout(() => overlay.classList.add('hidden'), 300); // wait for fade out
+                setTimeout(() => overlay.classList.add('hidden'), 300); 
             }
             isMobileMenuOpen = !isMobileMenuOpen;
         }
 
-        // Fullscreen PDF Modals Logic
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            const title = element.querySelector('span');
+            
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                answer.style.opacity = 0;
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+                title.classList.remove('text-blue-600');
+            } else {
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    const btn = ans.previousElementSibling;
+                    const ic = btn.querySelector('.faq-icon');
+                    const ti = btn.querySelector('span');
+                    ans.style.maxHeight = null;
+                    ans.style.opacity = 0;
+                    ic.classList.remove('fa-minus');
+                    ic.classList.add('fa-plus');
+                    ti.classList.remove('text-blue-600');
+                });
+                
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                answer.style.opacity = 1;
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+                title.classList.add('text-blue-600');
+            }
+        }
+
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.remove('hidden-modal');
             modal.classList.add('active-modal');
-            
-            // Scroll modal to top so user always starts at page 1
             modal.scrollTop = 0; 
-            
-            // Lock background body scroll
             document.body.classList.add('modal-open');
         }
 
@@ -651,9 +996,21 @@
             const modal = document.getElementById(modalId);
             modal.classList.remove('active-modal');
             modal.classList.add('hidden-modal');
-            
-            // Unlock background body scroll
             document.body.classList.remove('modal-open');
+        }
+
+        // JS to Handle Contact Form submission to WhatsApp
+        function sendWhatsAppForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('waName').value;
+            const phone = document.getElementById('waPhone').value;
+            const company = document.getElementById('waCompany').value || 'Not provided';
+            const email = document.getElementById('waEmail').value || 'Not provided';
+            const msg = document.getElementById('waMessage').value;
+
+            const text = `Hello Benchtop Innovations! I would like to get a quote.%0A%0A*Name:* ${name}%0A*Phone No:* ${phone}%0A*Company:* ${company}%0A*Email:* ${email}%0A*Requirement/Message:* ${msg}`;
+            const url = `https://wa.me/917838287460?text=${text}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
